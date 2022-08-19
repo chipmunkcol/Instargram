@@ -21,6 +21,8 @@ const navigate = useNavigate()
             <Nav.Link onClick={()=>{ navigate('/') }}>Home</Nav.Link>
             <Nav.Link onClick={()=>{ navigate('/user') }}>MyPage</Nav.Link>
             <Nav.Link onClick={()=>{ navigate('/upLoad') }}>UpLoad</Nav.Link>
+            <Nav.Link onClick={()=>{ navigate('/login') }}>Login</Nav.Link>
+            <Nav.Link onClick={()=>{ navigate('/register') }}>Register</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
