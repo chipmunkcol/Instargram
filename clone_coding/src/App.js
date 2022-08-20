@@ -15,19 +15,11 @@ const navigate = useNavigate()
 
   return (
     <div className="App">
-      <Header />
-      {/* <Navbar bg="light" variant="light">
-        <Container>
-          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link onClick={()=>{ navigate('/') }}>Home</Nav.Link>
-            <Nav.Link onClick={()=>{ navigate('/user') }}>MyPage</Nav.Link>
-            <Nav.Link onClick={()=>{ navigate('/upLoad') }}>UpLoad</Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar> */}
+      <Header />  
+      
 
-    <Routes>
+    {/* route -> componenet로 넘길 예정입니다! */}
+    <Routes>  
       <Route path='/' element={<Home/>}></Route>
       <Route path='/login' element={<Login></Login>}></Route>
       <Route path='/register' element={<Register></Register>}></Route>
