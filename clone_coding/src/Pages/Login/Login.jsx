@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import './style.css';
+import logo1 from '../../Image/애플스토어다운 로고.png';
+import logo2 from '../../Image/구글플레이다운 로고.png'
+import { useNavigate } from 'react-router-dom'
 
 function Login() {
 
 const [end, setEnd] = useState('')
+const navigate = useNavigate()
 
 useEffect(()=>{
     setTimeout(() => {
@@ -17,7 +21,7 @@ useEffect(()=>{
 
 
     return(
-        <div>
+        <div style={{backgroundColor:'#fafafa', minWidth:'860px'}}>
             <h1 >Login 페이지입니다.</h1>
 
         <Container>
@@ -26,11 +30,17 @@ useEffect(()=>{
             </Flex1>
             <Flex2>
                 <LoginBox>
-                    <div style={{fontSize:'42px', margin:'22px 0 0 0'}}>Instagram</div>
+                    <div style={{fontSize:'42px', margin:'22px 0 22px 0'}}>Instagram</div>
                     <InputId type='text' placeholder='아이디'/>
                     <InputId placeholder='비밀번호'/>
+                    <div><Button>로그인</Button></div>
                 </LoginBox>
-                <RegisterBox></RegisterBox>
+                <RegisterBox>계정이 없으신가요? <span type='button' style={{color:'#718fc1', marginLeft:'5px', fontWeight:'bolder' }} onClick={()=>{navigate('/register')}}> 가입하기</span></RegisterBox>
+                <div style={{marginTop:'14px'}}>앱을 다운로드하세요.</div>
+                <div> 
+                    <span><a href='https://apps.apple.com/app/instagram/id389801252?vt=lo' target='_blank'><img src={logo1} style={{width:'170px'}} type='button' /></a></span> 
+                    <span><a href='https://play.google.com/store/apps/details?id=com.instagram.android&referrer=utm_source%3Dinstagramweb%26utm_campaign%3DloginPage%26ig_mid%3D9B535C59-E857-426E-BEF6-A8EE7D62618F%26utm_content%3Dlo%26utm_medium%3Dbadge' target='_blank'><img src={logo2} style={{width:'155px'}}/></a></span>
+                </div>
             </Flex2>
         </Container>
 
@@ -48,7 +58,7 @@ const Container = styled.div`
 const Flex1 = styled.div`
     width: 460px;
     height: 630px;
-    margin: 0px 40px 0 0;
+    margin: 0px -28px 0 0;
 
     background-image: url('https://www.instagram.com/static/images/homepage/phones/home-phones.png/1dc085cdb87d.png');
     background-position: center;
@@ -67,31 +77,46 @@ const Flex2 = styled.div`
     width: 350px;
     height: 550px;
 
-    border: 1px solid gray;
 `
 
     const LoginBox = styled.div`
         margin: 20px auto 0 auto;
-        border: 1px solid gray;
         width: 87%;
-        height: 60%;
+        height: 54%;
+        font-size: 14px;
+        border: 1px solid #dbdbdb;
+        background-color: white;
     `
 
     const InputId = styled.input`
-        border: 0.5px solid gray;
+        border: 0.5px solid #dbdbdb;
         border-radius: 3px;
-        background-color: snow;
+        background-color: #fafafa;
         width: 234px;
         height: 35px;
-        margin: 25px 0 0 0;
+        margin: 6px 0 0 0;
         padding: 12px;
     `;
 
+    const Button = styled.button`
+        width: 234px;
+        background-color: #b2dffc;
+        color: white;
+        margin: 14px 0 0 0;
+        border: 0;
+        height: 30px;
+        border-radius: 4px;
+    `
+
     const RegisterBox = styled.div`
         margin: 15px auto 0 auto;
-        border: 1px solid gray;
+        border: 1px solid #dbdbdb;
         width: 87%;
         height: 10%;
+        background-color: white;
+        align-items: center;
+        justify-content: center;
+        display: flex;
     `
 
 
