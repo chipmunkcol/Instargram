@@ -1,15 +1,13 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from '@reduxjs/toolkit';
+import { productSlice } from '../modules/pracSlice'
 
-
-
-
-
-const store = configureStore({
-  reducer: { 
-    // posts: posts,
-    // comments: comments,
-    
-   },
-});
+ const store = configureStore(
+  {
+    reducer: {
+    //   products: productsSlice.reducer,
+      product: productSlice.reducer,
+    },
+  },
+);
 
 export default store;
