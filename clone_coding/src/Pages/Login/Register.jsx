@@ -40,7 +40,6 @@ const register = () => {
 
     return(
         <div style={{backgroundColor:'#fafafa', minWidth:'860px'}}>
-            <h1 >Register 페이지입니다.</h1>
 
         <Container>
             <Flex1>
@@ -56,11 +55,11 @@ const register = () => {
                     <InputId placeholder='비밀번호' onChange={(e)=>{setPw(e.target.value)}}/>
                     <InputId placeholder='이메일' onChange={(e)=>{setEmail(e.target.value)}}/>
                     <InputId placeholder='닉네임' onChange={(e)=>{setNickname(e.target.value)}}/>
-                    
+
                     <div><Button onClick={register}>가입</Button></div>
                 </LoginBox>
                 <RegisterBox>계정이 있으신가요? <span type='button' style={{color:'#718fc1', marginLeft:'5px', fontWeight:'bolder' }} onClick={()=>{navigate('/login')}}> 로그인</span></RegisterBox>
-                <div style={{marginTop:'14px'}}>앱을 다운로드하세요.</div>
+                <div style={{marginTop:'14px', textAlign:'center'}}>앱을 다운로드하세요.</div>
                 <div> 
                     <span><a href='https://apps.apple.com/app/instagram/id389801252?vt=lo' target='_blank'><img src={logo1} style={{width:'170px'}} type='button' /></a></span> 
                     <span><a href='https://play.google.com/store/apps/details?id=com.instagram.android&referrer=utm_source%3Dinstagramweb%26utm_campaign%3DloginPage%26ig_mid%3D9B535C59-E857-426E-BEF6-A8EE7D62618F%26utm_content%3Dlo%26utm_medium%3Dbadge' target='_blank'><img src={logo2} style={{width:'155px'}}/></a></span>
@@ -82,7 +81,7 @@ const Container = styled.div`
 const Flex1 = styled.div`
     width: 460px;
     height: 630px;
-    margin: 0px -28px 0 0;
+    margin: 83px -28px 0 0;
 
     background-image: url('https://www.instagram.com/static/images/homepage/phones/home-phones.png/1dc085cdb87d.png');
     background-position: center;
@@ -100,7 +99,7 @@ const Flex1 = styled.div`
 const Flex2 = styled.div`
     width: 350px;
     height: 800px;
-
+    margin: 83px 0 0 0;
 `
 
     const LoginBox = styled.div`
@@ -110,6 +109,9 @@ const Flex2 = styled.div`
         font-size: 14px;
         border: 1px solid #dbdbdb;
         background-color: white;
+        display: flex;
+    flex-direction: column;
+    align-items: center;
     `
 
     const InputId = styled.input`
