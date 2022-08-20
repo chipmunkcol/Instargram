@@ -1,8 +1,7 @@
-
 import { configureStore } from '@reduxjs/toolkit';
 import { productSlice } from '../modules/pracSlice'
 
-export const store = configureStore(
+ const store = configureStore(
   {
     reducer: {
     //   products: productsSlice.reducer,
