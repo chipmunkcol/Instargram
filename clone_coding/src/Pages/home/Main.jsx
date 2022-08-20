@@ -3,7 +3,6 @@ import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
 import Avatar from '@mui/material/Avatar';
 import { red } from '@mui/material/colors';
 import styled_components from 'styled-components';
@@ -13,28 +12,17 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { useNavigate } from 'react-router-dom';
 
-// const ExpandMore = styled((props) => {
-//   const { expand, ...other } = props;
-//   return <IconButton {...other} />;
-// })(({ theme, expand }) => ({
-//   transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-//   marginLeft: 'auto',
-//   transition: theme.transitions.create('transform', {
-//     duration: theme.transitions.duration.shortest,
-//   }),
-// }));
-
 
 function Main() {
+// Card modal창
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   
   const navigate = useNavigate();
 
-
   return (
-    <MainContainer>
+    <MainContainer >
   {/*MUI modal창 구현부분입니다  */}
       <Modal
         open={open}
@@ -54,7 +42,7 @@ function Main() {
           <BoxStyle style={{borderBottom:'none'}}>취소</BoxStyle>
         </Box>
       </Modal>
-
+     
   {/* 카드 컴포넌트입니다 */}
       <Card sx={{ maxWidth: 600, height: '800px', borderRadius:'20px', border:'1px solid lightgray', marginTop:'50px',marginBottom:'50px' }}>
         <CardHeader
@@ -81,10 +69,11 @@ function Main() {
             <img  style={{width: '30px', height: '30px', marginRight:'20px'}} alt="heart"  src='images/commentIcon.png'></img>
             <img  style={{width: '30px', height: '30px',  marginRight:'15px'}} alt="heart"  src='images/send.png'></img>
           </CardInnerIcons>
+          <CardLike>좋아요 10개</CardLike>
           <CardInnerContent >
-            <p style={{ fontWeight: '900', fontSize: '20px' }}>작성자</p>
-            <div style={{marginTop: '2px',marginLeft: '10px', fontSize: '18px' }}>내용</div >
-            <div onClick={()=>{navigate('/user/detail')}} style={{ cursor:'pointer' }}> ...더보기</div>
+            <p style={{ fontWeight: '900', fontSize: '18px' }}>작성자</p>
+            <div style={{marginTop: '2px',marginLeft: '10px', fontSize: '16px' }}>내용</div >
+            <div style={{ cursor:'pointer' }}> ...더보기</div>
           </CardInnerContent>
           <Comment/>
         </div>
@@ -101,6 +90,7 @@ const MainContainer = styled_components.div`
 const CardInnerIcons = styled_components.div`
   width: 100%;
   padding: 1rem;
+  padding-bottom: 0;
 `
 const CardInnerContent = styled_components.div`
   float:left;
@@ -127,9 +117,13 @@ const style = {
 const BoxStyle = styled_components.div`
   font-size:16px;
   margin-top:2px;
-  padding: 1.1rem;
+  padding: 1rem;
   border-bottom: 1px solid lightgray;
 `  
-
+const CardLike = styled_components.div`
+  margin-left: 20px;
+  font-size:18px;
+  font-weight: 800;
+`
 
 export default Main

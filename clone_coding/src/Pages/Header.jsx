@@ -1,20 +1,27 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import styled,{ createGlobalStyle } from 'styled-components'
 import '../App.css';
 
-const Header = () => {
+const Header = ({setOpenImg}) => {
+  // const [openImg, setOpenImg] = React.useState(false);
+  const navigate = useNavigate();
+  const openAddImage = () => {
+    setOpenImg((prev)=>(!prev))
+  }
   return (
     <>
-      <GlobalStyle/>
+      <GlobalStyle />
       <HeaderContainer>
         <HeaderInner>
-          <HeaderContentSize>
+          <HeaderContentSize style={{cursor:'pointer'}} onClick={()=>{navigate('/')}}>
             Instargram
           </HeaderContentSize>
           <div>
-            <img  style={{width: '30px', height: '30px', marginTop:'5px', marginRight:'20px'}} alt="heart"  src='images/home.png'></img>
+            <img  style={{width: '30px', height: '30px', marginTop:'5px', marginRight:'20px'}}  alt="heart"  src='images/home.png'></img>
             <img  style={{width: '30px', height: '30px', marginTop:'5px', marginRight:'15px'}} alt="heart"  src='images/send.png'></img>
-            <img  style={{width: '50px', height: '50px', marginTop:'5px', marginRight:'15px'}} alt="heart"  src='images/heart.png'></img>
+            <img  style={{width: '35px', height: '35px', marginTop:'5px', marginRight:'10px', cursor:'pointer'}} onClick={openAddImage} alt="heart"  src='images/add.png'></img>
+            <img  style={{ width: '50px', height: '50px', marginTop: '5px', marginRight: '10px' }} alt="heart" src='images/heart.png'></img>
             <img  style={{width: '40px', height: '40px', marginTop:'5px'}} alt="heart"  src='images/who.png'></img>
           </div>
         </HeaderInner>
