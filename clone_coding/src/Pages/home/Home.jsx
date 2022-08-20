@@ -1,9 +1,32 @@
+import React from 'react'
+import styled from 'styled-components'
+import Main from './Main'
 
-
-function Home() {
-    return(
-        <h1>Home 페이지입니다.</h1>
-    );
+const Home = () => {
+  return (
+    <div>
+          <HomeContainer>
+              <HomeInner>
+                  <Main />
+              </HomeInner>
+          </HomeContainer>
+          
+    </div>
+  )
 }
 
-export default Home;
+const HomeContainer = styled.div `
+    position: absolute;
+    top:60px; 
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 700px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+`
+
+const HomeInner = styled.div`
+    
+`
+export default Home

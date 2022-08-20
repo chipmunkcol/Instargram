@@ -7,6 +7,7 @@ import Home from './Pages/home/Home';
 import UserPage from './Pages/home/userPage/UserPage';
 import DetailPage from './Pages/home/userPage/detailPage/DetailPage';
 import UpLoad from './Pages/upload/UpLoad';
+import Header from './Pages/Header';
 
 function App() {
 
@@ -14,7 +15,8 @@ const navigate = useNavigate()
 
   return (
     <div className="App">
-      <Navbar bg="light" variant="light">
+      <Header />
+      {/* <Navbar bg="light" variant="light">
         <Container>
           <Navbar.Brand href="#home">Navbar</Navbar.Brand>
           <Nav className="me-auto">
@@ -25,10 +27,10 @@ const navigate = useNavigate()
             <Nav.Link onClick={()=>{ navigate('/register') }}>Register</Nav.Link>
           </Nav>
         </Container>
-      </Navbar>
+      </Navbar> */}
 
     <Routes>
-      <Route path='/' element={<Home></Home>}></Route>
+      <Route path='/' element={<Home/>}></Route>
       <Route path='/login' element={<Login></Login>}></Route>
       <Route path='/register' element={<Register></Register>}></Route>
       <Route path='/user' element={<UserPage></UserPage>}></Route>
