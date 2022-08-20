@@ -1,6 +1,5 @@
 import './App.css';
-import { Container, Nav, Navbar} from 'react-bootstrap';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate,Link, Switch } from 'react-router-dom';
 import Login from './Pages/Login/Login'
 import Register from './Pages/Login/Register'
 import Home from './Pages/home/Home';
@@ -10,8 +9,6 @@ import UpLoad from './Pages/upload/UpLoad';
 import Header from './Pages/Header';
 
 function App() {
-
-const navigate = useNavigate()
 
   return (
     <div className="App">
@@ -28,12 +25,13 @@ const navigate = useNavigate()
       </Navbar> */}
 
     <Routes>
-      <Route path='/' element={<Home/>}></Route>
-      <Route path='/login' element={<Login></Login>}></Route>
-      <Route path='/register' element={<Register></Register>}></Route>
-      <Route path='/user' element={<UserPage></UserPage>}></Route>
-      <Route path='/user/detail' element={<DetailPage></DetailPage>}></Route>
-      <Route path='/upLoad' element={<UpLoad></UpLoad>}></Route>
+        <Route path='/' element={<Home />}>
+        <Route path='/user/detail' element={<DetailPage/>}></Route>
+        </Route>
+        <Route path='/login' element={<Login/>}></Route>
+        <Route path='/register' element={<Register/>}></Route>
+        <Route path='/user' element={<UserPage/>}></Route>
+        <Route path='/upLoad' element={<UpLoad/>}></Route>
     </Routes>
 
     </div>
