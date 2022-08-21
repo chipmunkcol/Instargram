@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { productSlice } from '../modules/pracSlice'
+import { tokenSlice } from "../modules/AccessToken"
 
  const store = configureStore(
   {
     reducer: {
     //   products: productsSlice.reducer,
       product: productSlice.reducer,
+      accessToken: tokenSlice.reducer,
     },
   },
 );

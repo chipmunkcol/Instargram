@@ -6,25 +6,25 @@ import Home from './Pages/home/Home';
 import UserPage from './Pages/home/userPage/UserPage';
 import DetailPage from './Pages/home/userPage/detailPage/DetailPage';
 import UpLoad from './Pages/upload/UpLoad';
+
 import Header from './Pages/Header';
 
 function App() {
 
   return (
     <div className="App">
-      <Header />  
+      {/* <Header />   */}
       
+      <Routes>
+            <Route path='/' element={<Home />}></Route>
+            <Route path='/user/detail' element={<DetailPage/>}></Route>
+            <Route path='/user' element={<UserPage/>}></Route>
+            <Route path='/upLoad' element={<UpLoad/>}></Route>
 
-    <Routes>
-        <Route path='/' element={<Home />}>
-        <Route path='/user/detail' element={<DetailPage/>}></Route>
-        </Route>
-        <Route path='/login' element={<Login/>}></Route>
-        <Route path='/register' element={<Register/>}></Route>
-        <Route path='/user' element={<UserPage/>}></Route>
-        <Route path='/upLoad' element={<UpLoad/>}></Route>
-
-    </Routes>
+            <Route path='/login' element={<Login/>}></Route>
+            <Route path='/register' element={<Register/>}></Route>
+        
+        </Routes>
 
     </div>
   );

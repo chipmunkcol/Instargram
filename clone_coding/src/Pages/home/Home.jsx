@@ -18,7 +18,7 @@ const Home = () => {
 }
 
 const HomeContainer = styled.div `
-    position: absolute;
+    position: relative;
     top:80px; 
     left: 50%;
     transform: translateX(-50%);
