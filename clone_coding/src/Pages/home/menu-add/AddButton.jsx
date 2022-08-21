@@ -1,4 +1,4 @@
-import React,{useState,useRef,useReducer} from "react";
+import React, { useState, useRef, useReducer } from "react";
 import styled from 'styled-components'
 
 const AddButton = () => {
@@ -9,7 +9,7 @@ const AddButton = () => {
     const reader = new FileReader();
 
     const file = imgRef.current.files[0];
-    // console.log(file)
+    console.log(imgRef.current.files[0])
     reader.readAsDataURL(file);
     reader.onloadend = () => {
       setImageUrl(reader.result);
@@ -28,23 +28,23 @@ const AddButton = () => {
     // addpost(obj)
     alert('등록완료!')
     // navigate('/');
-    };
+  };
 
   return (
-    <div style={{ backgroundColor:'white'}}>
+    <div style={{ backgroundColor: 'white' }}>
       <AddButtonContainer>
         <AddButtonTitle>
           <div>새 게시물 만들기</div>
           <ShareButton onClick={sendButton}>공유하기</ShareButton>
         </AddButtonTitle>
-        
+
         <div style={{ display: 'flex' }}>
           <AddButtonImage>
-            {console.log(imageUrl)}
+            {/* {console.log(imageUrl)} */}
             <ImageBox src={imageUrl ? imageUrl : 'images/addImg.png'} />
-            <div style={{ fontSize:'18px' }}>사진과 동영상을 여기에 끌어다 놓으세요</div>
-            
-            
+            <div style={{ fontSize: '18px' }}>사진과 동영상을 여기에 끌어다 놓으세요</div>
+
+
             <label htmlFor="upload-photo">
               <input
                 type="file"
@@ -54,23 +54,23 @@ const AddButton = () => {
                 ref={imgRef}
                 style={{ display: 'none' }}
               />
-             <SelectComputer>
-              컴퓨터에서 가져오기
+              <SelectComputer>
+                컴퓨터에서 가져오기
               </SelectComputer>
-              </label>
+            </label>
           </AddButtonImage>
           <AddButtonContent>
-          <div style={{ display:'flex',margin: '10px' }}>
-            <img style={{ width: '50px', height: '50px',borderRadius:'50px', marginTop: '5px', marginRight: '20px' }} alt="heart" src='images/noImg.jpg'></img>
-              <div style={{ marginTop:'10px' }} > 아이디</div>
-          </div>
+            <div style={{ display: 'flex', margin: '10px' }}>
+              <img style={{ width: '50px', height: '50px', borderRadius: '50px', marginTop: '5px', marginRight: '20px' }} alt="heart" src='images/noImg.jpg'></img>
+              <div style={{ marginTop: '10px' }} > 아이디</div>
+            </div>
 
             <ContentBody>내용</ContentBody>
             <ContentWhere>위치추가</ContentWhere>
             <ContentWhere>접근성</ContentWhere>
             <ContentWhere>고급설정</ContentWhere>
           </AddButtonContent>
-      
+
         </div>
       </AddButtonContainer>
     </div>

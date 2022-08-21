@@ -11,40 +11,46 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { useNavigate } from 'react-router-dom';
-
+import DetailPage from './userPage/detailPage/DetailPage';
 
 function Main() {
-// Card modal창
+  // Card modal창
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  
+
+  //Detail modal창
+  const [openDetail, setOpenDetail] = React.useState(false);
+  const handleDetail = () => {
+    setOpenDetail(!openDetail)
+  };
+
   const navigate = useNavigate();
 
   return (
     <MainContainer >
-  {/*MUI modal창 구현부분입니다  */}
+      {/*MUI modal창 구현부분입니다  */}
       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-       
+
       >
         <Box sx={style}>
-          <BoxStyle style={{color:'#CD0000', fontWeight:'800'}}>신고</BoxStyle>
-          <BoxStyle style={{color:'#CD0000', fontWeight:'800'}}>팔로우 취소</BoxStyle>
+          <BoxStyle style={{ color: '#CD0000', fontWeight: '800' }}>신고</BoxStyle>
+          <BoxStyle style={{ color: '#CD0000', fontWeight: '800' }}>팔로우 취소</BoxStyle>
           <BoxStyle>즐겨찾기에 추가</BoxStyle>
           <BoxStyle>게시물로 이동</BoxStyle>
           <BoxStyle>공유 대상..</BoxStyle>
           <BoxStyle>링크 복사</BoxStyle>
           <BoxStyle>퍼가기</BoxStyle>
-          <BoxStyle style={{borderBottom:'none'}}>취소</BoxStyle>
+          <BoxStyle style={{ borderBottom: 'none' }}>취소</BoxStyle>
         </Box>
       </Modal>
-     
-  {/* 카드 컴포넌트입니다 */}
-      <Card sx={{ maxWidth: 600, height: '800px', borderRadius:'20px', border:'1px solid lightgray', marginTop:'50px',marginBottom:'50px' }}>
+
+      {/* 카드 컴포넌트입니다 */}
+      <Card sx={{ maxWidth: 600, height: '800px', borderRadius: '20px', border: '1px solid lightgray', marginTop: '50px', marginBottom: '50px' }}>
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -55,7 +61,7 @@ function Main() {
             <MoreHorizIcon sx={{ m: 1, cursor: 'pointer' }} onClick={handleOpen} />
           }
           title="Shrimp and Chorizo Paella"
-          />
+        />
 
         <CardMedia
           component="img"
@@ -65,20 +71,21 @@ function Main() {
         />
         <div>
           <CardInnerIcons>
-            <img  style={{width: '50px', height: '50px', marginRight:'10px'}} alt="heart"  src='images/heart.png'></img>
-            <img  style={{width: '30px', height: '30px', marginRight:'20px'}} alt="heart"  src='images/commentIcon.png'></img>
-            <img  style={{width: '30px', height: '30px',  marginRight:'15px'}} alt="heart"  src='images/send.png'></img>
+            <img style={{ width: '50px', height: '50px', marginRight: '10px' }} alt="heart" src='images/heart.png'></img>
+            <img style={{ width: '30px', height: '30px', marginRight: '20px' }} alt="heart" src='images/commentIcon.png'></img>
+            <img style={{ width: '30px', height: '30px', marginRight: '15px' }} alt="heart" src='images/send.png'></img>
           </CardInnerIcons>
           <CardLike>좋아요 10개</CardLike>
           <CardInnerContent >
             <p style={{ fontWeight: '900', fontSize: '18px' }}>작성자</p>
-            <div style={{marginTop: '2px',marginLeft: '10px', fontSize: '16px' }}>내용</div >
-            <div style={{ cursor:'pointer' }}> ...더보기</div>
+            <div style={{ marginTop: '2px', marginLeft: '10px', fontSize: '16px' }}>내용</div >
+            <div style={{ cursor: 'pointer' }} onClick={handleDetail}> ...더보기</div>
           </CardInnerContent>
-          <Comment/>
+          <Comment />
         </div>
       </Card>
-     
+      {/* 게시글 디테일 페이지입니다 */}
+      {openDetail ? <DetailPage></DetailPage> : null}
     </MainContainer>
   );
 }
@@ -119,7 +126,7 @@ const BoxStyle = styled_components.div`
   margin-top:2px;
   padding: 1rem;
   border-bottom: 1px solid lightgray;
-`  
+`
 const CardLike = styled_components.div`
   margin-left: 20px;
   font-size:18px;
