@@ -12,8 +12,6 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { useNavigate } from 'react-router-dom';
-import DetailPage from './userPage/detailPage/DetailPage';
-import './main.css'
 
 // const ExpandMore = styled((props) => {
 //   const { expand, ...other } = props;
@@ -29,21 +27,14 @@ import './main.css'
 
 function Main() {
   const [open, setOpen] = React.useState(false);
-  const [modal, setModal] = React.useState(false)
-
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   
   const navigate = useNavigate();
 
-  React.useEffect(()=>{
-
-
-  },[modal])
 
   return (
-    <MainContainer className='Main'>
-
+    <MainContainer>
   {/*MUI modal창 구현부분입니다  */}
       <Modal
         open={open}
@@ -64,15 +55,8 @@ function Main() {
         </Box>
       </Modal>
 
-  {/* DetailPage 모달창입니당 */}
-      {
-        modal === true ? <DetailPage modal={modal} setModal={setModal} /> : null
-      }
-
   {/* 카드 컴포넌트입니다 */}
-
       <Card sx={{ maxWidth: 600, height: '800px', borderRadius:'20px', border:'1px solid lightgray', marginTop:'50px',marginBottom:'50px' }}>
-        
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -90,7 +74,6 @@ function Main() {
           height="500"
           image="images/camera.jpg"
           alt="img"
-          onClick={()=>{setModal(!modal)}}
         />
         <div>
           <CardInnerIcons>
@@ -101,7 +84,7 @@ function Main() {
           <CardInnerContent >
             <p style={{ fontWeight: '900', fontSize: '20px' }}>작성자</p>
             <div style={{marginTop: '2px',marginLeft: '10px', fontSize: '18px' }}>내용</div >
-            <div onClick={()=>{setModal(!modal)}} style={{ cursor:'pointer' }}> ...더보기</div>
+            <div onClick={()=>{navigate('/user/detail')}} style={{ cursor:'pointer' }}> ...더보기</div>
           </CardInnerContent>
           <Comment/>
         </div>

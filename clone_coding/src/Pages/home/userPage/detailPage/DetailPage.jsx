@@ -1,45 +1,26 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import './detail.css';
 
-
-const DetailPage = ({modal, setModal}) => {
-
-
-
+const DetailPage = () => {
+    const [open, setOpen] = React.useState(false);
+    const handleClose = () => setOpen(false);
   return (
-    <div className='detailModal'>
-
-        
-
-        <Container>
-            <Flex1></Flex1>
-
-            <Flex2><button onClick={()=>{setModal(!modal)}}>닫기</button></Flex2>
-        </Container>
-    </div>
+      <DetailContainer
+         open={open}
+        onClose={handleClose}>
+          <DetailInner>DetailPage</DetailInner>
+      </DetailContainer>
   )
 }
-
-const Container = styled.div`
-    background-color: #61dafb;
-    position: relative;
-    width: 1000px;
-    height: 400px;
-    margin: 0 0 0 0;
-    display: flex;
-    flex-direction: row;
+const DetailContainer = styled.div`
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
 `
-
-const Flex1 = styled.div`
-    width: 550px;
-    height: 400px;
-    background-color: yellow;
+const DetailInner = styled.div`
+    width: 700px;
+    height: 500px;
+    background-color: beige;
 `
-const Flex2 = styled.div`
-    width: 450px;
-    height: 400px;
-    background-color: orange;
-`
-
 export default DetailPage

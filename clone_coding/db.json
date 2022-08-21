@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
 
   "users": [
     {
@@ -8,4 +9,29 @@
     }
   ]
 
+=======
+  "user": [
+    {
+      "id": 1,
+      "username": "jdh3340",
+      "password": "asdfasdf",
+      "email": "jdh3340@naver.com",
+      "nickname": "홍길동"
+    },
+    {
+      "username": "id",
+      "password": "pw",
+      "email": "email",
+      "nickname": "다람쥐!",
+      "id": 2
+    },
+    {
+      "username": "id",
+      "password": "ow",
+      "email": "dfsjlfk",
+      "nickname": "felwfnekl",
+      "id": 3
+    }
+  ]
+>>>>>>> parent of e31f404 (Merge pull request #3 from chipmunkcol/mini)
 }
