@@ -1,15 +1,10 @@
 {
-<<<<<<< HEAD
-
-  "users": [
+  "comment": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "content": "야호야호야호"
     }
-  ]
-
-=======
+  ],
   "user": [
     {
       "id": 1,
@@ -33,5 +28,4 @@
       "id": 3
     }
   ]
->>>>>>> parent of e31f404 (Merge pull request #3 from chipmunkcol/mini)
 }

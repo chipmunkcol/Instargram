@@ -2,13 +2,16 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { productSlice } from '../modules/pracSlice'
 import { tokenSlice } from "../modules/AccessToken"
+import { postSlice } from '../modules/postSlice'
 
-export const store = configureStore(
+
+
+ const store = configureStore(
   {
     reducer: {
-    //   products: productsSlice.reducer,
       product: productSlice.reducer,
       accessToken: tokenSlice.reducer,
+      post: postSlice.reducer
     },
   },
 );

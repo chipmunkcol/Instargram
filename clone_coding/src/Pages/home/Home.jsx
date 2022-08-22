@@ -38,7 +38,7 @@ const HomeContainer = styled.div`
 const HomeInner = styled.div`
 
     min-width: 700px;
-    height: 100%;
+    height: 100vh;
     display: flex;
     justify-content: center;
    
