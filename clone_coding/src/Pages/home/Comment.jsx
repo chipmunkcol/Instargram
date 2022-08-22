@@ -15,7 +15,7 @@ const Comment = () => {
 }
 const CommentContainer = styled.div`
   margin-left: 20px;
-  margin-top: 70px;
+  margin-top: 60px;
   width: 90%;
   border-top: 1px solid gray;
   display: flex;
@@ -23,15 +23,14 @@ const CommentContainer = styled.div`
   `
 const CommentInner = styled.div`
   display: flex;
-  margin-top: 20px;
   font-size: 22px;
+  padding: 1rem;
 `
 const SubmitButton = styled.button`
   border: none;
   background-color: white;
   color: lightblue;
   font-size: 22px;  
-  margin-top: 20px;
 `
 const CommentInput = styled.input`
   border: none;
