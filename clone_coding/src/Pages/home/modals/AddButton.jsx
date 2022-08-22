@@ -12,20 +12,24 @@ const AddButton = () => {
 
   const onChangeImage = (e) => {
     e.preventDefault();
-    const files = e.target.files;
-    const formData = new FormData()
-    console.log(files)
-    formData.append("file", files[0]) //files[0] === upload file
+    // form-data 시도중
+    // const files = e.target.files;
+    // const formData = new FormData()
+    // console.log(files[0].name)
+    // formData.append("file", files[0]) //files[0] === upload file
   
-    const value = [{
-      title: "hello",
-      content: "wolrd"
-    }]
+    // const value = [{
+    //   title: "hello",
+    //   content: "wolrd"
+    // }]
     
-    const blob = new Blob([JSON.stringify(value)], {type: "application/json"}) 
+    // const blob = new Blob([JSON.stringify(value)], {type: "application/json"}) 
     
-    formData.append("data", blob)
-
+    // formData.append("data", blob)
+    // setImgFile(files)
+    // setImageUrl(e.target.files[0])
+    
+    // base64버전
     // const reader = new FileReader();
     // const file = imgRef.current.files[0];
     // console.log(imgRef.current.files[0])
@@ -57,6 +61,7 @@ const AddButton = () => {
 
   return (
     <div style={{ backgroundColor: 'white' }}>
+      {console.log('이미지url',imageUrl )}
       <AddButtonContainer>
         <AddButtonTitle>
           <div>새 게시물 만들기</div>
