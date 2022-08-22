@@ -10,40 +10,7 @@ const AddButton = () => {
 
   const dispatch = useDispatch();
 
-  const onChangeImage = (e) => {
-    e.preventDefault();
-    // form-data 시도중
-    // const files = e.target.files;
-    // const formData = new FormData()
-    // console.log(files[0].name)
-    // formData.append("file", files[0]) //files[0] === upload file
-  
-    // const value = [{
-    //   title: "hello",
-    //   content: "wolrd"
-    // }]
     
-    // const blob = new Blob([JSON.stringify(value)], {type: "application/json"}) 
-    
-    // formData.append("data", blob)
-    // setImgFile(files)
-    // setImageUrl(e.target.files[0])
-    
-    // base64버전
-    // const reader = new FileReader();
-    // const file = imgRef.current.files[0];
-    // console.log(imgRef.current.files[0])
-    // reader.readAsDataURL(file);
-    // reader.onloadend = () => {
-    //   setImageUrl(reader.result);
-    //   setImgFile(file)
-      // console.log(reader.result)
-    
-  }
-  const addNewContent = (e) => {
-    setNewContent(e.target.value)
-  }
-
 
   const sendButton = () => {
     // if (title === '' || content === '' || price === '') return alert('빈칸을 채워주세요!')
@@ -80,7 +47,7 @@ const AddButton = () => {
                 encType="multipart/form-data"
                 accept="image/*,audio/*,video/mp4,video/x-m4v,application/pdf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation,.csv"
                 type="file"
-                onChange={onChangeImage}
+                // onChange={}
                 id="upload-photo"
                 name="upload-photo"
                 ref={imgRef}
@@ -94,10 +61,10 @@ const AddButton = () => {
           <AddButtonContent>
             <div style={{ display: 'flex', margin: '10px' }}>
               <img style={{ width: '50px', height: '50px', borderRadius: '50px', marginTop: '5px', marginRight: '20px' }} alt="heart" src='images/noImg.jpg'></img>
-              <div style={{ marginTop: '10px' }} > 아이디</div>
+              <div style={{ margin:"auto 0" }} > 아이디</div>
             </div>
 
-            <ContentBody onChange={addNewContent}/>
+            <ContentBody placeholder='문구 입력...' onChange={(e)=>{setNewContent(e.target.value)}}/>
             <ContentWhere>위치추가</ContentWhere>
             <ContentWhere>접근성</ContentWhere>
             <ContentWhere>고급설정</ContentWhere>
@@ -114,6 +81,7 @@ const AddButtonContainer = styled.div`
   top: 100px;
   left: 50%;
   transform: translateX(-50%);
+  width: 1000px;
   min-width: 700px;
   height: 500px;
   border-radius: 20px;
@@ -170,8 +138,10 @@ const AddButtonContent = styled.div`
   text-align: left;
 `
 
-const ContentBody = styled.input`
-  border: none;
+const ContentBody = styled.textarea`
+  font-size: 18px;
+  color: ContentBody;
+  border: none ;
   width: 100%;
   height: 55%;
   padding: 0.5rem;
