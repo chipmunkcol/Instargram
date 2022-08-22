@@ -26,56 +26,57 @@ export const removeCookieToken = () => {
 
 
 
-/////
 
-const cookie = new Cookies()
+// /////
 
-export const setCookie = (name: string, value: string, option?: any) => {
-    return cookie.set(name, value, { ...option })
-}
+// const cookie = new Cookies()
 
-export const getCookie = (name: 'abcd' ) => {
-    return cookie.get(name)
-}
+// export const setCookie = (name: string, value: string, option?: any) => {
+//     return cookie.set(name, value, { ...option })
+// }
+
+// export const getCookie = (name: 'abcd' ) => {
+//     return cookie.get(name)
+// }
 
 
-////로그인.js
-const Login = () => {
-    const [cookies, setCookie] = useCookies(['id']);
-    const [id, setId] = useState('')
-    const [pw, setPw] = useState('')
+// ////로그인.js
+// const Login = () => {
+//     const [cookies, setCookie] = useCookies(['id']);
+//     const [id, setId] = useState('')
+//     const [pw, setPw] = useState('')
      
 
-    const login = async () => {
-        await axios.post('localhost3001/users', { id: id, pw: pw })
-        .then((res) => {
-            console.log(res)
-            setCookie('id', res.data.token)
-        })
-    }
+//     const login = async () => {
+//         await axios.post('localhost3001/users', { id: id, pw: pw })
+//         .then((res) => {
+//             console.log(res)
+//             setCookie('id', res.data.token)
+//         })
+//     }
 
 
 
-    return(
-        <div>
-            <input onChange={(e)=>{setId(e.target.value)}}/>
-            <input onChange={(e)=>{setPw(e.target.value)}}/>
-        </div>
-    );
-}
+//     return(
+//         <div>
+//             <input onChange={(e)=>{setId(e.target.value)}}/>
+//             <input onChange={(e)=>{setPw(e.target.value)}}/>
+//         </div>
+//     );
+// }
 
-const LoginCheck = () => {
-    const [cookies, setCookie, removeCookie] = useCookies(['id']);
+// const LoginCheck = () => {
+//     const [cookies, setCookie, removeCookie] = useCookies(['id']);
     
-    const authCheck = () => {
-        const token = cookies.id
-        axios.post('localhost3001/users', { token: token })
-        .then((res) => {
-            console.log(userId)
-            setUserId(res.data.id)
-        })
-        .catch(() => {
-            logOut();
-        })
-    }
-}
+//     const authCheck = () => {
+//         const token = cookies.id
+//         axios.post('localhost3001/users', { token: token })
+//         .then((res) => {
+//             console.log(userId)
+//             setUserId(res.data.id)
+//         })
+//         .catch(() => {
+//             logOut();
+//         })
+//     }
+// }

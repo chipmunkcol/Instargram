@@ -30,7 +30,7 @@ function Main() {
   // console.log(posts)
 
   useEffect(() => { 
-    dispatch(getPost())
+    // dispatch(getPost())
   }, [dispatch])
 
 

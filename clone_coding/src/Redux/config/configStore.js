@@ -1,4 +1,4 @@
-
+//https://jdh3340.shop/api/user/posts/1
 import { configureStore } from '@reduxjs/toolkit';
 import { tokenSlice } from "../modules/AccessToken"
 import { postSlice } from '../modules/postSlice'

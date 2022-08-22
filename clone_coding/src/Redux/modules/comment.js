@@ -12,7 +12,28 @@ export const __getComment = createAsyncThunk(
         }
     }
 )
-
+export const __postComment = createAsyncThunk(
+    'comment/postComment',
+    async (payload, thunkAPI) => {
+        try {
+            const data = await axios.post('http://localhost:3001/comment', payload)
+            return thunkAPI.fulfillWithValue(data.data)
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error)
+        }
+    } 
+)
+export const __deleteComment = createAsyncThunk(
+    'comment/deleteComment',
+    async (payload, thunkAPI) => {
+        try { 
+            const data = await axios.delete(`http://localhost:3001/comment/${payload}`)
+            return thunkAPI.fulfillWithValue(data.data)
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error)
+        }
+    }
+)
 
 export const commentSlice = createSlice({
     name: 'comment',
