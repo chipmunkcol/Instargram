@@ -1,10 +1,15 @@
-import React, { useState, useRef, useReducer } from "react";
-import styled from 'styled-components'
+import React, { useEffect, useState,useRef} from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import styled from 'styled-components';
 
 const AddButton = () => {
   const imgRef = useRef();
   const [imageUrl, setImageUrl] = useState(false);
   const [imgFile, setImgFile] = useState("")
+  const [newContent, setNewContent] = useState('');
+
+  const dispatch = useDispatch();
+
   const onChangeImage = () => {
     const reader = new FileReader();
 
@@ -17,15 +22,21 @@ const AddButton = () => {
       // console.log(reader.result)
     };
   }
+  const addNewContent = (e) => {
+    setNewContent(e.target.value)
+  }
+
+
   const sendButton = () => {
     // if (title === '' || content === '' || price === '') return alert('빈칸을 채워주세요!')
     const obj = {
-      // title,
-      // content,
+      id:2,
+      newContent,
       // price,
-      file: imageUrl
+      // file: imageUrl
     }
     // addpost(obj)
+    console.log(obj)
     alert('등록완료!')
     // navigate('/');
   };
@@ -65,7 +76,7 @@ const AddButton = () => {
               <div style={{ marginTop: '10px' }} > 아이디</div>
             </div>
 
-            <ContentBody>내용</ContentBody>
+            <ContentBody onChange={addNewContent}/>
             <ContentWhere>위치추가</ContentWhere>
             <ContentWhere>접근성</ContentWhere>
             <ContentWhere>고급설정</ContentWhere>
@@ -138,10 +149,13 @@ const AddButtonContent = styled.div`
   text-align: left;
 `
 
-const ContentBody = styled.div`
+const ContentBody = styled.input`
+  border: none;
+  width: 100%;
   height: 55%;
   padding: 0.5rem;
-
+  vertical-align: top;
+  text-align: left;
 `
 const ContentWhere = styled.div`
   padding: 0.5rem;
