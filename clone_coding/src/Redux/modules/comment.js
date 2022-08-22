@@ -19,6 +19,20 @@ export const commentSlice = createSlice({
     initialState: {
         comment: [],
         isLoading: false,
-        
+        error: null,
+    },
+    reducers: {},
+    extraReducers: {
+        [__getComment.pending]: (state) => {
+            state.isLoading = true;
+        },
+        [__getComment.fulfilled]: (state, action) => {
+            state.isLoading = false;
+            state.comment = action.payload;
+        },
+        [__getComment.rejected]: (state, action) => {
+            state.isLoading = false;
+            state.error = action.payload;
+        }
     }
 })

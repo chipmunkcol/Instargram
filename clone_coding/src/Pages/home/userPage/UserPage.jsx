@@ -2,7 +2,6 @@ import logo from '../../../Image/사용자 기본로고.jpg'
 import logo2 from '../../../Image/인스타 게시글 로고.png'
 import logo3 from '../../../Image/인스타 팔로워 로고.png'
 import logo4 from '../../../Image/인스타 팔로우 로고.png'
-import './user.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faComment, faGear, faHeart } from "@fortawesome/free-solid-svg-icons"
 import styled from "styled-components"
