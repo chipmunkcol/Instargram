@@ -16,19 +16,22 @@ function App() {
 
   return (
     <div className="App">
-
+      <Routes>
+           <Route path='/login' element={<Login/>}></Route>
+           <Route path='/register' element={<Register/>}></Route>
+      </Routes>
+      
       <Header setOpenImg={setOpenImg} setDropmenu={setDropmenu} dropmenu={dropmenu} />
       
       <Routes>
-        <Route path='/' element={<Home openImg={openImg} setOpenImg={setOpenImg} setDropmenu={setDropmenu}/>}>
-          <Route path='/login' element={<Login/>}></Route>
-        <Route path='/register' element={<Register/>}></Route>
+        <Route path='/' element={<Home openImg={openImg} setOpenImg={setOpenImg} setDropmenu={setDropmenu}/>}></Route>
+         
           <Route path='/user/detail' element={<DetailPage/>}></Route>
-          </Route>
+        
       
           <Route path='/user' element={<UserPage/>}></Route>
           <Route path='/upLoad' element={<UpLoad/>}></Route>
-        </Routes>
+      </Routes>
       
 
     </div>

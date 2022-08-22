@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState,useRef} from 'react'
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -12,8 +12,13 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { useNavigate } from 'react-router-dom';
 import DetailPage from './userPage/detailPage/DetailPage';
+import { useDispatch, useSelector } from 'react-redux'
+import {getPost} from '../../Redux/modules/postSlice'
+
 
 function Main() {
+  const dispatch = useDispatch();
+
   // Card modal창
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -26,6 +31,14 @@ function Main() {
   };
 
   const navigate = useNavigate();
+    //redux
+  const {posts} = useSelector((state) => (state.post))
+  console.log(posts)
+
+  useEffect(() => { 
+    dispatch(getPost())
+  }, [dispatch])
+
 
   return (
     <MainContainer >
@@ -85,7 +98,7 @@ function Main() {
         </div>
       </Card>
       {/* 게시글 디테일 페이지입니다 */}
-      {openDetail ? <DetailPage></DetailPage> : null}
+      {openDetail ? <DetailPage openDetail={openDetail} setOpenDetail={setOpenDetail} /> : null}
     </MainContainer>
   );
 }
