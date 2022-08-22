@@ -9,7 +9,9 @@ const DetailPage = ({openDetail,setOpenDetail}) => {
     <DetailContainer>
       <DetailInner>
         <DetailImageContainer>
-          <DetailImage />
+          <DetailImageInner>
+            <DetailImage />
+          </DetailImageInner>
         </DetailImageContainer>
         <DetailContent>
           <ContentTitle>
@@ -18,8 +20,10 @@ const DetailPage = ({openDetail,setOpenDetail}) => {
               <IdPersonImg src='images/noImg.jpg' ></IdPersonImg>
               <h4 style={{ marginLeft: '5px', marginTop: '5px' }}>id</h4>
             </div>
-            {/* <MoreHorizIcon sx={{ m: 1, cursor: 'pointer' }} /> */}
-            <ClearIcon sx={{ m: 1, cursor: 'pointer' }} onClick={()=>{setOpenDetail(!openDetail)}} />
+            <div>
+              <MoreHorizIcon sx={{ m: 1, cursor: 'pointer' }} />
+              <ClearIcon sx={{ m: 1, cursor: 'pointer' }} onClick={()=>{setOpenDetail(!openDetail)}} />
+            </div>
           </ContentTitle>
           <ContentBody>
             <IdPersonImg src='images/noImg.jpg' ></IdPersonImg>
@@ -73,14 +77,25 @@ const DetailImageContainer = styled.div`
     background-color: black;
     display: flex;
     justify-content: center;
+    align-items: center;
+    border-top-left-radius:20px;
+    border-bottom-left-radius :20px;
 `
+
+const DetailImageInner = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
 const DetailImage = styled.div`
    width: 100%;
-   height:  100%;
-   /* margin-top:160px; */
+   height:  500px;
   background-image: url('images/who.png');
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
+  background-position: center;
   background-color: lightcoral;
 
 `
