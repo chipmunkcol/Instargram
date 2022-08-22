@@ -8,11 +8,11 @@ export const __postUser = createAsyncThunk(
       try {
         // console.log(usertoken);
         console.log(payload);
-        const data = axios.post('http://localhost:3001/user', payload, {
+        const data = axios.post('http://localhost:3001/users', payload, {
         
         });
-        console.log("회원가입 완료")
         return thunkAPI.fulfillWithValue(data.data);
+        alert('회원가입 완료')
       } catch (error) {
         return thunkAPI.rejectWithValue(error);
       }

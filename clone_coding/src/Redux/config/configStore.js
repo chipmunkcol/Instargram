@@ -1,11 +1,18 @@
+
 import { configureStore } from '@reduxjs/toolkit';
-import { productSlice } from '../modules/pracSlice'
+import { tokenSlice } from "../modules/AccessToken"
 import { postSlice } from '../modules/postSlice'
+import { commentSlice } from '../modules/comment';
+
+
+
  const store = configureStore(
   {
     reducer: {
-      product: productSlice.reducer,
-      post: postSlice.reducer
+      accessToken: tokenSlice.reducer,
+      post: postSlice.reducer,
+      comments: commentSlice.reducer,
+      
     },
   },
 );

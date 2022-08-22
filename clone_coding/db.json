@@ -1,23 +1,31 @@
 {
-
-  "posts": [
+  "comment": [
     {
       "id": 1,
-      "title": "json-server"
-    
+      "content": "야호야호야호"
     }
   ],
-  "comments": [
+  "user": [
     {
       "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "username": "jdh3340",
+      "password": "asdfasdf",
+      "email": "jdh3340@naver.com",
+      "nickname": "홍길동"
+    },
+    {
+      "username": "id",
+      "password": "pw",
+      "email": "email",
+      "nickname": "다람쥐!",
+      "id": 2
+    },
+    {
+      "username": "id",
+      "password": "ow",
+      "email": "dfsjlfk",
+      "nickname": "felwfnekl",
+      "id": 3
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
-
-
-
+  ]
 }

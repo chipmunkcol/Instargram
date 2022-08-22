@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { setAccessToken, setUserData } from '../../shared/cookie';
 
+
 export const __postUsers = createAsyncThunk(
   'users/postUsers',
   async (userData, thunkAPI) => {

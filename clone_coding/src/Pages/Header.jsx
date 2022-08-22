@@ -61,8 +61,7 @@ const GlobalStyle = createGlobalStyle`
 const HeaderContainer = styled.div`
   padding: 1rem;
   width: 100%;
-  height: 80px; 
-  background-color: white;
+  height: 60px; 
   position: fixed;
   z-index: 1;
   display: flex;
