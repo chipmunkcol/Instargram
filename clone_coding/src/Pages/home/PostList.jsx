@@ -47,12 +47,13 @@ const PostList = ({ data }) => {
           </CardInnerIcons>
         <CardLike>좋아요 {data.likesCount}개</CardLike>
           <CardInnerContent >
-            <p style={{ fontWeight: '900', fontSize: '18px' }}>작성자</p>
-            <div style={{ marginTop: '2px', marginLeft: '10px', fontSize: '16px' }}>내용</div >
+            <p style={{ fontWeight: '900', fontSize: '18px' }}>{data.id}</p>
+            <div style={{ marginTop: '2px', marginLeft: '10px', fontSize: '16px' }}>{data.description}</div >
             <div style={{ cursor: 'pointer' }} onClick={handleDetail}> ...더보기</div>
           </CardInnerContent>
+          <CommentsCount>댓글 {data.commentsCount}개 모두보기</CommentsCount>
           <Comment />
-      </div>
+        </div>
       {/* 게시글 디테일 페이지입니다 */}
       {openDetail ? <DetailPage openDetail={openDetail} setOpenDetail={setOpenDetail} data={data} /> : null}
        {/*본인 MUI modal창 구현부분입니다  */}
@@ -71,6 +72,14 @@ const CardInnerContent = styled_components.div`
   width: 100%;
   margin-left: 20px;
 `
+const CommentsCount = styled_components.div`
+  margin-top:-10px;
+  margin-left: 20px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #7f7a7a;
+  font-weight: 700;
+  `
 const IdPersonImg = styled_components.img`
   width: 50px;
   height: 50px;
@@ -88,4 +97,5 @@ const DetailImageContainer = styled_components.div`
     justify-content: center;
     align-items: center;
 `
+
 export default PostList

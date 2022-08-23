@@ -3,53 +3,47 @@ import axios from 'axios';
 import { setAccessToken, setUserData } from '../../shared/cookie';
 
 
-export const __postUsers = createAsyncThunk(
-  'users/postUsers',
-  async (userData, thunkAPI) => {
+export const __loginUser = createAsyncThunk(
+  'user/loginUser',
+  async (payload, thunkAPI) => {
     try {
-      const data = await axios
-        .post('http://54.180.122.99/api/member/login', userData)
+      const data = await axios.post('https://jdh3340.shop/login', payload)
         .then((response) => {
           console.log(response);
           setAccessToken(response.headers.authorization);
           setUserData(response.data);
-          console.log(setUserData);
-          axios.defaults.headers[
-            'Authorization'
-          ] = `${response.headers.authorization}`;
-          window.localStorage.setItem(
-            'login-token',
-            response.headers.authorization
-          );
-          document.location.href = '/';
+          console.log(response.data);
+          axios.defaults.headers['Authorization'] = `${response.headers.authorization}`;
+          
+          // document.location.href = '/';
+          return thunkAPI.fulfillWithValue(response.data)
         });
-      return thunkAPI.fulfillWithValue(data.data);
+      ;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
   }
 );
 
-const initialState = {
-  users: [],
-  isLoading: false,
-  error: null,
-};
 
 export const usersSlice = createSlice({
   name: 'users',
-  initialState,
+  initialState: {
+    users: [],
+    isLoading: false,
+    error: null,
+  },
   reducers: {},
   extraReducers: {
-    [__postUsers.pending]: (state) => {
+    [__loginUser.pending]: (state) => {
       state.isLoading = true;
     },
-    [__postUsers.fulfilled]: (state, action) => {
+    [__loginUser.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.userinfo = action.payload;
       console.log('username: ' + action.payload.username);
     },
-    [__postUsers.rejected]: (state, action) => {
+    [__loginUser.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
       alert(action.payload.response.data.error.message);

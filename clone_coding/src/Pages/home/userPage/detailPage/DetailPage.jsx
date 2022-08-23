@@ -1,11 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import ClearIcon from '@mui/icons-material/Clear';
 import DetailPageComment from './DetailPageComment';
 import Modal from '@mui/material/Modal';
+import { useDispatch, useSelector } from 'react-redux'
+import { __postComment } from '../../../../Redux/modules/comment';
 
 const DetailPage = ({openDetail,setOpenDetail,data}) => {
+
+const dispatch = useDispatch()
+const [reload, setReload] = useState(false)
+
+const [comment, setComment] = useState('') 
+
+const postComment = () => {
+  const postcomment = {"content": comment}
+  dispatch(__postComment(postcomment))
+}
+
+useEffect(()=>{
+},[reload])
+
   return (
     <Modal
       open={openDetail}
@@ -31,33 +47,44 @@ const DetailPage = ({openDetail,setOpenDetail,data}) => {
             </ContentTitle>
             <ContentBody>
               <IdPersonImg src='images/noImg.jpg' ></IdPersonImg>
-              <h4 style={{ marginLeft: '5px', marginTop: '5px' }}>{data.id}</h4>
-              <ContentText style={{ marginTop: '8px' }}>
-                <span style={{ padding: '1.2rem' }}>내용</span>
-              </ContentText>
-            </ContentBody>
-            <ContentComments>
-              <DetailPageComment />
-            </ContentComments>
-            <InputComment>
-              <CardInnerIcons>
-                <img style={{ width: '50px', height: '50px', marginRight: '10px' }} alt="heart" src='images/heart.png'></img>
-                <img style={{ width: '30px', height: '30px', marginRight: '20px' }} alt="heart" src='images/commentIcon.png'></img>
-                <img style={{ width: '30px', height: '30px', marginRight: '15px' }} alt="heart" src='images/send.png'></img>
-              </CardInnerIcons>
+
+
+         
+            <h4 style={{ marginLeft: '5px', marginTop: '5px' }}>{data.id}</h4>
+
+            <ContentText style={{ marginTop: '8px' }}>
+              <span style={{ padding: '1.2rem' }}>post한 내용이 들어와요</span>
+            </ContentText>
+          </ContentBody>
+          <ContentComments>
+
+             <DetailPageComment reload={reload} setReload={setReload}/>
+
+          </ContentComments>
+          <InputComment>
+            <CardInnerIcons>
+              <img style={{ width: '50px', height: '50px', marginRight: '10px' }} alt="heart" src='images/heart.png'></img>
+              <img style={{ width: '30px', height: '30px', marginRight: '20px' }} alt="heart" src='images/commentIcon.png'></img>
+              <img style={{ width: '30px', height: '30px', marginRight: '15px' }} alt="heart" src='images/send.png'></img>
+            </CardInnerIcons>
               <CardLike>좋아요 {data.likesCount}개</CardLike>
-              <CommentContainer>
-              <CommentInner>
-                  <div>🙂</div>
-                  <CommentInput placeholder='댓글달기..'></CommentInput>
-                </CommentInner>
-                <SubmitButton>게시</SubmitButton>
-              </CommentContainer>
-            </InputComment>
-          </DetailContent>
-        </DetailInner>
-      </DetailContainer>
-    </Modal>
+            <CommentContainer>
+            <CommentInner>
+                <div>🙂</div>
+                <CommentInput placeholder='댓글달기..' onChange={(e)=>{setComment(e.target.value)}}></CommentInput>
+              </CommentInner>
+              <SubmitButton onClick={()=>{ 
+                postComment() 
+                setTimeout(() => {
+                  setReload(!reload)
+                }, 500);
+                }}>게시</SubmitButton>
+            </CommentContainer>
+          </InputComment>
+        </DetailContent>
+      </DetailInner>
+    </DetailContainer >
+  </Modal>
   )
 }
 
@@ -124,10 +151,11 @@ const ContentBody = styled.div`
     display: flex;
 `
 const ContentText = styled.div`
-    min-height: 300px;
+    min-height: 50px;
 `
 const ContentComments = styled.div`
-    height: 120px;
+    height: 374px;
+    overflow: auto;
 `
 const InputComment = styled.div`
 `

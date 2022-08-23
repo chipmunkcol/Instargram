@@ -1,77 +1,68 @@
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { initializeApp } from 'firebase/app';
+import { storage } from '../../../shared/firebase';
+import { __postProducts } from '../../../Redux/modules/pracSlice';
+
 import React, { useEffect, useState,useRef} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components';
+import { UploadFile } from '@mui/icons-material';
+
 
 const AddButton = () => {
-  const imgRef = useRef();
-  const [imageUrl, setImageUrl] = useState(false);
-  const [imgFile, setImgFile] = useState("")
-  const [newContent, setNewContent] = useState('');
+  
+  const [fileUrl, setFileUrl] = useState('')
+  const [comment, setComment] = useState('')
+  const [tag, setTag] = useState('')
+  const [reload, setReload] = useState(false)
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const onChangeImage = (e) => {
-    e.preventDefault();
-    // form-data 시도중
-    // const files = e.target.files;
-    // const formData = new FormData()
-    // console.log(files[0].name)
-    // formData.append("file", files[0]) //files[0] === upload file
-  
-    // const value = [{
-    //   title: "hello",
-    //   content: "wolrd"
-    // }]
-    
-    // const blob = new Blob([JSON.stringify(value)], {type: "application/json"}) 
-    
-    // formData.append("data", blob)
-    // setImgFile(files)
-    // setImageUrl(e.target.files[0])
-    
-    // base64버전
-    // const reader = new FileReader();
-    // const file = imgRef.current.files[0];
-    // console.log(imgRef.current.files[0])
-    // reader.readAsDataURL(file);
-    // reader.onloadend = () => {
-    //   setImageUrl(reader.result);
-    //   setImgFile(file)
-      // console.log(reader.result)
-    
-  }
-  const addNewContent = (e) => {
-    setNewContent(e.target.value)
+  const storage = getStorage();
+  const storageRef = ref(storage);
+
+  const uploadFB = async (e) => {
+    console.log(e.target.files);
+    const upload_file = await uploadBytes(
+      ref(storage, `images/${e.target.files[0].name}`),
+      e.target.files[0]
+    );
+    console.log(upload_file)
+
+    const file_url = await getDownloadURL(upload_file.ref)
+    setFileUrl(file_url)
   }
 
-
-  const sendButton = () => {
-    // if (title === '' || content === '' || price === '') return alert('빈칸을 채워주세요!')
-    const obj = {
-      id:2,
-      newContent,
-      // price,
-      // file: imageUrl
+  const uploadPost = () => {
+    const post = {
+      "file": fileUrl,
+      "description": comment,
+      "tags": "#"+tag
     }
-    // addpost(obj)
-    console.log(obj)
-    alert('등록완료!')
-    // navigate('/');
-  };
+    console.log(post)
+    dispatch(__postProducts(post))
+  }
 
   return (
     <div style={{ backgroundColor: 'white' }}>
-      {console.log('이미지url',imageUrl )}
       <AddButtonContainer>
         <AddButtonTitle>
           <div>새 게시물 만들기</div>
-          <ShareButton onClick={sendButton}>공유하기</ShareButton>
+          <ShareButton onClick={ ()=>{
+            uploadPost();
+            setTimeout(() => {
+              setReload(!reload)
+              navigate('/')
+            }, 500);
+            } }>공유하기</ShareButton>
         </AddButtonTitle>
 
         <div style={{ display: 'flex' }}>
           <AddButtonImage>
             {/* {console.log(imageUrl)} */}
-            <ImageBox src={imageUrl ? imageUrl : 'images/addImg.png'} />
+            <ImageBox src={fileUrl !== '' ? fileUrl : 'images/addImg.png'} />
             <div style={{ fontSize: '18px' }}>사진과 동영상을 여기에 끌어다 놓으세요</div>
 
 
@@ -80,11 +71,12 @@ const AddButton = () => {
                 encType="multipart/form-data"
                 accept="image/*,audio/*,video/mp4,video/x-m4v,application/pdf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation,.csv"
                 type="file"
-                onChange={onChangeImage}
+                // onChange={}
                 id="upload-photo"
                 name="upload-photo"
-                ref={imgRef}
+                // ref={}
                 style={{ display: 'none' }}
+                onChange={uploadFB}
               />
               <SelectComputer>
                 컴퓨터에서 가져오기
@@ -94,13 +86,13 @@ const AddButton = () => {
           <AddButtonContent>
             <div style={{ display: 'flex', margin: '10px' }}>
               <img style={{ width: '50px', height: '50px', borderRadius: '50px', marginTop: '5px', marginRight: '20px' }} alt="heart" src='images/noImg.jpg'></img>
-              <div style={{ marginTop: '10px' }} > 아이디</div>
+              <div style={{ margin:"auto 0" }} > 아이디</div>
             </div>
 
-            <ContentBody onChange={addNewContent}/>
-            <ContentWhere>위치추가</ContentWhere>
-            <ContentWhere>접근성</ContentWhere>
-            <ContentWhere>고급설정</ContentWhere>
+            <ContentBody placeholder='문구 입력...' onChange={(e)=>{setComment(e.target.value)}}/>
+            <div style={{borderTop:'1px solid lightGray', height:'30px'}}><ContentInput placeholder='태그 추가 ex) 한강 나들이' onChange={(e)=>{setTag(e.target.value)}}/></div>
+            {/* <ContentWhere>접근성</ContentWhere>
+            <ContentWhere>고급설정</ContentWhere> */}
           </AddButtonContent>
 
         </div>
@@ -114,6 +106,7 @@ const AddButtonContainer = styled.div`
   top: 100px;
   left: 50%;
   transform: translateX(-50%);
+  width: 1000px;
   min-width: 700px;
   height: 500px;
   border-radius: 20px;
@@ -143,12 +136,12 @@ const ShareButton = styled.button`
 `
 const AddButtonImage = styled.div`
   align-items: center;
-  margin-top: 100px;
+  margin-top: 50px;
   width: 60%;
 `
 const ImageBox = styled.img`
-  width: 150px;
-  height: 150px;
+  width: 250px;
+  height: 250px;
   margin-top: 5px;
   margin-right: 20px;
 `
@@ -170,13 +163,22 @@ const AddButtonContent = styled.div`
   text-align: left;
 `
 
-const ContentBody = styled.input`
-  border: none;
+const ContentBody = styled.textarea`
+  font-size: 18px;
+  color: ContentBody;
+  border: none ;
   width: 100%;
-  height: 55%;
+  height: 70%;
   padding: 0.5rem;
   vertical-align: top;
   text-align: left;
+`
+
+const ContentInput = styled.input`
+  border: none;
+  width: 100%;
+  height: 55px;
+  padding: 9px;
 `
 const ContentWhere = styled.div`
   padding: 0.5rem;

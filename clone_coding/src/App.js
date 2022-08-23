@@ -26,13 +26,13 @@ function App() {
 
       <Header setOpenImg={setOpenImg} setDropmenu={setDropmenu} dropmenu={dropmenu} />
       
-  
-      
       <Routes>
         <Route path='/' element={<Home openImg={openImg} setOpenImg={setOpenImg} setDropmenu={setDropmenu}/>}></Route>
-        <Route path='/user/detail' element={<DetailPage/>}></Route>
-        <Route path='/user' element={<UserPage/>}></Route>
-        <Route path='/upLoad' element={<UpLoad/>}></Route>
+          <Route path='/user/detail' element={<DetailPage/>}></Route>
+          <Route path='/login' element={<Login/>}></Route>
+          <Route path='/register' element={<Register/>}></Route>
+          <Route path='/user' element={<UserPage/>}></Route>
+          <Route path='/upLoad' element={<UpLoad/>}></Route>
       </Routes>
       
 

@@ -24,7 +24,6 @@ function Main() {
   const { posts } = useSelector((state) => state.post)
 
 
-
   
   if(posts.length ===  0){
     return (

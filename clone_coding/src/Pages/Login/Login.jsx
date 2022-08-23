@@ -4,17 +4,36 @@ import './style.css';
 import logo1 from '../../Image/애플스토어다운 로고.png';
 import logo2 from '../../Image/구글플레이다운 로고.png'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { __loginUser } from '../../Redux/modules/loginSlice';
 
 function Login() {
 
 const [end, setEnd] = useState('')
+const [reload, setReload] = useState(false)
 const navigate = useNavigate()
+const dispatch = useDispatch()
+
+const [id, setId] = useState('')
+const [pw, setPw] = useState('')
+
+const onclickLogin = () => {
+
+    const userInfo = {
+        username: id,
+        password: pw
+    }
+    dispatch(__loginUser(userInfo))
+    setTimeout(() => {
+        setReload(!reload)
+    }, 500);
+}
 
 useEffect(()=>{
     setTimeout(() => {
         setEnd('end')
     }, 100);
-},[])
+},[reload])
 
 //setIntervel 써서 몇초마다 다른이미지 넣게 -> styled 컴포넌트에 props로 다른이미지 넣기
 // 위에보다는 ->> css keyframe 사용 https://webclub.tistory.com/621
@@ -30,9 +49,11 @@ useEffect(()=>{
             <Flex2>
                 <LoginBox>
                     <div style={{fontSize:'42px', margin:'22px 0 22px 0'}}>Instagram</div>
-                    <InputId type='text' placeholder='아이디'/>
-                    <InputId placeholder='비밀번호'/>
-                    <div><Button>로그인</Button></div>
+                    <InputId type='text' placeholder='아이디' onChange={(e)=>{setId(e.target.value)}}/>
+                    <InputId placeholder='비밀번호' onChange={(e)=>{setPw(e.target.value)}}/>
+                    <div><Button onClick={()=>{
+                        onclickLogin()
+                    }}>로그인</Button></div>
                 </LoginBox>
                 <RegisterBox>계정이 없으신가요? <span type='button' style={{color:'#718fc1', marginLeft:'5px', fontWeight:'bolder' }} onClick={()=>{navigate('/register')}}> 가입하기</span></RegisterBox>
                 <div style={{marginTop:'14px', textAlign:'center'}}>앱을 다운로드하세요.</div>

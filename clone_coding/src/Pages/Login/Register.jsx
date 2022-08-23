@@ -5,7 +5,7 @@ import logo1 from '../../Image/애플스토어다운 로고.png';
 import logo2 from '../../Image/구글플레이다운 로고.png'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
-import { __postUser } from '../../Redux/modules/registerSlice';
+import { __postsignup } from '../../Redux/modules/registerSlice';
 
 function Register() {
 
@@ -26,17 +26,27 @@ const [id, setId] = useState('')
 const [pw, setPw] = useState('')
 const [email, setEmail] = useState('')
 const [nickname, setNickname] = useState('')
+const [reload, setReload] = useState(false)
 
-const register = () => {
+const postsignup = () => {
+    
     const user = {
-        "username": id,
-        "password": pw,
-        "email": email,
-        "nickname": nickname,
+        username: id,
+        password: pw,
+        email: email,
+        nickname: nickname,
     }
-    dispatch(__postUser(user))
+
+    dispatch(__postsignup(user))
+    setTimeout(() => {
+        alert('회원가입이 완료되었습니다.')
+        setReload(!reload)
+    }, 500);
 }
 
+useEffect(()=>{
+
+},[reload])
 
     return(
         <div style={{backgroundColor:'#fafafa', minWidth:'860px'}}>
@@ -56,7 +66,7 @@ const register = () => {
                     <InputId placeholder='이메일' onChange={(e)=>{setEmail(e.target.value)}}/>
                     <InputId placeholder='닉네임' onChange={(e)=>{setNickname(e.target.value)}}/>
 
-                    <div><Button onClick={register}>가입</Button></div>
+                    <div><Button onClick={postsignup}>가입</Button></div>
                 </LoginBox>
                 <RegisterBox>계정이 있으신가요? <span type='button' style={{color:'#718fc1', marginLeft:'5px', fontWeight:'bolder' }} onClick={()=>{navigate('/login')}}> 로그인</span></RegisterBox>
                 <div style={{marginTop:'14px', textAlign:'center'}}>앱을 다운로드하세요.</div>

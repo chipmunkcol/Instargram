@@ -34,9 +34,7 @@ const MyModal = ({ othersMenuOpen, setOthersMenuOpen, data }) => {
     alert('준비중입니다')
     setOthersMenuOpen(false)
   }
-  // if (clickUpdate) {
-  //   return < UpdateDetailPage data={data} clickUpdate={clickUpdate} setClickUpdate={setClickUpdate} />
-  // }
+
   return (
     <div>
       {clickUpdate?

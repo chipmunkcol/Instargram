@@ -1,11 +1,7 @@
-import React, { useEffect, useState,useRef} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import Modal from '@mui/material/Modal';
 
-// import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import ClearIcon from '@mui/icons-material/Clear';
-// import DetailPageComment from './DetailPageComment';
-// import axios from 'axios'
 
 const UpdateDetailPage = ({data,clickUpdate, setClickUpdate, setOthersMenuOpen}) => {
   
@@ -42,7 +38,7 @@ const UpdateDetailPage = ({data,clickUpdate, setClickUpdate, setOthersMenuOpen})
             <h4 style={{ marginLeft: '5px' }}>{data.id}</h4>
           </ContentBody>
           <textarea type='text' style={{ padding: '1.2rem', width:'100%', height:'78.2%'}}>{data.description}</textarea>
-          <input style={{ padding: '1rem',marginTop:'-10px', width:'100%'}}>{data.tags}</input>
+          <input style={{ padding: '1rem',marginLeft:'5px', marginTop:'-5px', width:'97%', height:'10%', border:'none'}}>{data.tags}</input>
 
             </DetailContent>
             </div>
@@ -109,52 +105,5 @@ const ContentBody = styled.div`
   padding-left: 0.6rem;
   display: flex;
 `
-const ContentText = styled.div`
-  /* min-height: 300px; */
-  width: 100%;
-  height: 100%;
-`
-// const ContentComments = styled.div`
-//   height: 120px;
-// `
-const InputComment = styled.div`
-`
 
-const CardInnerIcons = styled.div`
-width: 100%;
-padding: 1rem;
-padding-bottom: 0;
-`
-const CardLike = styled.div`
-margin-left: 20px;
-margin-bottom: 25px;
-font-size:18px;
-font-weight: 800;
-
-`
-const CommentContainer = styled.div`
-border-top: 1px solid gray;
-display: flex;
-justify-content: space-between;
-`
-const CommentInner = styled.div`
-display: flex;
-font-size: 18px;
-padding: 1rem;
-`
-const SubmitButton = styled.button`
-border: none;
-background-color: white;
-color: lightblue;
-font-size: 18px;  
-height:40px ;
-margin-top:10px;
-margin-right:20px ;
-`
-const CommentInput = styled.input`
-border: none;
-outline: none;
-margin-left: 20px;
-
-`
 export default UpdateDetailPage
