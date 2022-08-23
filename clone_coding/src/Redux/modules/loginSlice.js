@@ -11,7 +11,7 @@ export const __loginUser = createAsyncThunk(
         .then((response) => {
           console.log(response);
           setAccessToken(response.headers.authorization);
-          // setUserData(response.data);
+          setUserData(response.data);
           axios.defaults.headers['Authorization'] = `${response.headers.authorization}`;
           
           // document.location.href = '/';

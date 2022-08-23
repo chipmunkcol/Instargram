@@ -5,6 +5,7 @@ import { postSlice } from '../modules/postSlice'
 import { commentSlice } from '../modules/comment';
 import { usersSlice } from '../modules/loginSlice'
 import { signupSlice } from '../modules/registerSlice'
+import { detailSlice } from '../modules/detailSlice'
 
 
  const store = configureStore(
@@ -15,6 +16,7 @@ import { signupSlice } from '../modules/registerSlice'
       register: signupSlice.reducer,
 
       post: postSlice.reducer,
+      detail: detailSlice.reducer,
       comments: commentSlice.reducer,
       
     },

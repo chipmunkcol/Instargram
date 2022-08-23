@@ -5,29 +5,32 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { __getComment, __deleteComment } from '../../../../Redux/modules/comment'
+import { __getDetail } from "../../../../Redux/modules/detailSlice"
 
-const DetailPageComment = ({reload, setReload}) => {
+const DetailPageComment = ({reload, setReload, data}) => {
+// console.log(data)
 
 const dispatch = useDispatch()
-const {isLoading, error, comment} = useSelector((state)=>state.comments)
-console.log(comment)
-
+const {isLoading, error, comments} = useSelector((state)=>state.comments)
+// const comments = useSelector((state)=>state)
+// console.log(isLoading, error, comments)
 
 useEffect(()=>{
     dispatch(__getComment())
-    
 
 },[reload])
 
-if (comment.length === 0) {
-    return (<div style={{backgroundcolor:'yellow', width:'800px', height:'800px'}}><h1>로딩중 입니다...</h1></div>)
+if (comments.length === 0) {
+    return (
+        <div></div>
+    )
 }
 
     return (
         <div style={{ display: 'flex' ,flexDirection:'column', justifyContent: 'space-between', marginLeft: '10px', marginTop: '5px' }}>
 
         {
-            comment.map((val)=>
+            comments.map((val)=>
                 <div key={val.id} style={{ display: 'flex', margin:'0 0 20px 0'}}>
                     <IdPersonImg src='images/noImg.jpg' ></IdPersonImg>
                     <div style={{width:'90%'}}>
@@ -35,13 +38,13 @@ if (comment.length === 0) {
                         <span style={{ marginLeft: '5px' }}>{val.content}</span>
                         <div style={{display:'flex', flexDirection:'row'}}>
                             <div style={{ marginLeft: '5px', marginTop: '-2px', marginRight: '10px', width:'28%'}}> val.likeCount</div>
-                            <EditComment type='button' onClick={()=>{
+                            <DeleteComment type='button' onClick={()=>{
                                 console.log(val.id)
                                 dispatch(__deleteComment(val.id))
                                 setTimeout(() => {
                                     setReload(!reload)
                                 }, 500);
-                            }}><FontAwesomeIcon icon={faTrashCan} /></EditComment>
+                            }}><FontAwesomeIcon icon={faTrashCan} /></DeleteComment>
                         </div>
                     </div>
                     <img src='images/heart.png' style={{ width: '30px', height: '30px' ,marginRight:'15px'}}></img>
@@ -63,7 +66,7 @@ const IdPersonImg = styled.img`
   border-radius: 50px;
 `
 
-const EditComment = styled.div`
+const DeleteComment = styled.div`
     width: 90%;
     font-weight: 800;
     margin-left: 6px;

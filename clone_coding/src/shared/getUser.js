@@ -6,7 +6,7 @@ const UseGetUser = () => {
   const [user, setUser] = useState(null);
 
   const readUser = async () => {
-    const response = await axios.get('http://54.180.122.99/api/myPage/products',
+    const response = await axios.get('',
       {headers: {Authorization: getCookieToken(),},}
     );
     console.log(response.data);

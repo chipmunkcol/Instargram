@@ -6,6 +6,9 @@ import DetailPageComment from './DetailPageComment';
 import Modal from '@mui/material/Modal';
 import { useDispatch, useSelector } from 'react-redux'
 import { __postComment } from '../../../../Redux/modules/comment';
+import { __postPost } from '../../../../Redux/modules/postSlice';
+import { __getDetail } from '../../../../Redux/modules/detailSlice';
+
 
 const DetailPage = ({openDetail,setOpenDetail,data}) => {
 
@@ -15,11 +18,20 @@ const [reload, setReload] = useState(false)
 const [comment, setComment] = useState('') 
 
 const postComment = () => {
-  const postcomment = {"content": comment}
+
+  const postcomment = {
+    content: comment,
+    postId: data.id
+  }
   dispatch(__postComment(postcomment))
+  setTimeout(() => {
+    setReload(!reload)
+  }, 500);
 }
 
 useEffect(()=>{
+  
+
 },[reload])
 
   return (
@@ -58,7 +70,7 @@ useEffect(()=>{
           </ContentBody>
           <ContentComments>
 
-             <DetailPageComment reload={reload} setReload={setReload}/>
+             <DetailPageComment reload={reload} setReload={setReload} data={data}/>
 
           </ContentComments>
           <InputComment>
@@ -73,12 +85,7 @@ useEffect(()=>{
                 <div>🙂</div>
                 <CommentInput placeholder='댓글달기..' onChange={(e)=>{setComment(e.target.value)}}></CommentInput>
               </CommentInner>
-              <SubmitButton onClick={()=>{ 
-                postComment() 
-                setTimeout(() => {
-                  setReload(!reload)
-                }, 500);
-                }}>게시</SubmitButton>
+              <SubmitButton onClick={()=>{ postComment() }}>게시</SubmitButton>
             </CommentContainer>
           </InputComment>
         </DetailContent>

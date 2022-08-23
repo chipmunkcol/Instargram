@@ -1,11 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
+import { getCookieToken } from "../../shared/cookie"
+
+const myToken = getCookieToken()
 
 export const __getComment = createAsyncThunk(
     'comment/getComment',
     async (payload, thunkAPI) => {
         try {
-            const data = await axios.get('http://localhost:3001/comment')
+            const data = await axios.get(`https://jdh3340.shop/api/user/posts/${payload}`,
+            { headers: {Authorization: myToken} })
             return thunkAPI.fulfillWithValue(data.data)
         } catch (error) {
             return thunkAPI.rejectWithValue(error)
@@ -16,7 +20,12 @@ export const __postComment = createAsyncThunk(
     'comment/postComment',
     async (payload, thunkAPI) => {
         try {
-            const data = await axios.post('http://localhost:3001/comment', payload)
+            console.log(payload)
+            const postId = payload.postId
+            const content = payload.content 
+            console.log(postId, content)
+            const data = await axios.post(`https://jdh3340.shop/api/user/posts/${postId}/comments`, {content: content},
+            { headers: {Authorization: myToken} })
             return thunkAPI.fulfillWithValue(data.data)
         } catch (error) {
             return thunkAPI.rejectWithValue(error)
@@ -36,9 +45,9 @@ export const __deleteComment = createAsyncThunk(
 )
 
 export const commentSlice = createSlice({
-    name: 'comment',
+    name: 'comments',
     initialState: {
-        comment: [],
+        comments: [],
         isLoading: false,
         error: null,
     },
