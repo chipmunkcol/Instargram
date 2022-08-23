@@ -1,10 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import ClearIcon from '@mui/icons-material/Clear';
 import DetailPageComment from './DetailPageComment';
+import { useDispatch, useSelector } from 'react-redux'
+import { __postComment } from '../../../../Redux/modules/comment';
 
 const DetailPage = ({openDetail,setOpenDetail}) => {
+
+const dispatch = useDispatch()
+const [reload, setReload] = useState(false)
+
+const [comment, setComment] = useState('') 
+
+const postComment = () => {
+  const postcomment = {"content": comment}
+  dispatch(__postComment(postcomment))
+}
+
+useEffect(()=>{
+
+},[reload])
+
   return (
     <DetailContainer>
       <DetailInner>
@@ -30,11 +47,13 @@ const DetailPage = ({openDetail,setOpenDetail}) => {
             <h4 style={{ marginLeft: '5px', marginTop: '5px' }}>id</h4>
 
             <ContentText style={{ marginTop: '8px' }}>
-              <span style={{ padding: '1.2rem' }}>내용</span>
+              <span style={{ padding: '1.2rem' }}>post한 내용이 들어와요</span>
             </ContentText>
           </ContentBody>
           <ContentComments>
-            <DetailPageComment />
+
+             <DetailPageComment reload={reload} setReload={setReload}/>
+
           </ContentComments>
           <InputComment>
             <CardInnerIcons>
@@ -46,9 +65,14 @@ const DetailPage = ({openDetail,setOpenDetail}) => {
             <CommentContainer>
             <CommentInner>
                 <div>🙂</div>
-                <CommentInput placeholder='댓글달기..'></CommentInput>
+                <CommentInput placeholder='댓글달기..' onChange={(e)=>{setComment(e.target.value)}}></CommentInput>
               </CommentInner>
-              <SubmitButton>게시</SubmitButton>
+              <SubmitButton onClick={()=>{ 
+                postComment() 
+                setTimeout(() => {
+                  setReload(!reload)
+                }, 500);
+                }}>게시</SubmitButton>
             </CommentContainer>
           </InputComment>
         </DetailContent>
@@ -121,10 +145,11 @@ const ContentBody = styled.div`
     display: flex;
 `
 const ContentText = styled.div`
-    min-height: 300px;
+    min-height: 50px;
 `
 const ContentComments = styled.div`
-    height: 120px;
+    height: 374px;
+    overflow: auto;
 `
 const InputComment = styled.div`
 `

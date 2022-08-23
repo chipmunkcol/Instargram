@@ -35,15 +35,6 @@ function UserPage() {
 
             <Container>
                 <Row md={3}>
-                    {/* { 
-                        posts.map((val) => 
-                            <Col>
-                                {val.imageSource}
-                                {val.likesCount}
-                                {val.commentsCount}
-                            </Col>
-                        ) 
-                    } */}
                     
                     <Col>
                         
