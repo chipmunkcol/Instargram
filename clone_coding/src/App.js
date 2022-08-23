@@ -13,7 +13,14 @@ import styled from 'styled-components'
 function App() {
   const [openImg, setOpenImg] = React.useState(false);
   const [dropmenu, setDropmenu] = React.useState(false);
-
+  // if (isLogin) {
+  //   return (<div>
+  //         <Routes>
+  //          <Route path='/login' element={<Login/>}></Route>
+  //          <Route path='/register' element={<Register/>}></Route>
+  //     </Routes>
+  //   </div>)
+  // }
   return (
     <div className="App">
 

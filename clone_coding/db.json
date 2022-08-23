@@ -17,6 +17,12 @@
       "description": "사진 저장",
       "tags": "#한강 나들이",
       "id": 3
+    },
+    {
+      "file": "https://firebasestorage.googleapis.com/v0/b/fir-ec6e2.appspot.com/o/images%2Finstagram_logo.png?alt=media&token=277a913d-05b1-48e2-b56b-a668e90e917b",
+      "description": "인스타그램입니다",
+      "tags": "##하나 #둘",
+      "id": 4
     }
   ],
   "comment": [
@@ -27,6 +33,10 @@
     {
       "content": "3444",
       "id": 2
+    },
+    {
+      "content": "안녕",
+      "id": 3
     }
   ],
   "user": [

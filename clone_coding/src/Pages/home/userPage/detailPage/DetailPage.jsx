@@ -3,10 +3,11 @@ import styled from 'styled-components'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import ClearIcon from '@mui/icons-material/Clear';
 import DetailPageComment from './DetailPageComment';
+import Modal from '@mui/material/Modal';
 import { useDispatch, useSelector } from 'react-redux'
 import { __postComment } from '../../../../Redux/modules/comment';
 
-const DetailPage = ({openDetail,setOpenDetail}) => {
+const DetailPage = ({openDetail,setOpenDetail,data}) => {
 
 const dispatch = useDispatch()
 const [reload, setReload] = useState(false)
@@ -19,32 +20,37 @@ const postComment = () => {
 }
 
 useEffect(()=>{
-
 },[reload])
 
   return (
-    <DetailContainer>
-      <DetailInner>
-        <DetailImageContainer>
-          <DetailImageInner>
-            <DetailImage />
-          </DetailImageInner>
-        </DetailImageContainer>
-        <DetailContent>
-          <ContentTitle>
-
-            <div style={{ display: 'flex' }}>
+    <Modal
+      open={openDetail}
+      sx={{  top:'-50%'  }}
+      >
+      <DetailContainer>
+        <DetailInner>
+          <DetailImageContainer>
+            <DetailImageInner>
+              <DetailImage style={{ backgroundImage: `url(${data.imageSource})` }} />
+            </DetailImageInner>
+          </DetailImageContainer>
+          <DetailContent>
+            <ContentTitle>
+              <div style={{ display: 'flex' }}>
+                <IdPersonImg src='images/noImg.jpg' ></IdPersonImg>
+                <h4 style={{ marginLeft: '5px', marginTop: '5px' }}>{data.id}</h4>
+              </div>
+              <div>
+                <MoreHorizIcon sx={{ m: 1, cursor: 'pointer' }} />
+                <ClearIcon sx={{ m: 1, cursor: 'pointer' }} onClick={()=>{setOpenDetail(!openDetail)}} />
+              </div>
+            </ContentTitle>
+            <ContentBody>
               <IdPersonImg src='images/noImg.jpg' ></IdPersonImg>
-              <h4 style={{ marginLeft: '5px', marginTop: '5px' }}>id</h4>
-            </div>
-            <div>
-              <MoreHorizIcon sx={{ m: 1, cursor: 'pointer' }} />
-              <ClearIcon sx={{ m: 1, cursor: 'pointer' }} onClick={()=>{setOpenDetail(!openDetail)}} />
-            </div>
-          </ContentTitle>
-          <ContentBody>
-            <IdPersonImg src='images/noImg.jpg' ></IdPersonImg>
-            <h4 style={{ marginLeft: '5px', marginTop: '5px' }}>id</h4>
+
+
+         
+            <h4 style={{ marginLeft: '5px', marginTop: '5px' }}>{data.id}</h4>
 
             <ContentText style={{ marginTop: '8px' }}>
               <span style={{ padding: '1.2rem' }}>post한 내용이 들어와요</span>
@@ -61,7 +67,7 @@ useEffect(()=>{
               <img style={{ width: '30px', height: '30px', marginRight: '20px' }} alt="heart" src='images/commentIcon.png'></img>
               <img style={{ width: '30px', height: '30px', marginRight: '15px' }} alt="heart" src='images/send.png'></img>
             </CardInnerIcons>
-            <CardLike>좋아요 10개</CardLike>
+              <CardLike>좋아요 {data.likesCount}개</CardLike>
             <CommentContainer>
             <CommentInner>
                 <div>🙂</div>
@@ -77,14 +83,17 @@ useEffect(()=>{
           </InputComment>
         </DetailContent>
       </DetailInner>
-    </DetailContainer>
+    </DetailContainer >
+  </Modal>
   )
 }
+
 const DetailContainer = styled.div`
     position: absolute;
-    top: 100px;
+    top: 50%;
     left: 50%;
     transform: translateX(-50%);
+    z-index:100;
     min-width: 80%;
 `
 const DetailInner = styled.div`
@@ -93,7 +102,7 @@ const DetailInner = styled.div`
     background-color: white;
     border-radius: 20px;
     display: flex;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
 `
 const DetailImageContainer = styled.div`
     width: 50%;
@@ -116,12 +125,9 @@ const DetailImageInner = styled.div`
 const DetailImage = styled.div`
    width: 100%;
    height:  500px;
-  background-image: url('images/who.png');
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   background-position: center;
-  background-color: lightcoral;
-
 `
 const DetailContent = styled.div`
     width: 50%;
