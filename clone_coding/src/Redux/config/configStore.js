@@ -3,7 +3,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import { tokenSlice } from "../modules/AccessToken"
 import { postSlice } from '../modules/postSlice'
 import { commentSlice } from '../modules/comment';
-import { productSlice } from '../modules/pracSlice'
 import { usersSlice } from '../modules/loginSlice'
 import { signupSlice } from '../modules/registerSlice'
 
@@ -17,7 +16,6 @@ import { signupSlice } from '../modules/registerSlice'
 
       post: postSlice.reducer,
       comments: commentSlice.reducer,
-      products: productSlice.reducer,
       
     },
     

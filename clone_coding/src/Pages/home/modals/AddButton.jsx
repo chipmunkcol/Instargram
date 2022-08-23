@@ -1,8 +1,7 @@
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { initializeApp } from 'firebase/app';
 import { storage } from '../../../shared/firebase';
-import { __postProducts } from '../../../Redux/modules/pracSlice';
-
+import { __postPost } from '../../../Redux/modules/postSlice';
 import React, { useEffect, useState,useRef} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -24,12 +23,12 @@ const AddButton = () => {
   const storageRef = ref(storage);
 
   const uploadFB = async (e) => {
-    console.log(e.target.files);
+    // console.log(e.target.files);
     const upload_file = await uploadBytes(
       ref(storage, `images/${e.target.files[0].name}`),
       e.target.files[0]
     );
-    console.log(upload_file)
+    // console.log(upload_file)
 
     const file_url = await getDownloadURL(upload_file.ref)
     setFileUrl(file_url)
@@ -37,12 +36,12 @@ const AddButton = () => {
 
   const uploadPost = () => {
     const post = {
-      "file": fileUrl,
-      "description": comment,
-      "tags": "#"+tag
+      file: fileUrl,
+      description: comment,
+      tag: "#"+tag
     }
     console.log(post)
-    dispatch(__postProducts(post))
+    dispatch(__postPost(post))
   }
 
   return (

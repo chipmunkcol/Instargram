@@ -11,8 +11,7 @@ export const __loginUser = createAsyncThunk(
         .then((response) => {
           console.log(response);
           setAccessToken(response.headers.authorization);
-          setUserData(response.data);
-          console.log(response.data);
+          // setUserData(response.data);
           axios.defaults.headers['Authorization'] = `${response.headers.authorization}`;
           
           // document.location.href = '/';
@@ -41,7 +40,7 @@ export const usersSlice = createSlice({
     [__loginUser.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.userinfo = action.payload;
-      console.log('username: ' + action.payload.username);
+      // console.log('username: ' + action.payload.username);
     },
     [__loginUser.rejected]: (state, action) => {
       state.isLoading = false;
