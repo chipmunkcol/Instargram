@@ -1,5 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { getCookieToken } from "../../shared/cookie";
+
+const myToken = getCookieToken(); 
 
 const initialState = {
   posts: [],
@@ -20,6 +23,21 @@ export const getPost = createAsyncThunk(
     }
   }
 );
+
+export const __postPost = createAsyncThunk(
+  'posts/postPost',
+  async (payload, thunkAPI) => {
+      try {
+          console.log(payload)
+          console.log(myToken)
+          const data = await axios.post('https://jdh3340.shop/api/user/posts', payload, 
+          { headers: {Authorization: myToken} })
+          console.log(data.data)
+          return thunkAPI.fulfillWithValue(data.data)
+      } catch (error) {
+          console.log(error)
+          return thunkAPI.rejectWithValue(error)
+      }})
 
 export const postSlice = createSlice({
   name: 'posts',
