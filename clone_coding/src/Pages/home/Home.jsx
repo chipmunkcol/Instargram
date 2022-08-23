@@ -27,9 +27,7 @@ const HomeContainer = styled.div`
     top:80px; 
     left: 50%;
     transform: translateX(-50%);
-    
     width: 100%;
-    /* height: 100%; */
     /* 배경회색으로 바꾸기가 안됨 ㅠ */
     background-color:${({ openImg }) => openImg ? 'rgba( 200, 200, 200, 0.9 )' : '#f1f1f1'} ;
     
@@ -38,7 +36,6 @@ const HomeContainer = styled.div`
 const HomeInner = styled.div`
 
     min-width: 700px;
-    height: 100vh;
     display: flex;
     justify-content: center;
    

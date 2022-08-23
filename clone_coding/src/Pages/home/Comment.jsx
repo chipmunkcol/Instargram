@@ -15,7 +15,7 @@ const Comment = () => {
 }
 const CommentContainer = styled.div`
   margin-left: 20px;
-  margin-top: 60px;
+  margin-top: 10px;
   width: 90%;
   border-top: 1px solid gray;
   display: flex;
