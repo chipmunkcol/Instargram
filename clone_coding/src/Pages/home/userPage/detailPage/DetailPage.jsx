@@ -12,6 +12,7 @@ import { __getDetail } from '../../../../Redux/modules/detailSlice';
 
 const DetailPage = ({openDetail,setOpenDetail,data,likeButton,tagContent}) => {
 
+
 const dispatch = useDispatch()
 const [reload, setReload] = useState(false)
 
