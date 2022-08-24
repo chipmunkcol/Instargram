@@ -24,8 +24,17 @@ const PostList = ({ data }) => {
     setOpenDetail(!openDetail)
   };
   //좋아요 버튼
+  const getLike = async () => {
+    const response =  await axios.get(`https://jdh3340.shop/api/user/posts/${data.id}/likes`)
+    // const nickData = response.data.data.map((data) => data.nickname)
+    console.log(response.data.data)
+    return response.data.data
+  }
+  const dd = getLike
+  console.log(dd)
 
-  const [likeButton, setLikeButton] = React.useState(false);
+  
+  const [likeButton, setLikeButton] = React.useState(getLike() === data.nickname? true: false);
   const clickLikeButton = async () => {
     const response = await axios.post(`https://jdh3340.shop/api/user/posts/${data.id}/likes`,{likesCount: data.likesCount+1},
       {
@@ -47,7 +56,7 @@ const PostList = ({ data }) => {
         <div style={{ display: 'flex', justifyContent:'space-between',padding:'1rem' }}>
             <div style={{ display: 'flex' }}>
               <IdPersonImg src='images/noImg.jpg' ></IdPersonImg>
-              <h4 style={{ marginLeft: '10px', marginTop: '7px' }}>{data.nickname}</h4>
+              <h4 style={{ marginLeft: '10px', marginTop: '7px' }}>{data.id}</h4>
             </div>
             <div>
               <MoreHorizIcon sx={{ m: 1, cursor: 'pointer' }}  onClick={handleOpen}/>

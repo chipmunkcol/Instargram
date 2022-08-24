@@ -4,7 +4,7 @@ import styled, { createGlobalStyle } from 'styled-components'
 import '../App.css';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { getCookieToken, getUserData, removeCookieToken, removeUserData, } from '../shared/cookie';
-import { Base64 } from '../shared/Base64'
+// import { Base64 } from '../shared/Base64'
 
 const Header = ({ setOpenImg, dropmenu, setDropmenu }) => {
   const navigate = useNavigate();
