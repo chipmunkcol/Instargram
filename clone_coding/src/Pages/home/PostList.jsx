@@ -1,7 +1,6 @@
 import React, { useEffect, useState,useRef} from 'react'
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
 import styled_components from 'styled-components';
 import Comment from './Comment';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
@@ -9,13 +8,13 @@ import DetailPage from './userPage/detailPage/DetailPage';
 import MyModal from './modals/MyModal';
 import axios from 'axios'
 import { getCookieToken } from '../../shared/cookie';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getPost } from '../../Redux/modules/postSlice';
 import LikeButtonDetail from './modals/LikeButtonDetail'
 
 const PostList = ({ data }) => {
   const dispatch = useDispatch();
-
+  let tagContent = data.tag.tagName.split('#')[1];
   // Card modal창
   const [othersMenuOpen, setOthersMenuOpen] = React.useState(false);
   const handleOpen = () => setOthersMenuOpen(true);
@@ -24,8 +23,9 @@ const PostList = ({ data }) => {
   const handleDetail = () => {
     setOpenDetail(!openDetail)
   };
-  //좋아요 버튼
-  const [likeButton, setLikeButton] = React.useState(false);
+
+// 좋아요 버튼
+  const [likeButton, setLikeButton] = React.useState(data.liked);
   const clickLikeButton = async () => {
     const response = await axios.post(`https://jdh3340.shop/api/user/posts/${data.id}/likes`,{likesCount: data.likesCount+1},
       {
@@ -33,8 +33,8 @@ const PostList = ({ data }) => {
           "Authorization": getCookieToken()
         }
       })
-    console.log(response)
-    setLikeButton(!likeButton)
+    // console.log(response.data)
+    setLikeButton(response.data.data)
     dispatch(getPost())
   }
   // 좋아요 개수 클릭시 모달창
@@ -47,7 +47,7 @@ const PostList = ({ data }) => {
         <div style={{ display: 'flex', justifyContent:'space-between',padding:'1rem' }}>
             <div style={{ display: 'flex' }}>
               <IdPersonImg src='images/noImg.jpg' ></IdPersonImg>
-              <h4 style={{ marginLeft: '10px', marginTop: '7px' }}>{data.nickname}</h4>
+              <span style={{ marginLeft: '10px', marginTop: '10px',fontSize:'16px', fontWeight:'800'}}>{data.nickname}</span>
             </div>
             <div>
               <MoreHorizIcon sx={{ m: 1, cursor: 'pointer' }}  onClick={handleOpen}/>
@@ -82,12 +82,15 @@ const PostList = ({ data }) => {
             <p style={{ fontWeight: '900', fontSize: '18px' }}>{data.id}</p>
             <div style={{ marginTop: '2px', marginLeft: '10px', fontSize: '16px' }}>{data.description}</div >
             <div style={{ cursor: 'pointer' }} onClick={handleDetail}> ...더보기</div>
-          </CardInnerContent>
+            
+        </CardInnerContent>
+          {console.log()}
+           <div style={{ marginBottom: '20px', marginLeft: '22px', fontSize: '16px',cursor: 'pointer' }}>{tagContent ? '#' + tagContent : null}</div>
           <CommentsCount>댓글 {data.commentsCount}개 모두보기</CommentsCount>
           <Comment />
         </div>
       {/* 게시글 디테일 페이지입니다 */}
-      {openDetail ? <DetailPage openDetail={openDetail} setOpenDetail={setOpenDetail} data={data} /> : null}
+      {openDetail ? <DetailPage openDetail={openDetail} setOpenDetail={setOpenDetail} data={data} likeButton={likeButton} tagContent={tagContent} /> : null}
        {/*본인 MUI modal창 구현부분입니다  */}
       { othersMenuOpen ? <MyModal othersMenuOpen={othersMenuOpen} setOthersMenuOpen={setOthersMenuOpen}  data={data}/>:null}  
       {/* 좋아요한 사람들을 모달창으로 보여줍니다 */}
@@ -127,13 +130,14 @@ const CardLike = styled_components.div`
 `
 const DetailImageContainer = styled_components.div`
   height: 500px;
-  background-color: black;
+  // background-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
 `
 const DetailImage = styled_components.img`
   width:100%;
+  height: 100%;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

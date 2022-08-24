@@ -6,8 +6,8 @@ const UseGetUser = () => {
   const [user, setUser] = useState(null);
 
   const readUser = async () => {
-    const response = await axios.get('',
-      {headers: {Authorization: getCookieToken(),},}
+    const response = await axios.get('https://jdh3340.shop/api/user',
+      {headers: {Authorization: getCookieToken()}}
     );
     console.log(response.data);
     setUser(response.data);

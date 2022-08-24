@@ -15,8 +15,9 @@ export const getPost = createAsyncThunk(
   "posts/getPost",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get("https://jdh3340.shop/api/recent/posts");
-      // console.log(data)
+      const data = await axios.get("https://jdh3340.shop/api/recent/posts",
+      { headers: {Authorization: myToken} })
+      console.log(data)
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -27,10 +28,10 @@ export const getPost = createAsyncThunk(
 export const __postPost = createAsyncThunk(
   'posts/postPost',
   async (payload, thunkAPI) => {
-      try {
-          console.log(payload)
-          console.log(myToken)
-          const data = await axios.post('https://jdh3340.shop/api/recent/posts?page=0', payload, 
+       try{
+          // console.log(payload)
+          // console.log(myToken)
+          const data = await axios.post('https://jdh3340.shop/api/user/posts', payload, 
           { headers: {Authorization: myToken} })
           console.log(data.data)
           return thunkAPI.fulfillWithValue(data.data)
@@ -39,7 +40,19 @@ export const __postPost = createAsyncThunk(
           return thunkAPI.rejectWithValue(error)
     }
   })
-
+export const __editPost = createAsyncThunk(
+  "posts/editPost", async (payload, thunkAPI) => {
+    try {
+      // console.log(payload)
+    const data = await axios.put(`https://jdh3340.shop/api/user/posts/${payload.id}`, { file: payload.file, description: payload.description, tag: payload.tag },
+    { headers: {Authorization: myToken} });
+    console.log(data.data)
+    return thunkAPI.fulfillWithValue(data.data)
+    } catch (error) {
+    console.log(error)
+    return thunkAPI.rejectWithValue(error)
+}
+})
 
 export const postSlice = createSlice({
   name: 'posts',

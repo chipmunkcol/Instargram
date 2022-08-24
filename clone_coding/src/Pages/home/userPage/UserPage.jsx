@@ -11,8 +11,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { __getUserPage } from '../../../Redux/modules/userPage'
 
 function UserPage() {
-
 const [isHovering, setIsHovering] = useState(0)
+
 
 const dispatch = useDispatch()
 const userPage =  useSelector((state)=> state.userPage)
@@ -21,6 +21,7 @@ console.log(userPage)
 useEffect(()=>{
     dispatch(__getUserPage())
 })
+
 
     return(
         <div style={{padding:'20px', height:'1000px', maxWidth:'1000px', minWidth:'800px', margin:'0 auto'}}>
@@ -82,7 +83,7 @@ const Button = styled.button`
 const Header = styled.div`
     display: flex;
     flex-direction: row;
-    margin: 60px 0 0 0;
+    margin: 100px 0 0 0;
 `
 
 const HeaderImg = styled.div`

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import axios from 'axios'
 import ClearIcon from '@mui/icons-material/Clear';
+import GetWhoLike from './GetWhoLike';
 
 
 const LikeButtonDetail = ({ countModal, setCountModal, data }) => {
@@ -15,23 +16,20 @@ const LikeButtonDetail = ({ countModal, setCountModal, data }) => {
   const getLike = async () => {
     const response =  await axios.get(`https://jdh3340.shop/api/user/posts/${data.id}/likes`)
     setGetLikeData(response.data.data)
+    console.log(response.data.data)
   }
 
-  const followButton = () => {
-    console.log('팔로우한다')
-  }
+
   
   useEffect(() => {
     getLike()
   }, [])
 
-  
+
    
   return (
     <div>
-      {getLikeData && getLikeData.map((data, i) => {
-        return  <Modal
-          key={i}
+     <Modal
           open={countModal}
           onClose={handleClose}
           aria-labelledby="modal-modal-title"
@@ -42,20 +40,12 @@ const LikeButtonDetail = ({ countModal, setCountModal, data }) => {
               <div style={{ fontWeight: '800' }}>좋아요</div>
               <ClearIcon sx={{ cursor: 'pointer' }} onClick={() => { setCountModal(false) }} />
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '1rem' }}>
-              <div style={{ display: 'flex' }}>
-                <IdPersonImg src={data.profileImage == null ? 'images/noImg.jpg' : data.profileImage} />
-                <div style={{ marginLeft: '10px' }}>
-                  <div style={{ fontWeight: '900' }}>{data.username}</div>
-                  <div>{data.nickname}</div>
-                </div>
-              </div>
-              <FollowButton onClick={followButton}>팔로우</FollowButton>
-            </div>
-          </Box>
+            {getLikeData && getLikeData.map((likeData, i) => {return <GetWhoLike likeData={likeData} key={i} />
+            })}
+        </Box>
         </Modal>  
-      }
-      )}</div>)
+    
+      </div>)
   }
   
 const mystyle = {
