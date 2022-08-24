@@ -129,7 +129,7 @@ const CardLike = styled_components.div`
 `
 const DetailImageContainer = styled_components.div`
   height: 500px;
-  background-color: black;
+  // background-color: black;
   display: flex;
   justify-content: center;
   align-items: center;

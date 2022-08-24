@@ -15,8 +15,8 @@ export const getPost = createAsyncThunk(
   "posts/getPost",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get("https://jdh3340.shop/api/recent/posts");
-      // console.log(data)
+      const data = await axios.get("https://jdh3340.shop/api/recent/posts",
+      { headers: {Authorization: myToken} })
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -30,7 +30,7 @@ export const __postPost = createAsyncThunk(
       try {
           console.log(payload)
           console.log(myToken)
-          const data = await axios.post('https://jdh3340.shop/api/recent/posts?page=0', payload, 
+          const data = await axios.post('https://jdh3340.shop/api/user/posts', payload, 
           { headers: {Authorization: myToken} })
           console.log(data.data)
           return thunkAPI.fulfillWithValue(data.data)

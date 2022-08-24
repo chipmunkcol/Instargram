@@ -11,6 +11,7 @@ import { useDispatch, useSelector, } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { __getUserPage, __getUserInfo } from '../../../Redux/modules/userPage'
 import { getUserData } from '../../../shared/cookie'
+import { Edit } from '@mui/icons-material'
 
 function UserPage() {
 
@@ -41,16 +42,18 @@ if( isLoading ) {
 }
     return(
         <div style={{padding:'20px', height:'1000px', maxWidth:'1000px', minWidth:'800px', margin:'0 auto'}}>
+            
             <Header>
-                <div style={{width:'300px', height:'200px', display:'flex', justifyContent:'center', margin:'0 -17px 0 0'}}>
-                <HeaderImg><img src={logo} style={{borderRadius:'57%'}}/></HeaderImg>
+                <div style={{width:'300px', height:'200px', display:'flex', justifyContent:'center', margin:'50px -17px 0 0'}}>
+                <HeaderImg><img src={UserInfo.profileImage !== null ? UserInfo.profileImage : logo} style={{borderRadius:'57%'}}/></HeaderImg>
                 </div>
                 <HeaderText>
                     <div > <span style={{fontSize:'23px', marginRight:'20px'}}>{username}</span> 
+                        
                         <Button>프로필 편집</Button> <span style={{margin:'3px 0 0 3px'}}><FontAwesomeIcon icon={faGear} /></span>
                     </div>
-                    <div style={{margin:'20px 0 0 0'}}><HeaderText2>게시물 {}개</HeaderText2><HeaderText2>팔로워 n개</HeaderText2><HeaderText2>팔로우 n개</HeaderText2></div>
-                    <div style={{margin:'20px 0 0 0', fontWeight:'bold'}}>nickname이 들어와요</div>
+                    <div style={{margin:'20px 0 0 0'}}><HeaderText2>게시물 {UserInfo.postsCount}개</HeaderText2><HeaderText2>팔로워 {UserInfo.followerCount}개</HeaderText2><HeaderText2>팔로우 {UserInfo.followCount}개</HeaderText2></div>
+                    <div style={{margin:'27px 0 0 0', fontWeight:'bold'}}>{UserInfo.nickname} <span style={{margin:'0 0 0 20px', fontWeight:'normal'}}>{UserInfo.description}</span> </div>
                 </HeaderText>
             </Header>
 
@@ -71,7 +74,6 @@ if( isLoading ) {
                                         <FontAwesomeIcon icon={faHeart} /><span style={{margin:'0 0 0 5px'}}>{val.likesCount}</span>
                                         <FontAwesomeIcon icon={faComment} style={{marginLeft:'30px'}}/><span style={{margin:'0 0 0 5px'}}>{val.commentsCount}</span>
                                     </div>
-                                    
                                 </OverLay>
                             </Img>
                         
@@ -81,12 +83,33 @@ if( isLoading ) {
                     
                 </Row>
             </Container>
+
+                
+
         </div>
     );
 }
 
+const EditContainer = styled.div`
+    border: 2.5px solid #eaeaea;
+    width: 700px;
+    height: 50%;
+    position: absolute;
+    display: flex;
+    background-color: azure;
+    margin: 285px auto 0 110px;
+`
+
 const Button = styled.button`
     border: 2.5px solid #eaeaea;
+    border-radius: 5px;
+    background-color: #fafafa;
+    font-size: 17px;
+    padding: 5px 9px;
+    font-weight: bold;
+`
+
+const Input = styled.input`
     border-radius: 5px;
     background-color: #fafafa;
     font-size: 17px;
@@ -113,6 +136,7 @@ const HeaderText = styled.div`
     flex-direction: column;
     font-size: 17px;
     padding: 20px;
+    margin-top: 36px;
 `
 
 const HeaderText2 = styled.span`
@@ -137,7 +161,7 @@ const MidContent = styled.div`
 `
 
 const OverLay = styled.div`
-    position: absolute;
+    position: inherit;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -151,6 +175,7 @@ const OverLay = styled.div`
 `
 
 const Img = styled.div`
+    
     width: 250px;
     height: 250px;
     background: url(${props => props.props});

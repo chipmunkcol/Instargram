@@ -8,7 +8,6 @@ import UserPage from './Pages/home/userPage/UserPage';
 import DetailPage from './Pages/home/userPage/detailPage/DetailPage';
 import UpLoad from './Pages/upload/UpLoad';
 import Header from './Pages/Header';
-import styled from 'styled-components'
 
 function App() {
   const [openImg, setOpenImg] = React.useState(false);
