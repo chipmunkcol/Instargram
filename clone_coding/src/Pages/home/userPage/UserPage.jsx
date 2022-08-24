@@ -12,9 +12,13 @@ import { useParams } from 'react-router-dom'
 import { __getUserPage, __getUserInfo } from '../../../Redux/modules/userPage'
 import { getUserData } from '../../../shared/cookie'
 import { Edit } from '@mui/icons-material'
+import EditProfile from '../modals/EditProfile'
 
 function UserPage() {
-const [isHovering, setIsHovering] = useState(0)
+    const [isHovering, setIsHovering] = useState(0)
+    // 프로필편집
+    const [openEditProfile, setOpenEditProfile] = useState(false)
+
 
 const username = getUserData()
 const dispatch = useDispatch()
@@ -27,7 +31,7 @@ const UserPage = userPage.data
 
 const userInfo = useSelector((state)=> state.userInfo)
 const UserInfo = userInfo.userInfo
-console.log(UserInfo)
+// console.log(UserInfo)
 
 useEffect(()=>{
     dispatch(__getUserPage(params))
@@ -49,7 +53,7 @@ if( isLoading ) {
                 <HeaderText>
                     <div > <span style={{fontSize:'23px', marginRight:'20px'}}>{username}</span> 
                         
-                        <Button>프로필 편집</Button> <span style={{margin:'3px 0 0 3px'}}><FontAwesomeIcon icon={faGear} /></span>
+                        <Button onClick={() => { setOpenEditProfile(!openEditProfile) }}>프로필 편집</Button> <span style={{margin:'3px 0 0 3px'}}><FontAwesomeIcon icon={faGear} /></span>
                     </div>
                     <div style={{margin:'20px 0 0 0'}}><HeaderText2>게시물 {UserInfo.postsCount}개</HeaderText2><HeaderText2>팔로워 {UserInfo.followerCount}개</HeaderText2><HeaderText2>팔로우 {UserInfo.followCount}개</HeaderText2></div>
                     <div style={{margin:'27px 0 0 0', fontWeight:'bold'}}>{UserInfo.nickname} <span style={{margin:'0 0 0 20px', fontWeight:'normal'}}>{UserInfo.description}</span> </div>
@@ -82,8 +86,10 @@ if( isLoading ) {
                     
                 </Row>
             </Container>
-
-                
+            {/*프로필 편집 모달창입니다  */}
+            {openEditProfile ?
+                <EditProfile openEditProfile={openEditProfile} setOpenEditProfile={setOpenEditProfile} UserInfo={UserInfo} />
+                : null}    
 
         </div>
     );

@@ -6,9 +6,7 @@ import Modal from '@mui/material/Modal';
 import axios from 'axios'
 import UpdateDetailPage from './UpdateDetailPage';
 import { getCookieToken } from '../../../shared/cookie';
-// import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-// import { __deletePost } from '../../../Redux/modules/postSlice';
 import { getPost } from '../../../Redux/modules/postSlice';
 
 const MyModal = ({ othersMenuOpen, setOthersMenuOpen, data }) => {
@@ -28,7 +26,6 @@ const MyModal = ({ othersMenuOpen, setOthersMenuOpen, data }) => {
 
   const updatePost = () => {
     setClickUpdate(!clickUpdate)
-    // setOthersMenuOpen(false)
   }
 
   const handleClose = () => {
