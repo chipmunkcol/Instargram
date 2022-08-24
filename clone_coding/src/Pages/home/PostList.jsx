@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router-dom';
 const PostList = ({ data }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log(data)
+  // console.log(data)
   let tagContent = data.tag.tagName.split('#')[1];
   // Card modal창
   const [othersMenuOpen, setOthersMenuOpen] = React.useState(false);

@@ -9,7 +9,7 @@ import { detailSlice } from '../modules/detailSlice'
 import { userPageSlice } from '../modules/userPage';
 import { userInfoSlice } from '../modules/userPage';
 import { commentLikeSlice } from '../modules/commentLike';
-
+import { editProfileSlice } from '../modules/editProfile';
 
  const store = configureStore(
   {
@@ -25,6 +25,7 @@ import { commentLikeSlice } from '../modules/commentLike';
 
       userPage: userPageSlice.reducer,
       userInfo: userInfoSlice.reducer,
+      editProfile: editProfileSlice.reducer,
       
     },
     

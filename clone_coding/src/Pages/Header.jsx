@@ -15,7 +15,7 @@ const Header = ({ setOpenImg, dropmenu, setDropmenu }) => {
   };
 
   const usertoken = getCookieToken();
-  console.log(usertoken)
+  // console.log(usertoken)
   const username = getUserData()
   // console.log(username)
 

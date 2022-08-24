@@ -3,16 +3,23 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import styled from 'styled-components';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { initializeApp } from 'firebase/app';
 import { storage } from '../../../shared/firebase';
+import { __patchEditProfile } from '../../../Redux/modules/editProfile';
+import { useDispatch } from 'react-redux';
 
-const EditProfile = ({ openEditProfile,setOpenEditProfile,UserInfo}) => {
+const EditProfile = ({ openEditProfile,setOpenEditProfile,UserInfo }) => {
+  console.log(UserInfo)
+  const dispatch = useDispatch()
   const [fileUrl, setFileUrl] = useState('images/addImg.png')
+  const [description, setDescription] = useState('')
   
   const handleClose = () => {
     setOpenEditProfile(false)
   }
-  console.log(UserInfo)
+  useEffect(()=>{
+    
+  },[])
+  
 // 프로필사진 바꾸기
   const changeImage = async (e) => {
     const upload_file = await uploadBytes(
@@ -25,12 +32,12 @@ const EditProfile = ({ openEditProfile,setOpenEditProfile,UserInfo}) => {
   const EditDone = () => {
     const post = {
       file: fileUrl,
-      // description: comment,
+      description: description,
     }
     console.log(post)
-    // dispatch(__editPost(post))
+    dispatch(__patchEditProfile(post))
     alert('수정완료!')
-    // window.location.reload('/')
+    // window.location.reload(`/user/${UserInfo.username}`)
   }
   return (
     <div>
@@ -75,7 +82,7 @@ const EditProfile = ({ openEditProfile,setOpenEditProfile,UserInfo}) => {
             </div>
             <div style={{ margin: "auto 10px" }} >닉네임 : {UserInfo.nickname }</div>
 
-            <ContentBody placeholder='소개글...'/>
+            <ContentBody placeholder='소개글...' onChange={(e)=>{setDescription(e.target.value)}}/>
 
           </EditProfileContent>
 
