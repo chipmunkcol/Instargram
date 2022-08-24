@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import axios from 'axios'
 import ClearIcon from '@mui/icons-material/Clear';
-import GetWhoLike from './GetWhoLike';
+import GetWhoLike from './GetWhoLike'
 
 
 const LikeButtonDetail = ({ countModal, setCountModal, data }) => {
