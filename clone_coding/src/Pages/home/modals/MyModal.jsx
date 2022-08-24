@@ -3,22 +3,27 @@ import { styled } from '@mui/material/styles';
 import styled_components from 'styled-components';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-// import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 import UpdateDetailPage from './UpdateDetailPage';
-
+import { getCookieToken } from '../../../shared/cookie';
+// import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+// import { __deletePost } from '../../../Redux/modules/postSlice';
+import { getPost } from '../../../Redux/modules/postSlice';
 
 const MyModal = ({ othersMenuOpen, setOthersMenuOpen, data }) => {
   const [clickUpdate, setClickUpdate] = useState(false);
-  console.log(data)
-  const deletePost = async (postId) => {
-    // 로그인 아이디 받으면 할 부분
-    // const response = await axios.delete(`https://jdh3340.shop/api/user/posts/${postId}`, 
-    // {
-    //   headers: {
-    //     "Authorization" getCookieToken();
-    //   }}
-    // )
+  const dispatch = useDispatch();
+
+  const deletePost =  async() => {
+    const response = await axios.delete(`https://jdh3340.shop/api/user/posts/${data.id}`, 
+    {headers: {
+        "Authorization" : getCookieToken()
+      }})
+    console.log(response)
+    alert('삭제완료!')
+    dispatch(getPost())
+    setOthersMenuOpen(false)
   }
 
   const updatePost = () => {

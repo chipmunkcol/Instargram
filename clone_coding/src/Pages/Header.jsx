@@ -41,7 +41,7 @@ const Header = ({ setOpenImg, dropmenu, setDropmenu }) => {
             Instargram
           </HeaderContentSize>
           <div>
-            <img style={{ width: '30px', height: '30px', marginTop: '5px', marginRight: '20px', cursor: 'pointer' }} alt="heart" src='images/home.png'></img>
+            <img style={{ width: '30px', height: '30px', marginTop: '5px', marginRight: '20px', cursor: 'pointer' }} onClick={()=>{window.location.reload('/')}} alt="heart" src='images/home.png'></img>
             <img style={{ width: '30px', height: '30px', marginTop: '5px', marginRight: '15px', cursor: 'pointer' }} alt="heart" src='images/send.png'></img>
             <img style={{ width: '35px', height: '35px', marginTop: '5px', marginRight: '10px', cursor: 'pointer' }} onClick={()=>{ goLogin(); if (usertoken) {openAddImage()}}} alt="heart" src='images/add.png' ></img>
             <img style={{ width: '50px', height: '50px', marginTop: '5px', marginRight: '10px', cursor: 'pointer' }} alt="heart" src='images/heart.png' onClick={goLogin}></img>

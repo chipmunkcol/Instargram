@@ -39,7 +39,11 @@
       "id": 3
     },
     {
+<<<<<<< HEAD
       "content": "댓글 달수있나?",
+=======
+      "content": "sadfasdf",
+>>>>>>> 2efddf0dc4098d8c8d5dd8eece864fa5ec72d045
       "id": 4
     }
   ],

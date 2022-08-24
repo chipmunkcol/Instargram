@@ -59,11 +59,7 @@ useEffect(()=>{
             </ContentTitle>
             <ContentBody>
               <IdPersonImg src='images/noImg.jpg' ></IdPersonImg>
-
-
-         
             <h4 style={{ marginLeft: '5px', marginTop: '5px' }}>nickname이 들어와요</h4>
-
             <ContentText style={{ marginTop: '8px' }}>
               <span style={{ padding: '1.2rem' }}>{data.description}</span>
             </ContentText>

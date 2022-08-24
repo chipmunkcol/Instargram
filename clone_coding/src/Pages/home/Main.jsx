@@ -9,6 +9,7 @@ import OthersModal from './modals/OthersModal';
 
 function Main() {
   const dispatch = useDispatch();
+  
 
   // Card modal창
   // const [othersMenuOpen, setOthersMenuOpen] = React.useState(false);
@@ -22,7 +23,7 @@ function Main() {
   
     //redux
   const { posts } = useSelector((state) => state.post)
-
+  // console.log(posts)
 
   
   if(posts.length ===  0){
