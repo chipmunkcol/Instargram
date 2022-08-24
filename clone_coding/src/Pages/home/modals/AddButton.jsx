@@ -52,13 +52,7 @@ const AddButton = () => {
       <AddButtonContainer>
         <AddButtonTitle>
           <div>새 게시물 만들기</div>
-          <ShareButton onClick={ ()=>{
-            uploadPost();
-            setTimeout(() => {
-              setReload(!reload)
-              navigate('/')
-            }, 500);
-            } }>공유하기</ShareButton>
+          <ShareButton onClick={uploadPost}>공유하기</ShareButton>
         </AddButtonTitle>
 
         <div style={{ display: 'flex' }}>
@@ -71,7 +65,7 @@ const AddButton = () => {
             <label htmlFor="upload-photo">
               <input
                 encType="multipart/form-data"
-                accept="image/*,audio/*,video/mp4,video/x-m4v,application/pdf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation,.csv"
+                accept="image/*"
                 type="file"
                 // onChange={}
                 id="upload-photo"
