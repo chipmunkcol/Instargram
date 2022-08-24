@@ -4,7 +4,7 @@ import Modal from '@mui/material/Modal';
 
 
 const UpdateDetailPage = ({data,clickUpdate, setClickUpdate, setOthersMenuOpen}) => {
-  
+  console.log(data)
   const backButton = () => {
     setClickUpdate(false)
     setOthersMenuOpen((prev)=> (!prev))
@@ -37,7 +37,7 @@ const UpdateDetailPage = ({data,clickUpdate, setClickUpdate, setOthersMenuOpen})
             <IdPersonImg src='images/noImg.jpg' ></IdPersonImg>
             <h4 style={{ marginLeft: '5px' }}>{data.id}</h4>
           </ContentBody>
-          <textarea type='text' style={{ padding: '1.2rem', width:'100%', height:'78.2%'}}>{data.description}</textarea>
+              <textarea type='text' style={{ padding: '1.2rem', width: '100%', height: '78.2%' }} placeholder={data.description}></textarea>
           <input style={{ padding: '1rem',marginLeft:'5px', marginTop:'-5px', width:'97%', height:'10%', border:'none'}}>{data.tags}</input>
 
             </DetailContent>
