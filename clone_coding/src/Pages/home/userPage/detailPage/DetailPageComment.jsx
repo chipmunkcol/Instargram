@@ -8,7 +8,7 @@ import { __getComment, __deleteComment } from '../../../../Redux/modules/comment
 import { __getDetail } from "../../../../Redux/modules/detailSlice"
 
 const DetailPageComment = ({reload, setReload, data}) => {
-// console.log(data)
+console.log(data)
 
 const dispatch = useDispatch()
 const {isLoading, error, comments} = useSelector((state)=>state.comments)

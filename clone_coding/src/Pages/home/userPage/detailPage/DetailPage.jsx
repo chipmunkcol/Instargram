@@ -50,7 +50,7 @@ useEffect(()=>{
             <ContentTitle>
               <div style={{ display: 'flex' }}>
                 <IdPersonImg src='images/noImg.jpg' ></IdPersonImg>
-                <h4 style={{ marginLeft: '5px', marginTop: '5px' }}>{data.id}</h4>
+                <h4 style={{ marginLeft: '5px', marginTop: '5px' }}>nickname이 들어와요</h4>
               </div>
               <div>
                 <MoreHorizIcon sx={{ m: 1, cursor: 'pointer' }} />
@@ -62,10 +62,10 @@ useEffect(()=>{
 
 
          
-            <h4 style={{ marginLeft: '5px', marginTop: '5px' }}>{data.id}</h4>
+            <h4 style={{ marginLeft: '5px', marginTop: '5px' }}>nickname이 들어와요</h4>
 
             <ContentText style={{ marginTop: '8px' }}>
-              <span style={{ padding: '1.2rem' }}>post한 내용이 들어와요</span>
+              <span style={{ padding: '1.2rem' }}>{data.description}</span>
             </ContentText>
           </ContentBody>
           <ContentComments>
