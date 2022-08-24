@@ -11,9 +11,12 @@ import { getCookieToken } from '../../shared/cookie';
 import { useDispatch } from "react-redux";
 import { getPost } from '../../Redux/modules/postSlice';
 import LikeButtonDetail from './modals/LikeButtonDetail'
+import { useNavigate } from 'react-router-dom';
 
 const PostList = ({ data }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  console.log(data)
   let tagContent = data.tag.tagName.split('#')[1];
   // Card modal창
   const [othersMenuOpen, setOthersMenuOpen] = React.useState(false);
@@ -46,8 +49,10 @@ const PostList = ({ data }) => {
     <Card sx={{ maxWidth: 600, borderRadius: '20px', border: '1px solid lightgray', marginTop: '50px', marginBottom: '50px' }}>
         <div style={{ display: 'flex', justifyContent:'space-between',padding:'1rem' }}>
             <div style={{ display: 'flex' }}>
-              <IdPersonImg src='images/noImg.jpg' ></IdPersonImg>
-              <span style={{ marginLeft: '10px', marginTop: '10px',fontSize:'16px', fontWeight:'800'}}>{data.nickname}</span>
+
+              <IdPersonImg src='images/noImg.jpg' onClick={()=>{navigate(`/user/${data.username}`)}} type='button'></IdPersonImg>
+              <h4 style={{ marginLeft: '10px', marginTop: '7px' }}>{data.nickname}</h4>
+
             </div>
             <div>
               <MoreHorizIcon sx={{ m: 1, cursor: 'pointer' }}  onClick={handleOpen}/>
