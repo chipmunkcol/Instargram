@@ -1,7 +1,6 @@
 import React, { useEffect, useState,useRef} from 'react'
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
 import styled_components from 'styled-components';
 import Comment from './Comment';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
@@ -9,7 +8,7 @@ import DetailPage from './userPage/detailPage/DetailPage';
 import MyModal from './modals/MyModal';
 import axios from 'axios'
 import { getCookieToken } from '../../shared/cookie';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getPost } from '../../Redux/modules/postSlice';
 import LikeButtonDetail from './modals/LikeButtonDetail'
 
@@ -25,6 +24,7 @@ const PostList = ({ data }) => {
     setOpenDetail(!openDetail)
   };
   //좋아요 버튼
+
   const [likeButton, setLikeButton] = React.useState(false);
   const clickLikeButton = async () => {
     const response = await axios.post(`https://jdh3340.shop/api/user/posts/${data.id}/likes`,{likesCount: data.likesCount+1},
@@ -33,8 +33,8 @@ const PostList = ({ data }) => {
           "Authorization": getCookieToken()
         }
       })
-    console.log(response)
-    setLikeButton(!likeButton)
+    // console.log(response.data)
+    setLikeButton(response.data.data)
     dispatch(getPost())
   }
   // 좋아요 개수 클릭시 모달창
@@ -47,7 +47,7 @@ const PostList = ({ data }) => {
         <div style={{ display: 'flex', justifyContent:'space-between',padding:'1rem' }}>
             <div style={{ display: 'flex' }}>
               <IdPersonImg src='images/noImg.jpg' ></IdPersonImg>
-              <h4 style={{ marginLeft: '10px', marginTop: '7px' }}>{data.id}</h4>
+              <h4 style={{ marginLeft: '10px', marginTop: '7px' }}>{data.nickname}</h4>
             </div>
             <div>
               <MoreHorizIcon sx={{ m: 1, cursor: 'pointer' }}  onClick={handleOpen}/>

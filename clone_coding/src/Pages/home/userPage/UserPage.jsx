@@ -9,8 +9,8 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { useState } from 'react'
 
 function UserPage() {
-
     const [isHovering, setIsHovering] = useState(0)
+    
 
     return(
         <div style={{padding:'20px', height:'1000px', maxWidth:'1000px', minWidth:'800px', margin:'0 auto'}}>
@@ -72,7 +72,7 @@ const Button = styled.button`
 const Header = styled.div`
     display: flex;
     flex-direction: row;
-    margin: 60px 0 0 0;
+    margin: 100px 0 0 0;
 `
 
 const HeaderImg = styled.div`

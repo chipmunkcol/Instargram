@@ -51,7 +51,7 @@ useEffect(()=>{
                 <LoginBox>
                     <div style={{fontSize:'42px', margin:'22px 0 22px 0'}}>Instagram</div>
                     <InputId type='text' placeholder='아이디' onChange={(e)=>{setId(e.target.value)}}/>
-                    <InputId placeholder='비밀번호' onChange={(e)=>{setPw(e.target.value)}}/>
+                    <InputId type='password'placeholder='비밀번호' onChange={(e)=>{setPw(e.target.value)}}/>
                     <div><Button onClick={()=>{
                         onclickLogin()
                     }}>로그인</Button></div>
