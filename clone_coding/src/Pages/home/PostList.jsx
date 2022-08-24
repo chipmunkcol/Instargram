@@ -12,10 +12,12 @@ import { getCookieToken } from '../../shared/cookie';
 import { useDispatch, useSelector } from "react-redux";
 import { getPost } from '../../Redux/modules/postSlice';
 import LikeButtonDetail from './modals/LikeButtonDetail'
+import { useNavigate } from 'react-router-dom';
 
 const PostList = ({ data }) => {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
+  console.log(data)
   // Card modal창
   const [othersMenuOpen, setOthersMenuOpen] = React.useState(false);
   const handleOpen = () => setOthersMenuOpen(true);
@@ -46,7 +48,7 @@ const PostList = ({ data }) => {
     <Card sx={{ maxWidth: 600, borderRadius: '20px', border: '1px solid lightgray', marginTop: '50px', marginBottom: '50px' }}>
         <div style={{ display: 'flex', justifyContent:'space-between',padding:'1rem' }}>
             <div style={{ display: 'flex' }}>
-              <IdPersonImg src='images/noImg.jpg' ></IdPersonImg>
+              <IdPersonImg src='images/noImg.jpg' onClick={()=>{navigate(`/user/${data.username}`)}} type='button'></IdPersonImg>
               <h4 style={{ marginLeft: '10px', marginTop: '7px' }}>{data.nickname}</h4>
             </div>
             <div>

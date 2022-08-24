@@ -6,22 +6,39 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faComment, faGear, faHeart } from "@fortawesome/free-solid-svg-icons"
 import styled from "styled-components"
 import { Container, Row, Col } from 'react-bootstrap'
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { __getUserPage } from '../../../Redux/modules/userPage'
+import { useEffect, useState, } from 'react'
+import { useDispatch, useSelector, } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import { __getUserPage, __getUserInfo } from '../../../Redux/modules/userPage'
+import { getUserData } from '../../../shared/cookie'
 
 function UserPage() {
 
 const [isHovering, setIsHovering] = useState(0)
 
+const username = getUserData()
 const dispatch = useDispatch()
-const userPage =  useSelector((state)=> state.userPage)
-console.log(userPage)
+const params = useParams().username
+// console.log(params)
+
+const {isLoading, error, userPage} =  useSelector((state)=> state.userPage)
+const UserPage = userPage.data
+// console.log(isLoading, error, UserPage)
+
+const userInfo = useSelector((state)=> state.userInfo)
+const UserInfo = userInfo.userInfo
+console.log(UserInfo)
 
 useEffect(()=>{
-    dispatch(__getUserPage())
-})
+    dispatch(__getUserPage(params))
+    dispatch(__getUserInfo(params))
+},[])
 
+if( isLoading ) {
+    return(
+        <div>로딩중...</div>
+    )
+}
     return(
         <div style={{padding:'20px', height:'1000px', maxWidth:'1000px', minWidth:'800px', margin:'0 auto'}}>
             <Header>
@@ -29,10 +46,10 @@ useEffect(()=>{
                 <HeaderImg><img src={logo} style={{borderRadius:'57%'}}/></HeaderImg>
                 </div>
                 <HeaderText>
-                    <div > <span style={{fontSize:'23px', marginRight:'20px'}}>Id가 들어와요</span> 
+                    <div > <span style={{fontSize:'23px', marginRight:'20px'}}>{username}</span> 
                         <Button>프로필 편집</Button> <span style={{margin:'3px 0 0 3px'}}><FontAwesomeIcon icon={faGear} /></span>
                     </div>
-                    <div style={{margin:'20px 0 0 0'}}><HeaderText2>게시물 n개</HeaderText2><HeaderText2>팔로워 n개</HeaderText2><HeaderText2>팔로우 n개</HeaderText2></div>
+                    <div style={{margin:'20px 0 0 0'}}><HeaderText2>게시물 {}개</HeaderText2><HeaderText2>팔로워 n개</HeaderText2><HeaderText2>팔로우 n개</HeaderText2></div>
                     <div style={{margin:'20px 0 0 0', fontWeight:'bold'}}>nickname이 들어와요</div>
                 </HeaderText>
             </Header>
@@ -45,26 +62,25 @@ useEffect(()=>{
 
             <Container>
                 <Row md={3}>
-                    
-                    <Col>
-                        
-                            <Img>
+                    {
+                        UserPage?.map((val)=>
+                        <Col key={val.id}>
+                            <Img props={val.imageSource}>
                                 <OverLay>
                                     <div style={{color:'white', fontWeight:'bold'}}>
-                                        <FontAwesomeIcon icon={faHeart} /><span style={{margin:'0 0 0 5px'}}>700</span>
-                                        <FontAwesomeIcon icon={faComment} style={{marginLeft:'30px'}}/><span style={{margin:'0 0 0 5px'}}>700</span>
+                                        <FontAwesomeIcon icon={faHeart} /><span style={{margin:'0 0 0 5px'}}>{val.likesCount}</span>
+                                        <FontAwesomeIcon icon={faComment} style={{marginLeft:'30px'}}/><span style={{margin:'0 0 0 5px'}}>{val.commentsCount}</span>
                                     </div>
                                     
                                 </OverLay>
                             </Img>
                         
-                    </Col>
+                        </Col>
+                        )
+                    }
+                    
                 </Row>
             </Container>
-
-
-
-
         </div>
     );
 }
@@ -137,7 +153,7 @@ const OverLay = styled.div`
 const Img = styled.div`
     width: 250px;
     height: 250px;
-    background: url('https://devbeep.com/wp-content/uploads/2021/08/fff.png.webp');
+    background: url(${props => props.props});
     background-position: center;
     background-size: cover;
     background-color:rgba(0, 0, 0, 1)

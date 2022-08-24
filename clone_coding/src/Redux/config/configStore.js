@@ -6,6 +6,8 @@ import { commentSlice } from '../modules/comment';
 import { usersSlice } from '../modules/loginSlice'
 import { signupSlice } from '../modules/registerSlice'
 import { detailSlice } from '../modules/detailSlice'
+import { userPageSlice } from '../modules/userPage';
+import { userInfoSlice } from '../modules/userPage';
 
 
  const store = configureStore(
@@ -18,6 +20,9 @@ import { detailSlice } from '../modules/detailSlice'
       post: postSlice.reducer,
       detail: detailSlice.reducer,
       comments: commentSlice.reducer,
+
+      userPage: userPageSlice.reducer,
+      userInfo: userInfoSlice.reducer,
       
     },
     
