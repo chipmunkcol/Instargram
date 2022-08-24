@@ -26,6 +26,7 @@ const onclickLogin = () => {
     dispatch(__loginUser(userInfo))
     setTimeout(() => {
         setReload(!reload)
+        navigate('/')
     }, 500);
 }
 

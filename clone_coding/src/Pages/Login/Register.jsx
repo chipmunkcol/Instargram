@@ -62,7 +62,7 @@ useEffect(()=>{
                             가입하세요.
                     </div>
                     <InputId placeholder='아이디' onChange={(e)=>{setId(e.target.value)}}/>
-                    <InputId placeholder='비밀번호' onChange={(e)=>{setPw(e.target.value)}}/>
+                    <InputId placeholder='비밀번호' onChange={(e)=>{setPw(e.target.value)}} type='passward'/>
                     <InputId placeholder='이메일' onChange={(e)=>{setEmail(e.target.value)}}/>
                     <InputId placeholder='닉네임' onChange={(e)=>{setNickname(e.target.value)}}/>
 
