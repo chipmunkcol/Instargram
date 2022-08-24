@@ -22,7 +22,7 @@ const Header = ({ setOpenImg, dropmenu, setDropmenu }) => {
   const logout = () => {
     removeCookieToken();
     removeUserData();
-    window.location.href = '/';
+    window.location.href = '/login';
     setTimeout(() => {
       setDropmenu(!dropmenu)
     }, 0);
