@@ -30,14 +30,16 @@ export const __postPost = createAsyncThunk(
       try {
           console.log(payload)
           console.log(myToken)
-          const data = await axios.post('https://jdh3340.shop/api/user/posts', payload, 
+          const data = await axios.post('https://jdh3340.shop/api/recent/posts?page=0', payload, 
           { headers: {Authorization: myToken} })
           console.log(data.data)
           return thunkAPI.fulfillWithValue(data.data)
       } catch (error) {
           console.log(error)
           return thunkAPI.rejectWithValue(error)
-      }})
+    }
+  })
+
 
 export const postSlice = createSlice({
   name: 'posts',
@@ -59,7 +61,9 @@ export const postSlice = createSlice({
         state.isLoading= false;
         state.isFinish = true;
         state.posts = action.payload
-      },
+    },
+
+
   },
 })
 

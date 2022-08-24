@@ -47,9 +47,7 @@ useEffect(()=>{
             </ContentTitle>
             <ContentBody>
               <IdPersonImg src='images/noImg.jpg' ></IdPersonImg>
-
-
-         
+      
             <h4 style={{ marginLeft: '5px', marginTop: '5px' }}>{data.id}</h4>
 
             <ContentText style={{ marginTop: '8px' }}>
