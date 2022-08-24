@@ -1,17 +1,42 @@
-import React from 'react'
+import React, { useEffect, useState,useRef} from 'react'
 import styled from 'styled-components'
 import Modal from '@mui/material/Modal';
-
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { initializeApp } from 'firebase/app';
+import { storage } from '../../../shared/firebase';
+import { __editPost } from '../../../Redux/modules/postSlice';
+import { useDispatch, useSelector } from 'react-redux'
 
 const UpdateDetailPage = ({data,clickUpdate, setClickUpdate, setOthersMenuOpen}) => {
-  console.log(data)
+  const [fileUrl, setFileUrl] = useState(data.imageSource)
+  const [comment, setComment] = useState('')  
+  const [tag, setTag] = useState('')
+  const dispatch = useDispatch();
+// 취소버튼
   const backButton = () => {
     setClickUpdate(false)
     setOthersMenuOpen((prev)=> (!prev))
   }
-
+// 이미지 바꾸기
+  const changeImage = async (e) => {
+    const upload_file = await uploadBytes(
+      ref(storage, `images/${e.target.files[0].name}`),
+      e.target.files[0]
+    );
+    const file_url = await getDownloadURL(upload_file.ref)
+    setFileUrl(file_url)
+  }
   const updateDone = () => {
-    console.log('보내주자')
+    const post = {
+      id: data.id,
+      file: fileUrl,
+      description: comment,
+      tag: "#"+tag
+    }
+    console.log(post)
+    dispatch(__editPost(post))
+    alert('포스팅완료!')
+    window.location.reload('/')
   }
 
   return (
@@ -29,16 +54,33 @@ const UpdateDetailPage = ({data,clickUpdate, setClickUpdate, setOthersMenuOpen})
       <div style={{display:'flex', height:'100%'}}>
         <DetailImageContainer>
           <DetailImageInner>
-            <DetailImage style={{ backgroundImage: `url(${data.imageSource})` }} />
+                <DetailImage src={fileUrl === data.imageSource ? data.imageSource : fileUrl} />
           </DetailImageInner>
+          <div style={{display:'flex', justifyContent:'center'}}>
+            <label htmlFor="upload-photo">
+              <input  encType="multipart/form-data"
+                accept="image/*"
+                type="file"
+                id="upload-photo"
+                style={{ display: 'none' }} onChange={changeImage} />
+              <UpdateImageButton>사진수정하기</UpdateImageButton>
+              </label>
+          </div>
         </DetailImageContainer>
         <DetailContent>
           <ContentBody>
             <IdPersonImg src='images/noImg.jpg' ></IdPersonImg>
             <h4 style={{ marginLeft: '5px' }}>{data.id}</h4>
           </ContentBody>
-              <textarea type='text' style={{ padding: '1.2rem', width: '100%', height: '78.2%' }} placeholder={data.description}></textarea>
-          <input style={{ padding: '1rem',marginLeft:'5px', marginTop:'-5px', width:'97%', height:'10%', border:'none'}}>{data.tags}</input>
+              <textarea type='text'
+                style={{ padding: '1.2rem', width: '100%', height: '78.2%' }}
+                placeholder={data.description}
+                onChange={(e)=>{setComment(e.target.value)}}></textarea>
+            <input
+              placeholder={data.tag.tagName} style={{
+              padding: '1rem', marginLeft: '5px', marginTop: '-5px', width: '97%', height: '10%', border: 'none'
+              }}
+              onChange={(e)=>{setTag(e.target.value)}}></input>
 
             </DetailContent>
             </div>
@@ -70,7 +112,7 @@ const DetailImageContainer = styled.div`
   width: 50%;
   height: 100%;
   background-color: black;
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   align-items: center;
   border-bottom-left-radius :20px;
@@ -83,12 +125,22 @@ const DetailImageInner = styled.div`
   align-items: center;
 `
 
-const DetailImage = styled.div`
+const DetailImage = styled.img`
  width: 100%;
  height:  500px;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+`
+const UpdateImageButton = styled.div`
+  padding: 0.5rem 1rem;
+  border:none;
+  margin-bottom: 1rem;
+  background-color:#1877F2;
+  color:white;
+  border-radius: 5px;
+  font-weight: 700;
+  cursor: pointer;
 `
 const DetailContent = styled.div`
   width: 50%;

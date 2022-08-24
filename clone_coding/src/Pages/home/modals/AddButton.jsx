@@ -1,7 +1,7 @@
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { initializeApp } from 'firebase/app';
 import { storage } from '../../../shared/firebase';
-import { __postPost } from '../../../Redux/modules/postSlice';
+import { getPost, __postPost } from '../../../Redux/modules/postSlice';
 import React, { useEffect, useState,useRef} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -42,9 +42,9 @@ const AddButton = () => {
     }
     console.log(post)
     dispatch(__postPost(post))
-    setTimeout(() => {
-      setReload(!reload)
-    }, 1000);
+    alert('포스팅완료!')
+    // dispatch(getPost)
+    window.location.reload('/')
   }
 
   return (

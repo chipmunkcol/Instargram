@@ -14,7 +14,6 @@ import { getUserData } from '../../../shared/cookie'
 import { Edit } from '@mui/icons-material'
 
 function UserPage() {
-
 const [isHovering, setIsHovering] = useState(0)
 
 const username = getUserData()
@@ -121,7 +120,7 @@ const Input = styled.input`
 const Header = styled.div`
     display: flex;
     flex-direction: row;
-    margin: 60px 0 0 0;
+    margin: 100px 0 0 0;
 `
 
 const HeaderImg = styled.div`

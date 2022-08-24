@@ -12,7 +12,7 @@ const DetailPageComment = ({reload, setReload, data}) => {
 const dispatch = useDispatch()
 const {isLoading, error, comments} = useSelector((state)=>state.comments)
 
-console.log(isLoading , error, comments)
+// console.log(isLoading , error, comments)
 
 
 useEffect(()=>{
