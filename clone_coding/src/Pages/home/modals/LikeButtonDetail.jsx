@@ -60,19 +60,5 @@ const mystyle = {
   borderRadius: '30px',
   textAlign: 'center'
 };
-const IdPersonImg = styled.img`
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
-`
-const FollowButton = styled.button`
-  width: 100px;
-  height: 40px;
-  background-color: #0095f6;
-  color: white;
-  border:none;
-  border-radius:5px;
-  font-size: 20px;
-  font-weight: 800;
-`
+
 export default LikeButtonDetail
