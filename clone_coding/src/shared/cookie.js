@@ -20,7 +20,7 @@ export const setAccessToken = (accessToken) => {
 export const setUserData = (userinfo) => {
   const today = new Date();
   const expireDate = today.setDate(today.getDate() + 7);
-  console.log(userinfo);
+  // console.log(userinfo);
   return (
     cookies.set('user_data', userinfo),
     {

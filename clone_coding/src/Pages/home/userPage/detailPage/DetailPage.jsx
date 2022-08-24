@@ -10,7 +10,7 @@ import { __postPost } from '../../../../Redux/modules/postSlice';
 import { __getDetail } from '../../../../Redux/modules/detailSlice';
 
 
-const DetailPage = ({openDetail,setOpenDetail,data}) => {
+const DetailPage = ({openDetail,setOpenDetail,data,likeButton,tagContent}) => {
 
 const dispatch = useDispatch()
 const [reload, setReload] = useState(false)
@@ -50,7 +50,7 @@ useEffect(()=>{
             <ContentTitle>
               <div style={{ display: 'flex' }}>
                 <IdPersonImg src='images/noImg.jpg' ></IdPersonImg>
-                <h4 style={{ marginLeft: '5px', marginTop: '5px' }}>nickname이 들어와요</h4>
+                <div style={{ marginLeft: '5px', marginTop: '5px', fontWeight: '700' }}>{data.nickname}</div>
               </div>
               <div>
                 <MoreHorizIcon sx={{ m: 1, cursor: 'pointer' }} />
@@ -59,11 +59,12 @@ useEffect(()=>{
             </ContentTitle>
             <ContentBody>
               <IdPersonImg src='images/noImg.jpg' ></IdPersonImg>
-            <h4 style={{ marginLeft: '5px', marginTop: '5px' }}>nickname이 들어와요</h4>
+            <div style={{ marginLeft: '5px', marginTop: '5px', fontWeight: '700' }}>{data.nickname}</div>
             <ContentText style={{ marginTop: '8px' }}>
-              <span style={{ padding: '1.2rem' }}>{data.description}</span>
+                <span style={{ padding: '1.2rem' }}>{data.description}</span>
             </ContentText>
           </ContentBody>
+            <div style={{ padding: '1.2rem' }}>{tagContent ? '#'+tagContent : null}</div>
           <ContentComments>
 
              <DetailPageComment reload={reload} setReload={setReload} data={data}/>
@@ -71,7 +72,7 @@ useEffect(()=>{
           </ContentComments>
           <InputComment>
             <CardInnerIcons>
-              <img style={{ width: '50px', height: '50px', marginRight: '10px' }} alt="heart" src='images/heart.png'></img>
+              <img style={{ width: '50px', height: '50px', marginRight: '10px' }} alt="heart" src={likeButton && likeButton ? 'images/colorHeart.png' : 'images/heart.png'}></img>
               <img style={{ width: '30px', height: '30px', marginRight: '20px' }} alt="heart" src='images/commentIcon.png'></img>
               <img style={{ width: '30px', height: '30px', marginRight: '15px' }} alt="heart" src='images/send.png'></img>
             </CardInnerIcons>
@@ -127,7 +128,7 @@ const DetailImageInner = styled.div`
 
 const DetailImage = styled.div`
    width: 100%;
-   height:  500px;
+   height:  400px;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -157,7 +158,7 @@ const ContentText = styled.div`
     min-height: 50px;
 `
 const ContentComments = styled.div`
-    height: 374px;
+    height: 300px;
     overflow: auto;
 `
 const InputComment = styled.div`

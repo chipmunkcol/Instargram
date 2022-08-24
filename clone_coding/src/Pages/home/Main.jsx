@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import {getPost} from '../../Redux/modules/postSlice'
 import PostList from './PostList';
 import OthersModal from './modals/OthersModal';
+import { getUserData } from '../../shared/cookie';
 
 
 function Main() {
   const dispatch = useDispatch();
-  
 
   // Card modal창
   // const [othersMenuOpen, setOthersMenuOpen] = React.useState(false);
@@ -23,7 +23,7 @@ function Main() {
   
     //redux
   const { posts } = useSelector((state) => state.post)
-  // console.log(posts)
+  console.log(posts)
 
   
   if(posts.length ===  0){

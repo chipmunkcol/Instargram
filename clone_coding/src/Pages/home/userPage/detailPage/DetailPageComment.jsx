@@ -5,20 +5,26 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { __getComment, __deleteComment } from '../../../../Redux/modules/comment'
-import { __getDetail } from "../../../../Redux/modules/detailSlice"
 
 const DetailPageComment = ({reload, setReload, data}) => {
-console.log(data)
+// console.log(data)
 
 const dispatch = useDispatch()
 const {isLoading, error, comments} = useSelector((state)=>state.comments)
-// const comments = useSelector((state)=>state)
-// console.log(isLoading, error, comments)
+
+// console.log(isLoading , error, comments)
+
 
 useEffect(()=>{
-    dispatch(__getComment())
+    dispatch(__getComment(data.id))
 
 },[reload])
+
+if ( isLoading ) {
+    return (
+        <div></div>
+    )
+}
 
 if (comments.length === 0) {
     return (
@@ -30,17 +36,17 @@ if (comments.length === 0) {
         <div style={{ display: 'flex' ,flexDirection:'column', justifyContent: 'space-between', marginLeft: '10px', marginTop: '5px' }}>
 
         {
-            comments.map((val)=>
+            comments?.map((val)=>
                 <div key={val.id} style={{ display: 'flex', margin:'0 0 20px 0'}}>
                     <IdPersonImg src='images/noImg.jpg' ></IdPersonImg>
                     <div style={{width:'90%'}}>
-                        <span style={{ marginLeft: '5px', fontWeight: '700' }}>댓글id: {val.id}</span>
+                        <span style={{ marginLeft: '5px', fontWeight: '700' }}>{val.nickname}</span>
                         <span style={{ marginLeft: '5px' }}>{val.content}</span>
                         <div style={{display:'flex', flexDirection:'row'}}>
-                            <div style={{ marginLeft: '5px', marginTop: '-2px', marginRight: '10px', width:'28%'}}> val.likeCount</div>
+                            <div style={{ marginLeft: '5px', marginTop: '4px', fontSize:'smaller', color:'#a7a7a7', marginRight: '10px', width:'33%'}}> 좋아요 {val.likesCount}개</div>
                             <DeleteComment type='button' onClick={()=>{
-                                console.log(val.id)
-                                dispatch(__deleteComment(val.id))
+                                const payload = { postId:data.id, commentId:val.id }
+                                dispatch(__deleteComment(payload))
                                 setTimeout(() => {
                                     setReload(!reload)
                                 }, 500);
