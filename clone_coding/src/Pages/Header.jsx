@@ -15,8 +15,9 @@ const Header = ({ setOpenImg, dropmenu, setDropmenu }) => {
   };
 
   const usertoken = getCookieToken();
-  console.log(usertoken)
+  // console.log(usertoken)
   const username = getUserData()
+  console.log(username)
 
   const logout = () => {
     removeCookieToken();
@@ -52,7 +53,7 @@ const Header = ({ setOpenImg, dropmenu, setDropmenu }) => {
                   <p style={{ cursor: "pointer", marginTop: '13px', marginLeft: '15px' }}                  // onClick={() => {
                   //   goMypage(user.user?.userId);
                   // }}
-                  onClick={()=>{navigate('/user'); setTimeout(() => { setDropmenu(!dropmenu) }, 0);}}
+                  onClick={()=>{navigate(`/user/${username}`); setTimeout(() => { setDropmenu(!dropmenu) }, 0);}}
                   >
                     <AccountCircleIcon sx={{ mr: 1 }} ></AccountCircleIcon>프로필
                   </p>
