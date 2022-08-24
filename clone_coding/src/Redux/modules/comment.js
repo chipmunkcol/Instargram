@@ -8,9 +8,10 @@ export const __getComment = createAsyncThunk(
     'comment/getComment',
     async (payload, thunkAPI) => {
         try {
+            console.log(payload)
             const data = await axios.get(`https://jdh3340.shop/api/user/posts/${payload}`,
             { headers: {Authorization: myToken} })
-            return thunkAPI.fulfillWithValue(data.data)
+            return thunkAPI.fulfillWithValue(data.data.data.comments)
         } catch (error) {
             return thunkAPI.rejectWithValue(error)
         }
@@ -26,7 +27,7 @@ export const __postComment = createAsyncThunk(
             console.log(postId, content)
             const data = await axios.post(`https://jdh3340.shop/api/user/posts/${postId}/comments`, {content: content},
             { headers: {Authorization: myToken} })
-            return thunkAPI.fulfillWithValue(data.data)
+            return thunkAPI.fulfillWithValue(data.data.data.comments)
         } catch (error) {
             return thunkAPI.rejectWithValue(error)
         }
@@ -35,8 +36,12 @@ export const __postComment = createAsyncThunk(
 export const __deleteComment = createAsyncThunk(
     'comment/deleteComment',
     async (payload, thunkAPI) => {
-        try { 
-            const data = await axios.delete(`http://localhost:3001/comment/${payload}`)
+        try {
+            console.log(payload)
+            const postId = payload.postId
+            const commentId = payload.commentId 
+            const data = await axios.delete(`https://jdh3340.shop/api/user/posts/${postId}/comments/${commentId}`,
+            { headers: {Authorization: myToken} })
             return thunkAPI.fulfillWithValue(data.data)
         } catch (error) {
             return thunkAPI.rejectWithValue(error)
@@ -58,7 +63,7 @@ export const commentSlice = createSlice({
         },
         [__getComment.fulfilled]: (state, action) => {
             state.isLoading = false;
-            state.comment = action.payload;
+            state.comments = action.payload;
         },
         [__getComment.rejected]: (state, action) => {
             state.isLoading = false;

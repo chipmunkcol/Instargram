@@ -1,6 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { setAccessToken, setUserData } from '../../shared/cookie';
+import { decodeToken } from "react-jwt"
+import { getCookieToken } from '../../shared/cookie';
+
 
 
 export const __loginUser = createAsyncThunk(
@@ -11,8 +14,11 @@ export const __loginUser = createAsyncThunk(
         .then((response) => {
           console.log(response);
           setAccessToken(response.headers.authorization);
-          setUserData(response.data);
-          console.log(setUserData)
+          // decideToken import 해서 base64 디코드! 
+          const myDecodedToken = decodeToken(response.headers.authorization)
+          const userInfo = myDecodedToken.username
+          // console.log(userInfo)
+          setUserData(userInfo);
           axios.defaults.headers['Authorization'] = `${response.headers.authorization}`;
           
           // document.location.href = '/';

@@ -47,7 +47,7 @@ const PostList = ({ data }) => {
         <div style={{ display: 'flex', justifyContent:'space-between',padding:'1rem' }}>
             <div style={{ display: 'flex' }}>
               <IdPersonImg src='images/noImg.jpg' ></IdPersonImg>
-              <h4 style={{ marginLeft: '10px', marginTop: '7px' }}>{data.id}</h4>
+              <h4 style={{ marginLeft: '10px', marginTop: '7px' }}>{data.nickname}</h4>
             </div>
             <div>
               <MoreHorizIcon sx={{ m: 1, cursor: 'pointer' }}  onClick={handleOpen}/>
