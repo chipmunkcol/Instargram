@@ -43,6 +43,11 @@ const postsignup = () => {
         alert('잘못된 이메일 형식입니다')
     } else {
         dispatch(__postsignup(user))
+        alert('회원가입이 완료되었습니다')
+        
+        setTimeout(() => {
+            navigate('/')
+        }, 500);
     }
 }
 
@@ -68,12 +73,7 @@ useEffect(()=>{
                     <InputId placeholder='이메일' onChange={(e)=>{setEmail(e.target.value)}}/>
                     <InputId placeholder='닉네임' onChange={(e)=>{setNickname(e.target.value)}}/>
 
-                    <div><Button onClick={()=>{postsignup(); 
-                    setTimeout(() => {
-                        alert('회원가입이 완료되었습니다')
-                        navigate('/')
-                        }, 0);}}>
-                        가입</Button></div>
+                    <div><Button onClick={()=>{ postsignup() }}>가입</Button></div>
                 </LoginBox>
                 <RegisterBox>계정이 있으신가요? <span type='button' style={{color:'#718fc1', marginLeft:'5px', fontWeight:'bolder' }} onClick={()=>{navigate('/')}}> 로그인</span></RegisterBox>
                 <div style={{marginTop:'14px', textAlign:'center'}}>앱을 다운로드하세요.</div>
