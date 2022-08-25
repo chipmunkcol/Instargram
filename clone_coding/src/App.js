@@ -6,7 +6,6 @@ import Register from './Pages/Login/Register'
 import Home from './Pages/home/Home';
 import UserPage from './Pages/home/userPage/UserPage';
 import DetailPage from './Pages/home/userPage/detailPage/DetailPage';
-import UpLoad from './Pages/upload/UpLoad';
 import Header from './Pages/Header';
 import { getCookieToken } from './shared/cookie';
 
@@ -20,7 +19,7 @@ function App() {
     return (
       <div>
         <Routes>
-          <Route path='/login' element={<Login/>}></Route>
+          <Route path='/' element={<Login/>}></Route>
           <Route path='/register' element={<Register/>}></Route>
         </Routes>
       </div>
@@ -38,7 +37,7 @@ function App() {
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/register' element={<Register/>}></Route>
         <Route path='/user/:username' element={<UserPage/>}></Route>
-        <Route path='/upLoad' element={<UpLoad/>}></Route>
+        {/* <Route path='/upLoad' element={<UpLoad/>}></Route> */}
       </Routes>
       
 

@@ -11,6 +11,7 @@ const GetWhoFollow = ({followData}) => {
     <div style={{ display: 'flex', justifyContent: 'space-between', padding: '1rem' }}>
            <div style={{ display: 'flex' }}>
           <IdPersonImg src={followData.profileImage == null ? 기본로고 : followData.profileImage} />
+
              <div style={{ marginLeft: '10px' }}>
                <div style={{ fontWeight: '900' }}>{followData.username}</div>
                <div>{followData.nickname}</div>

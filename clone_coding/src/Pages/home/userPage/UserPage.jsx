@@ -136,7 +136,6 @@ const Header = styled.div`
 
 const HeaderImg = styled.div`
     display: flex;
-    
     width: 100%;
     height: 100%;
 `
@@ -185,7 +184,7 @@ const OverLay = styled.div`
 `
 
 const Img = styled.div`
-    
+    margin: 10px 0 20px 0;
     width: 250px;
     height: 250px;
     background: url(${props => props.props});
