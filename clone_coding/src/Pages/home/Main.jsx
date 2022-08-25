@@ -20,10 +20,11 @@ function Main() {
   useEffect(() => { 
     dispatch(getPost())
   }, [dispatch])
-  
+
+
     //redux
   const { posts } = useSelector((state) => state.post)
-  console.log(posts)
+  console.log(posts&& posts)
 
   
   if(posts.length ===  0){

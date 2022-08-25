@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import axios from 'axios'
 import ClearIcon from '@mui/icons-material/Clear';
 import GetWhoLike from './GetWhoLike'
-
+import { getCookieToken } from '../../../shared/cookie';
 
 const LikeButtonDetail = ({ countModal, setCountModal, data }) => {
   const [getLikeData, setGetLikeData ] = React.useState(null)
@@ -14,9 +14,12 @@ const LikeButtonDetail = ({ countModal, setCountModal, data }) => {
     setCountModal(false)
   }
   const getLike = async () => {
-    const response =  await axios.get(`https://jdh3340.shop/api/user/posts/${data.id}/likes`)
+    const response =  await axios.get(`https://jdh3340.shop/api/user/posts/${data.id}/likes`,{headers: {
+      "Authorization": getCookieToken()
+    }
+  })
     setGetLikeData(response.data.data)
-    console.log(response.data.data)
+    // console.log(response.data.data)
   }
 
 
@@ -39,8 +42,9 @@ const LikeButtonDetail = ({ countModal, setCountModal, data }) => {
               <div></div>
               <div style={{ fontWeight: '800' }}>좋아요</div>
               <ClearIcon sx={{ cursor: 'pointer' }} onClick={() => { setCountModal(false) }} />
-            </div>
-            {getLikeData && getLikeData.map((likeData, i) => {return <GetWhoLike likeData={likeData} key={i} />
+          </div>
+          {getLikeData && getLikeData.map((likeData, i) => {
+            return <GetWhoLike likeData={likeData} data={data} key={i} />
             })}
         </Box>
         </Modal>  

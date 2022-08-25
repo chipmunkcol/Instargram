@@ -8,18 +8,25 @@ import UserPage from './Pages/home/userPage/UserPage';
 import DetailPage from './Pages/home/userPage/detailPage/DetailPage';
 import UpLoad from './Pages/upload/UpLoad';
 import Header from './Pages/Header';
+import { getCookieToken } from './shared/cookie';
 
 function App() {
   const [openImg, setOpenImg] = React.useState(false);
   const [dropmenu, setDropmenu] = React.useState(false);
-  // if (isLogin) {
-  //   return (<div>
-  //         <Routes>
-  //          <Route path='/login' element={<Login/>}></Route>
-  //          <Route path='/register' element={<Register/>}></Route>
-  //     </Routes>
-  //   </div>)
-  // }
+
+  const isToken = getCookieToken();
+  // console.log(isToken)
+  if (!isToken) {
+    return (
+      <div>
+        <Routes>
+          <Route path='/login' element={<Login/>}></Route>
+          <Route path='/register' element={<Register/>}></Route>
+        </Routes>
+      </div>
+    )
+  }
+
   return (
     <div className="App">
 
@@ -27,11 +34,11 @@ function App() {
       
       <Routes>
         <Route path='/' element={<Home openImg={openImg} setOpenImg={setOpenImg} setDropmenu={setDropmenu}/>}></Route>
-          <Route path='/user/detail' element={<DetailPage/>}></Route>
-          <Route path='/login' element={<Login/>}></Route>
-          <Route path='/register' element={<Register/>}></Route>
-          <Route path='/user/:username' element={<UserPage/>}></Route>
-          <Route path='/upLoad' element={<UpLoad/>}></Route>
+        <Route path='/user/detail' element={<DetailPage/>}></Route>
+        <Route path='/login' element={<Login/>}></Route>
+        <Route path='/register' element={<Register/>}></Route>
+        <Route path='/user/:username' element={<UserPage/>}></Route>
+        <Route path='/upLoad' element={<UpLoad/>}></Route>
       </Routes>
       
 

@@ -67,10 +67,8 @@ const AddButton = () => {
                 encType="multipart/form-data"
                 accept="image/*"
                 type="file"
-                // onChange={}
                 id="upload-photo"
                 name="upload-photo"
-                // ref={}
                 style={{ display: 'none' }}
                 onChange={uploadFB}
               />
@@ -102,7 +100,7 @@ const AddButtonContainer = styled.div`
   top: 100px;
   left: 50%;
   transform: translateX(-50%);
-  width: 1000px;
+  width: 70%;
   min-width: 700px;
   height: 500px;
   border-radius: 20px;

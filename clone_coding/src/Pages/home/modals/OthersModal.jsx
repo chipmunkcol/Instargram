@@ -9,6 +9,10 @@ import Modal from '@mui/material/Modal';
 const OthersModal = ({othersMenuOpen, setOthersMenuOpen}) => {
   const handleClose = () => setOthersMenuOpen(false);
 
+  const notFunction = () => {
+    alert('준비중입니다')
+    setOthersMenuOpen(false)
+  }
   return (
     <Modal
      open={othersMenuOpen}
@@ -16,14 +20,14 @@ const OthersModal = ({othersMenuOpen, setOthersMenuOpen}) => {
 
           >
      <Box sx={style}>
-       <BoxStyle style={{ color: '#CD0000', fontWeight: '800' }}>신고</BoxStyle>
-       <BoxStyle style={{ color: '#CD0000', fontWeight: '800' }}>팔로우 취소</BoxStyle>
-       <BoxStyle>즐겨찾기에 추가</BoxStyle>
-       <BoxStyle>게시물로 이동</BoxStyle>
-       <BoxStyle>공유 대상..</BoxStyle>
-       <BoxStyle>링크 복사</BoxStyle>
-       <BoxStyle>퍼가기</BoxStyle>
-       <BoxStyle style={{ borderBottom: 'none' }}>취소</BoxStyle>
+       <BoxStyle style={{ color: '#CD0000', fontWeight: '800' }}  onClick={notFunction}>신고</BoxStyle>
+       <BoxStyle style={{ color: '#CD0000', fontWeight: '800' }}  onClick={notFunction}>팔로우 취소</BoxStyle>
+       <BoxStyle onClick={notFunction}>즐겨찾기에 추가</BoxStyle>
+       <BoxStyle onClick={notFunction}>게시물로 이동</BoxStyle>
+       <BoxStyle onClick={notFunction}>공유 대상..</BoxStyle>
+       <BoxStyle onClick={notFunction}>링크 복사</BoxStyle>
+       <BoxStyle onClick={notFunction}>퍼가기</BoxStyle>
+        <BoxStyle style={{ borderBottom: 'none', cursor:'pointer' }} onClick={()=>{setOthersMenuOpen(false)}}>취소</BoxStyle>
      </Box>
     </Modal>
   )
