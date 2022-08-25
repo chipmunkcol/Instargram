@@ -46,7 +46,7 @@ if (comments.length === 0) {
                         <span style={{ marginLeft: '5px', fontWeight: '700' }}>{val.nickname}</span>
                         <span style={{ marginLeft: '5px' }}>{val.content}</span>
                         <div style={{display:'flex', flexDirection:'row'}}>
-                            <div style={{ marginLeft: '5px', marginTop: '4px', fontSize:'smaller', color:'#a7a7a7', marginRight: '10px', width:'33%'}}> 좋아요 {val.likesCount}개</div>
+                            <div style={{ marginLeft: '5px', marginTop: '4px', fontSize:'smaller', color:'#a7a7a7', marginRight: '10px', width:'20%'}}> 좋아요 {val.likesCount}개</div>
                             <DeleteComment type='button' onClick={()=>{
                                 const payload = { postId:data.id, commentId:val.id }
                                 dispatch(__deleteComment(payload))
