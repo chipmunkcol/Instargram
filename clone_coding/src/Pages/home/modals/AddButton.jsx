@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components';
 import { UploadFile } from '@mui/icons-material';
+import basicImg from '../../../Image/기본배경사진.jpg'
 
 
 const AddButton = () => {
@@ -30,7 +31,10 @@ const AddButton = () => {
     // console.log(upload_file)
 
     const file_url = await getDownloadURL(upload_file.ref)
+    // console.log(file_url)
     setFileUrl(file_url)
+    // file_url !== '' ? setFileUrl(file_url) : setFileUrl(basicImg)
+    // 기본 이미지 줄 수 있나? 없음 말고..
   }
 
   const uploadPost = () => {

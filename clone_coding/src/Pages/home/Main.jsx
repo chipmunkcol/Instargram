@@ -18,8 +18,6 @@ function Main() {
 
     //redux
   const { posts } = useSelector((state) => state.post)
-  console.log(posts&& posts)
-  
 
   
   if(posts.length ===  0){
@@ -29,7 +27,12 @@ function Main() {
     </div>
     )
   }
-
+  // console.log('전체게시글',posts && posts.data.totalElements)
+  // console.log('토탈페이지',posts&& posts.data.totalPages)
+  // console.log(posts&& posts.data)
+  
+  // const pageableInfo = posts && posts.data.pageable;
+  // console.log(pageableInfo)
   return (
     
     <div>
@@ -42,20 +45,20 @@ function Main() {
       {/* 페이지네이션입니다 */}
       <PaginationPosition>
         <nav aria-label="Page navigation example">
-          <ul class="pagination">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
+          <ul className="pagination">
+            <li className="page-item">
+              <a className='page-link' href="#" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only"></span>
+                <span className="sr-only"></span>
               </a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
+            <li className="page-item"><a className="page-link" href="#">1</a></li>
+            <li className="page-item"><a className="page-link" href="#">2</a></li>
+            <li className="page-item"><a className="page-link" href="#">3</a></li>
+            <li className="page-item">
+              <a className="page-link" href="#" aria-label="Next">
           <span aria-hidden="true">&raquo;</span>
-          <span class="sr-only"></span>
+          <span className="sr-only"></span>
               </a>
             </li>
           </ul>

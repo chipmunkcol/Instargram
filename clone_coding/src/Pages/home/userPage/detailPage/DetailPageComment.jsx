@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { __getComment, __deleteComment } from '../../../../Redux/modules/comment'
 import { __geteCommentLike , __postCommentLike } from "../../../../Redux/modules/commentLike"
+import 사용자기본로고 from '../../../../Image/사용자 기본로고.jpg'
 
 const DetailPageComment = ({reload, setReload, data}) => {
 // console.log(data)
@@ -21,6 +22,7 @@ console.log(isLoading , error, comments)
 
 useEffect(()=>{
     dispatch(__getComment(data.id))
+    // dispatch(__geteCommentLike())
 
 },[reload])
 
@@ -42,7 +44,7 @@ if (comments.length === 0) {
         {
             comments?.map((val)=>
                 <div key={val.id} style={{ display: 'flex', margin:'0 0 20px 0'}}>
-                    <IdPersonImg src='images/noImg.jpg' ></IdPersonImg>
+                    <IdPersonImg src={ data.profileImage !== null ? data.profileImage : 사용자기본로고 } ></IdPersonImg>
                     <div style={{width:'90%'}}>
                         <span style={{ marginLeft: '5px', fontWeight: '700' }}>{val.nickname}</span>
                         <span style={{ marginLeft: '5px' }}>{val.content}</span>

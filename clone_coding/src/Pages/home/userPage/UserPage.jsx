@@ -27,7 +27,7 @@ function UserPage() {
     const dispatch = useDispatch()
     const params = useParams().username
 // console.log(params)
-console.log(username)
+// console.log(username)
 
 const {isLoading, error, userPage} =  useSelector((state)=> state.userPage)
 const UserPage = userPage.data
@@ -35,7 +35,7 @@ const UserPage = userPage.data
 
 const userInfo = useSelector((state)=> state.userInfo)
 const UserInfo = userInfo.userInfo
-console.log(UserInfo)
+// console.log(UserInfo)
 
     // 팔로워
     const checkFollower = () => {
@@ -59,8 +59,8 @@ if( isLoading ) {
         <div style={{padding:'20px', height:'1000px', maxWidth:'1000px', minWidth:'800px', margin:'0 auto'}}>
             
             <Header>
-                <div style={{width:'300px', height:'200px', display:'flex', justifyContent:'center', margin:'50px -17px 0 0'}}>
-                <HeaderImg><img src={UserInfo.profileImage !== null ? UserInfo.profileImage : logo} style={{borderRadius:'57%'}}/></HeaderImg>
+                <div style={{width:'200px', height:'200px', display:'flex', justifyContent:'center', margin:'29px 37px 44px 74px'}}>
+                <HeaderImg><img src={UserInfo.profileImage !== null ? UserInfo.profileImage : logo} style={{borderRadius:'57%', width:'100%'}}/></HeaderImg>
                 </div>
                 <HeaderText>
                     <div > <span style={{fontSize:'23px', marginRight:'20px'}}>{UserInfo.username}</span> 
@@ -137,8 +137,8 @@ const Header = styled.div`
 const HeaderImg = styled.div`
     display: flex;
     
-    width: 150px;
-    height: 150px;
+    width: 100%;
+    height: 100%;
 `
 
 const HeaderText = styled.div`
