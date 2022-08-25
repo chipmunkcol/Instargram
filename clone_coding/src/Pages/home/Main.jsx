@@ -37,20 +37,38 @@ function Main() {
 
   return (
     
-    <MainContainer >
-      {/*타인 MUI modal창 구현부분입니다  */}
-      {/* {othersMenuOpen ?
-        <OthersModal othersMenuOpen={othersMenuOpen} setOthersMenuOpen={setOthersMenuOpen} /> :
-        null} */}
-
-     
-
-
-      {/* 카드 컴포넌트입니다 */}
-      {posts.data.content && posts.data.content.map((data, i) => { return <PostList data={data} key={i}  /> })
-      }
-     </MainContainer>
-  );
+    <div>
+      <MainContainer >
+        {/*타인 MUI modal창 구현부분입니다  */}
+        {/* {othersMenuOpen ?
+          <OthersModal othersMenuOpen={othersMenuOpen} setOthersMenuOpen={setOthersMenuOpen} /> :
+          null} */}
+      
+        {/* 카드 컴포넌트입니다 */}
+        {posts.data.content && posts.data.content.map((data, i) => { return <PostList data={data} key={i}  /> })
+        }
+      </MainContainer>
+      {/* <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+      </nav> */}
+    </div>
+        );
 }
 
 const MainContainer = styled_components.div``
