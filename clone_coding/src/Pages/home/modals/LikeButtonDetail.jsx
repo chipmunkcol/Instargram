@@ -7,23 +7,30 @@ import axios from 'axios'
 import ClearIcon from '@mui/icons-material/Clear';
 import GetWhoLike from './GetWhoLike'
 import { getCookieToken } from '../../../shared/cookie';
+import { useNavigate } from 'react-router-dom';
 
 const LikeButtonDetail = ({ countModal, setCountModal, data }) => {
-  const [getLikeData, setGetLikeData ] = React.useState(null)
+    const navigate = useNavigate();
+
+  const [getLikeData, setGetLikeData] = React.useState(null)
+  const [followedResult, setFollowedResult] =React.useState(null)
   const handleClose = () => {
     setCountModal(false)
   }
+
   const getLike = async () => {
     const response =  await axios.get(`https://jdh3340.shop/api/user/posts/${data.id}/likes`,{headers: {
-      "Authorization": getCookieToken()
+      "Authorization": getCookieToken(),
     }
   })
+  
     setGetLikeData(response.data.data)
-    // console.log(response.data.data)
+    setFollowedResult(response.data.data)
+    
   }
 
 
-  
+  // console.log(getLikeData.followed)
   useEffect(() => {
     getLike()
   }, [])
@@ -44,7 +51,8 @@ const LikeButtonDetail = ({ countModal, setCountModal, data }) => {
               <ClearIcon sx={{ cursor: 'pointer' }} onClick={() => { setCountModal(false) }} />
           </div>
           {getLikeData && getLikeData.map((likeData, i) => {
-            return <GetWhoLike likeData={likeData} data={data} key={i} />
+            // console.log(likeData.followed)
+            return <GetWhoLike likeData={likeData} data={data} followedResult={likeData.followed} key={i} />
             })}
         </Box>
         </Modal>  

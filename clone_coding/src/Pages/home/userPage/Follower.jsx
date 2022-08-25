@@ -10,7 +10,6 @@ import GetWhoFollower from './GetWhoFollower';
 
 const Follower = ({ openFollower, setOpenFollower }) => {
   const tokenId = getUserData();
-  console.log(tokenId)
   const [getFollowerData, setGetFollowerData] = useState(null)
   
   const getFollow = async () => {
@@ -20,7 +19,7 @@ const Follower = ({ openFollower, setOpenFollower }) => {
       }
     })
     setGetFollowerData(response.data.data)
-    console.log(response.data.data)
+    // console.log(response.data.data)
   }
   useEffect(() => {
     getFollow()
@@ -41,7 +40,8 @@ const Follower = ({ openFollower, setOpenFollower }) => {
         <div style={{ fontWeight: '800' }}>팔로워</div>
         <ClearIcon sx={{ cursor: 'pointer' }} onClick={() => {setOpenFollower(false)}} />
       </div>
-      {getFollowerData && getFollowerData.map((followerData, i) => {return <GetWhoFollower followerData={followerData} key={i} />
+        {getFollowerData && getFollowerData.map((followerData, i) => {
+          return <GetWhoFollower followerData={followerData} followed={followerData.followed} key={i} />
       })}
   </Box>
   </Modal>  

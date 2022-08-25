@@ -27,7 +27,7 @@ function UserPage() {
     const dispatch = useDispatch()
     const params = useParams().username
 // console.log(params)
-console.log(username)
+// console.log(username)
 
 const {isLoading, error, userPage} =  useSelector((state)=> state.userPage)
 const UserPage = userPage.data
@@ -35,7 +35,7 @@ const UserPage = userPage.data
 
 const userInfo = useSelector((state)=> state.userInfo)
 const UserInfo = userInfo.userInfo
-console.log(UserInfo)
+// console.log(UserInfo)
 
     // 팔로워
     const checkFollower = () => {

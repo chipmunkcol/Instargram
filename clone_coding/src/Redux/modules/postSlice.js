@@ -33,7 +33,7 @@ export const __postPost = createAsyncThunk(
           // console.log(myToken)
           const data = await axios.post('https://jdh3340.shop/api/user/posts', payload, 
           { headers: {Authorization: myToken} })
-          console.log(data.data)
+          // console.log(data.data)
           return thunkAPI.fulfillWithValue(data.data)
       } catch (error) {
           console.log(error)

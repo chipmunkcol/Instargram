@@ -1,33 +1,39 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
+import 기본로고 from '../../../Image/사용자 기본로고.jpg'
+import { getCookieToken } from '../../../shared/cookie'
+import axios from 'axios'
 
-const GetWhoFollower = ({ followerData }) => {
-  const followButton = () => {
-    console.log('팔로우한다')
-  }
+
+const GetWhoFollower = ({ followerData,followed }) => {
+  const [getFollowData, setGetFollowData] = React.useState(followed)
+
+
+  // const navigate = useNavigate();
   // 팔로우 버튼 다시 연결해야
-  // const followButton = async () => {
-  //   console.log(likeData.username)
-  //   const response = await axios.post(`https://jdh3340.shop/api/user/${likeData.username}/follow`,likeData.username,
-  //     {headers: {
-  //       "Authorization": getCookieToken()
-  //     }}
-  //   )
-  //   setGetFollowData(response.data.data)
-  //   console.log(response.data.data)
-  // }
+  const followProcess = async () => {
+    console.log(followerData.username)
+    const response = await axios.post(`https://jdh3340.shop/api/user/${followerData.username}/follow`,followerData.username,
+      {headers: {
+        "Authorization": getCookieToken()
+      }}
+    )
+    setGetFollowData(response.data.data)
+    console.log(response.data.data)
+  }
+
   return (
     <div>
     <div style={{ display: 'flex', justifyContent: 'space-between', padding: '1rem' }}>
            <div style={{ display: 'flex' }}>
-             <IdPersonImg src={followerData.profileImage == null ? 'images/noImg.jpg' : followerData.profileImage} />
+             <IdPersonImg src={followerData.profileImage == null ? 기본로고 : followerData.profileImage} />
              <div style={{ marginLeft: '10px' }}>
                <div style={{ fontWeight: '900' }}>{followerData.username}</div>
                <div>{followerData.nickname}</div>
              </div>
-           </div>
-           <FollowButton onClick={followButton}>팔로우</FollowButton>
-         </div>
+           </div>{getFollowData ?
+          <FollowCancel onClick={() => { followProcess() }}>팔로우 취소</FollowCancel> : <FollowButton onClick={() => { followProcess() }}>팔로우</FollowButton>}
+      </div>
  </div>
   )
 }
@@ -45,5 +51,17 @@ const FollowButton = styled.button`
   border-radius:5px;
   font-size: 20px;
   font-weight: 800;
+`
+const FollowCancel = styled.div`
+  background-color: white;
+  height: 40px;
+  color: #0095f6;
+  width: 120px;
+  font-size: 18px;
+  font-weight: 800;
+  border-radius:5px;
+  border: 0.5px solid #0095f6;
+  padding: 0.2rem;
+  cursor: pointer;
 `
 export default GetWhoFollower
