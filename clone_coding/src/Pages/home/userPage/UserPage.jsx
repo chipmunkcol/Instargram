@@ -111,15 +111,6 @@ if( isLoading ) {
     );
 }
 
-const EditContainer = styled.div`
-    border: 2.5px solid #eaeaea;
-    width: 700px;
-    height: 50%;
-    position: absolute;
-    display: flex;
-    background-color: azure;
-    margin: 285px auto 0 110px;
-`
 
 const Button = styled.button`
     border: 2.5px solid #eaeaea;
@@ -129,15 +120,6 @@ const Button = styled.button`
     padding: 5px 9px;
     font-weight: bold;
 `
-
-const Input = styled.input`
-    border-radius: 5px;
-    background-color: #fafafa;
-    font-size: 17px;
-    padding: 5px 9px;
-    font-weight: bold;
-`
-
 
 const Header = styled.div`
     display: flex;

@@ -15,7 +15,7 @@ function App() {
   const [dropmenu, setDropmenu] = React.useState(false);
 
   const isToken = getCookieToken();
-  console.log(isToken)
+  // console.log(isToken)
   if (!isToken) {
     return (
       <div>
@@ -34,11 +34,11 @@ function App() {
       
       <Routes>
         <Route path='/' element={<Home openImg={openImg} setOpenImg={setOpenImg} setDropmenu={setDropmenu}/>}></Route>
-          <Route path='/user/detail' element={<DetailPage/>}></Route>
-          <Route path='/login' element={<Login/>}></Route>
-          <Route path='/register' element={<Register/>}></Route>
-          <Route path='/user/:username' element={<UserPage/>}></Route>
-          <Route path='/upLoad' element={<UpLoad/>}></Route>
+        <Route path='/user/detail' element={<DetailPage/>}></Route>
+        <Route path='/login' element={<Login/>}></Route>
+        <Route path='/register' element={<Register/>}></Route>
+        <Route path='/user/:username' element={<UserPage/>}></Route>
+        <Route path='/upLoad' element={<UpLoad/>}></Route>
       </Routes>
       
 

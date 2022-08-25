@@ -31,8 +31,8 @@ const GetWhoLike = ({ likeData,data }) => {
               </div>
             </div>
         {tokenId === likeData.username ? null :
-          <div onClick={() => { followProcess() }}>{getFollowData ?
-            <FollowCancel onClick={() => { followProcess() }}>팔로우 취소</FollowCancel> : <FollowButton>팔로우</FollowButton>}
+          <div>{getFollowData ?
+            <FollowCancel onClick={() => { followProcess() }}>팔로우 취소</FollowCancel> : <FollowButton  onClick={() => { followProcess() }}>팔로우</FollowButton>}
             </div>}
         </div>
     </div>

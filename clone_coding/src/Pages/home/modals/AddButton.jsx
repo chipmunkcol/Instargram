@@ -67,10 +67,8 @@ const AddButton = () => {
                 encType="multipart/form-data"
                 accept="image/*"
                 type="file"
-                // onChange={}
                 id="upload-photo"
                 name="upload-photo"
-                // ref={}
                 style={{ display: 'none' }}
                 onChange={uploadFB}
               />
