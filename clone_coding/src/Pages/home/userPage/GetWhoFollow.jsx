@@ -1,10 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
 import 기본로고 from '../../../Image/사용자 기본로고.jpg'
+import { getCookieToken } from '../../../shared/cookie'
+import axios from 'axios'
 
-const GetWhoFollow = ({followData}) => {
-  const followButton = () => {
-    console.log('팔로우취소한다')
+const GetWhoFollow = ({ followData, followed }) => {
+  const [getFollowData, setGetFollowData] = React.useState(followed)
+  const followProcess = async () => {
+    const response = await axios.post(`https://jdh3340.shop/api/user/${followData.username}/follow`,followData.username,
+      {headers: {
+        "Authorization": getCookieToken()
+      }}
+    )
+    setGetFollowData(response.data.data)
   }
   return (
     <div>
@@ -16,8 +24,8 @@ const GetWhoFollow = ({followData}) => {
                <div style={{ fontWeight: '900' }}>{followData.username}</div>
                <div>{followData.nickname}</div>
              </div>
-           </div>
-           <FollowButton onClick={followButton}>팔로우 취소</FollowButton>
+        </div>{getFollowData ?
+          <FollowButton onClick={() => { followProcess() }}>팔로우 취소</FollowButton> : <FollowButton onClick={() => { followProcess() }}>팔로우</FollowButton>}
          </div>
  </div>
   )

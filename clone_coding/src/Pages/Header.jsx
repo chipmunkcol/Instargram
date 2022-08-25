@@ -4,6 +4,11 @@ import styled, { createGlobalStyle } from 'styled-components'
 import '../App.css';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { getCookieToken, getUserData, removeCookieToken, removeUserData, } from '../shared/cookie';
+import home from '../Image/home.png'
+import send from '../Image/send.png'
+import add from '../Image/add.png'
+import who from '../Image/who.png'
+import heart from '../Image/heart.png'
 
 const Header = ({ setOpenImg, dropmenu, setDropmenu }) => {
   const navigate = useNavigate();
@@ -44,11 +49,11 @@ const Header = ({ setOpenImg, dropmenu, setDropmenu }) => {
             Instargram
           </HeaderContentSize>
           <div>
-            <img style={{ width: '30px', height: '30px', marginTop: '5px', marginRight: '20px', cursor: 'pointer' }} onClick={()=>{navigate('/')}} alt="home" src='images/home.png'></img>
-            <img style={{ width: '30px', height: '30px', marginTop: '5px', marginRight: '15px', cursor: 'pointer' }} onClick={notFunction} alt="send" src='images/send.png'></img>
-            <img style={{ width: '35px', height: '35px', marginTop: '5px', marginRight: '10px', cursor: 'pointer' }} onClick={()=>{ goLogin(); if (usertoken) {openAddImage()}}} alt="add" src='images/add.png' ></img>
-            <img style={{ width: '50px', height: '50px', marginTop: '5px', marginRight: '10px', cursor: 'pointer' }} alt="heart" src='images/heart.png' onClick={goLogin}></img>
-            <img style={{ width: '40px', height: '40px', marginTop: '5px', cursor: 'pointer' }} onClick={()=>{ goLogin(); if (usertoken) {dropToggle()}}} alt="who" src='images/who.png' ></img>
+            <img style={{ width: '30px', height: '30px', marginTop: '5px', marginRight: '20px', cursor: 'pointer' }} onClick={()=>{navigate('/')}} alt="home" src={home}></img>
+            <img style={{ width: '30px', height: '30px', marginTop: '5px', marginRight: '15px', cursor: 'pointer' }} onClick={notFunction} alt="send" src={send}></img>
+            <img style={{ width: '35px', height: '35px', marginTop: '5px', marginRight: '10px', cursor: 'pointer' }} onClick={()=>{ goLogin(); if (usertoken) {openAddImage()}}} alt="add" src={add}></img>
+            <img style={{ width: '50px', height: '50px', marginTop: '5px', marginRight: '10px', cursor: 'pointer' }} alt="heart" src={heart} onClick={notFunction}></img>
+            <img style={{ width: '40px', height: '40px', marginTop: '5px', cursor: 'pointer' }} onClick={()=>{ goLogin(); if (usertoken) {dropToggle()}}} alt="who" src={who} ></img>
             {
               dropmenu ? (
                 <DropContent>

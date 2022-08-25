@@ -10,6 +10,10 @@ import { __getComment } from '../../../../Redux/modules/comment';
 import { __postPost } from '../../../../Redux/modules/postSlice';
 import { __getDetail } from '../../../../Redux/modules/detailSlice';
 import 사용자기본로고 from '../../../../Image/사용자 기본로고.jpg'
+import heart from '../../../../Image/heart.png'
+import send from '../../../../Image/send.png'
+import commentIcon from '../../../../Image/commentIcon.png'
+import colorHeart from '../../../../Image/colorHeart.png'
 
 const DetailPage = ({openDetail,setOpenDetail,data,likeButton,tagContent,othersMenuOpen,setOthersMenuOpen}) => {
 
@@ -74,9 +78,9 @@ useEffect(()=>{
           </ContentComments>
           <InputComment>
             <CardInnerIcons>
-              <img style={{ width: '50px', height: '50px', marginRight: '10px' }} alt="heart" src={likeButton && likeButton ? 'images/colorHeart.png' : 'images/heart.png'}></img>
-              <img style={{ width: '30px', height: '30px', marginRight: '20px' }} alt="heart" src='images/commentIcon.png'></img>
-              <img style={{ width: '30px', height: '30px', marginRight: '15px' }} alt="heart" src='images/send.png'></img>
+                <img style={{ width: '50px', height: '50px', marginRight: '10px' }} alt="heart" src={likeButton && likeButton ? colorHeart : heart}></img>
+                <img style={{ width: '30px', height: '30px', marginRight: '20px' }} alt="heart" src={commentIcon}></img>
+              <img style={{ width: '30px', height: '30px', marginRight: '15px' }} alt="heart" src={send}></img>
             </CardInnerIcons>
               <CardLike>좋아요 {data.likesCount}개</CardLike>
             <CommentContainer>

@@ -15,13 +15,18 @@ import LikeButtonDetail from './modals/LikeButtonDetail'
 import { useNavigate } from 'react-router-dom';
 import { getUserData } from '../../shared/cookie';
 import OthersModal from './modals/OthersModal'
+import noImg from '../../Image/noImg.jpg'
+import heart from '../../Image/heart.png'
+import send from '../../Image/send.png'
+import commentIcon from '../../Image/commentIcon.png'
+import colorHeart from '../../Image/colorHeart.png'
 
 const PostList = ({ data }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // console.log(data)
 
-  const [profileImg, setProfileImg] = useState('images/noImg.jpg')
+  const [profileImg, setProfileImg] = useState(noImg)
   
   const tokenId = getUserData();
   // console.log(tokenId)
@@ -45,11 +50,9 @@ const PostList = ({ data }) => {
           "Authorization": getCookieToken()
         }
       })
-    // console.log(response.data)
     setLikeButton(response.data.data)
     dispatch(getPost())
   }
-  // console.log(data)
   // 좋아요 개수 클릭시 모달창
   const [countModal, setCountModal] = React.useState(false);
   const clickLikeCount = () => {
@@ -59,9 +62,6 @@ const PostList = ({ data }) => {
     <Card sx={{ maxWidth: 600, borderRadius: '20px', border: '1px solid lightgray', marginTop: '50px', marginBottom: '50px' }}>
         <div style={{ display: 'flex', justifyContent:'space-between',padding:'1rem', borderBottom:'1px solid lightgray' }}>
             <div style={{ display: 'flex' }}>
-
-              {/* <IdPersonImg src={ data.profileImage !== null ? data.profileImage : profileImg } onClick={()=>{navigate(`/user/${data.username}`)}} type='button'/>
-              <h4 style={{ marginLeft: '10px', marginTop: '7px' }}>{data.nickname}</h4> */}
               <IdPersonImg src={ data.profileImage !== null ? data.profileImage : profileImg } onClick={()=>{navigate(`/user/${data.username}`)}} type='button'></IdPersonImg>
               <span style={{ marginLeft: '10px', marginTop: '7px', fontSize:'18px', fontWeight:'800'}}>{data.nickname}</span>
 
@@ -87,11 +87,11 @@ const PostList = ({ data }) => {
           }}
             alt="heart"
             onClick={clickLikeButton}
-            src={likeButton && likeButton ? 'images/colorHeart.png' : 'images/heart.png'}>
+            src={likeButton && likeButton ? colorHeart : heart}>
           </img>
           
-            <img style={{ width: '30px', height: '30px', marginRight: '20px',cursor: 'pointer' }} alt="heart" onClick={handleDetail} src='images/commentIcon.png'></img>
-            <img style={{ width: '30px', height: '30px', marginRight: '15px',cursor: 'pointer' }} alt="heart" src='images/send.png'></img>
+          <img style={{ width: '30px', height: '30px', marginRight: '20px', cursor: 'pointer' }} alt="heart" onClick={handleDetail} src={send}></img>
+          <img style={{ width: '30px', height: '30px', marginRight: '15px', cursor: 'pointer' }} alt="heart" src={commentIcon}></img>
         </CardInnerIcons>
         {/* 좋아요개수 클릭시 모달창 */}
         <CardLike onClick={clickLikeCount}>좋아요 {data.likesCount}개</CardLike>
