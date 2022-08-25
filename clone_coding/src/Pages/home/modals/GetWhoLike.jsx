@@ -3,35 +3,34 @@ import styled from 'styled-components'
 import { getCookieToken } from '../../../shared/cookie'
 import axios from 'axios'
 import { getUserData } from '../../../shared/cookie'
+import 기본로고 from '../../../Image/사용자 기본로고.jpg'
 
-const GetWhoLike = ({ likeData,data }) => {
-  const [getFollowData, setGetFollowData] = React.useState(data.liked)
+const GetWhoLike = ({ likeData,data,followedResult }) => {
+  const [getFollowData, setGetFollowData] = React.useState(followedResult)
   const tokenId = getUserData();
   // console.log(tokenId)
-  // console.log(data)
+
   const followProcess = async () => {
-    console.log(likeData.username)
     const response = await axios.post(`https://jdh3340.shop/api/user/${likeData.username}/follow`,likeData.username,
       {headers: {
         "Authorization": getCookieToken()
       }}
     )
     setGetFollowData(response.data.data)
-    console.log(response.data.data)
+    console.log('서버에 올라간 팔로우 결과',response.data.data)
   }
-
   return (
     <div>
        <div style={{ display: 'flex', justifyContent: 'space-between', padding: '1rem' }}>
             <div style={{ display: 'flex' }}>
-              <IdPersonImg src={likeData.profileImage == null ? 'images/noImg.jpg' : likeData.profileImage} />
+              <IdPersonImg src={likeData.profileImage == null ? 기본로고 : likeData.profileImage} />
               <div style={{ marginLeft: '10px' }}>
                 <div style={{ fontWeight: '900' }}>{likeData.username}</div>
                 <div>{likeData.nickname}</div>
               </div>
             </div>
         {tokenId === likeData.username ? null :
-          <div>{getFollowData ?
+          <div>{getFollowData ? 
             <FollowCancel onClick={() => { followProcess() }}>팔로우 취소</FollowCancel> : <FollowButton  onClick={() => { followProcess() }}>팔로우</FollowButton>}
             </div>}
         </div>

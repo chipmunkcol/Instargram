@@ -71,11 +71,11 @@ useEffect(()=>{
                     <div><Button onClick={()=>{postsignup(); 
                     setTimeout(() => {
                         alert('회원가입이 완료되었습니다')
-                        navigate('/login')
+                        navigate('/')
                         }, 0);}}>
                         가입</Button></div>
                 </LoginBox>
-                <RegisterBox>계정이 있으신가요? <span type='button' style={{color:'#718fc1', marginLeft:'5px', fontWeight:'bolder' }} onClick={()=>{navigate('/login')}}> 로그인</span></RegisterBox>
+                <RegisterBox>계정이 있으신가요? <span type='button' style={{color:'#718fc1', marginLeft:'5px', fontWeight:'bolder' }} onClick={()=>{navigate('/')}}> 로그인</span></RegisterBox>
                 <div style={{marginTop:'14px', textAlign:'center'}}>앱을 다운로드하세요.</div>
                 <div> 
                     <span><a href='https://apps.apple.com/app/instagram/id389801252?vt=lo' target='_blank'><img src={logo1} style={{width:'170px'}} type='button' /></a></span> 
