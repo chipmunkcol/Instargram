@@ -8,7 +8,7 @@ export const __getComment = createAsyncThunk(
     'comment/getComment',
     async (payload, thunkAPI) => {
         try {
-            console.log(payload)
+            // console.log(payload)
             const data = await axios.get(`https://jdh3340.shop/api/user/posts/${payload}`,
             { headers: {Authorization: myToken} })
             return thunkAPI.fulfillWithValue(data.data.data.comments)
@@ -21,10 +21,10 @@ export const __postComment = createAsyncThunk(
     'comment/postComment',
     async (payload, thunkAPI) => {
         try {
-            console.log(payload)
+            // console.log(payload)
             const postId = payload.postId
             const content = payload.content 
-            console.log(postId, content)
+            // console.log(postId, content)
             const data = await axios.post(`https://jdh3340.shop/api/user/posts/${postId}/comments`, {content: content},
             { headers: {Authorization: myToken} })
             return thunkAPI.fulfillWithValue(data.data.data.comments)

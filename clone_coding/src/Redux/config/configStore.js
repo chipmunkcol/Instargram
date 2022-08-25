@@ -8,7 +8,8 @@ import { signupSlice } from '../modules/registerSlice'
 import { detailSlice } from '../modules/detailSlice'
 import { userPageSlice } from '../modules/userPage';
 import { userInfoSlice } from '../modules/userPage';
-
+import { commentLikeSlice } from '../modules/commentLike';
+import { editProfileSlice } from '../modules/editProfile';
 
  const store = configureStore(
   {
@@ -20,9 +21,11 @@ import { userInfoSlice } from '../modules/userPage';
       post: postSlice.reducer,
       detail: detailSlice.reducer,
       comments: commentSlice.reducer,
+      commentLike: commentLikeSlice.reducer,
 
       userPage: userPageSlice.reducer,
       userInfo: userInfoSlice.reducer,
+      editProfile: editProfileSlice.reducer,
       
     },
     

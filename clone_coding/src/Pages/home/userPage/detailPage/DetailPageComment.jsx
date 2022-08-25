@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { __getComment, __deleteComment } from '../../../../Redux/modules/comment'
+import { __geteCommentLike , __postCommentLike } from "../../../../Redux/modules/commentLike"
 
 const DetailPageComment = ({reload, setReload, data}) => {
 // console.log(data)
@@ -12,8 +13,11 @@ const DetailPageComment = ({reload, setReload, data}) => {
 const dispatch = useDispatch()
 const {isLoading, error, comments} = useSelector((state)=>state.comments)
 
-// console.log(isLoading , error, comments)
-
+console.log(isLoading , error, comments)
+// const payload = {
+//     postId: data.id,
+//     commentId: ??
+// }
 
 useEffect(()=>{
     dispatch(__getComment(data.id))
@@ -53,7 +57,10 @@ if (comments.length === 0) {
                             }}><FontAwesomeIcon icon={faTrashCan} /></DeleteComment>
                         </div>
                     </div>
-                    <img src='images/heart.png' style={{ width: '30px', height: '30px' ,marginRight:'15px'}}></img>
+                    <img src='images/colorHeart.png' style={{ width: '16px', height: '16px' ,marginRight:'15px'}} type="button"
+                        onClick={()=>{
+                            const payload = { postId: data.id, commentId: val.id }
+                            dispatch(__postCommentLike(payload))}} ></img>
                 </div>
             )
         }

@@ -26,15 +26,17 @@ function UserPage() {
     const username = getUserData()
     const dispatch = useDispatch()
     const params = useParams().username
-    // console.log(params)
+// console.log(params)
+console.log(username)
 
-    const { isLoading, error, userPage } = useSelector((state) => state.userPage)
-    const UserPage = userPage.data
-    // console.log(isLoading, error, UserPage)
+const {isLoading, error, userPage} =  useSelector((state)=> state.userPage)
+const UserPage = userPage.data
+// console.log(isLoading, error, UserPage)
 
-    const userInfo = useSelector((state) => state.userInfo)
-    const UserInfo = userInfo.userInfo
-    // console.log(UserInfo)
+const userInfo = useSelector((state)=> state.userInfo)
+const UserInfo = userInfo.userInfo
+console.log(UserInfo)
+
     // 팔로워
     const checkFollower = () => {
         setOpenFollower(!openFollower)
@@ -61,9 +63,14 @@ if( isLoading ) {
                 <HeaderImg><img src={UserInfo.profileImage !== null ? UserInfo.profileImage : logo} style={{borderRadius:'57%'}}/></HeaderImg>
                 </div>
                 <HeaderText>
-                    <div > <span style={{fontSize:'23px', marginRight:'20px'}}>{username}</span> 
+                    <div > <span style={{fontSize:'23px', marginRight:'20px'}}>{UserInfo.username}</span> 
                         
-                        <Button onClick={() => { setOpenEditProfile(!openEditProfile) }}>프로필 편집</Button> <span style={{margin:'3px 0 0 3px'}}><FontAwesomeIcon icon={faGear} /></span>
+                        {/* 본인 userPage 아니면 프로필 편집 버튼 안보이게 */}
+                        {
+                            username !== UserInfo.username ? '' : 
+                            <><Button onClick={() => { setOpenEditProfile(!openEditProfile) }}>프로필 편집</Button> <span style={{margin:'3px 0 0 3px'}}><FontAwesomeIcon icon={faGear} /></span></>
+                        }
+                        
                     </div>
                     <div style={{ margin: '20px 0 0 0' }}>
                         <HeaderText2 >게시물 {UserInfo.postsCount}개</HeaderText2>

@@ -26,7 +26,7 @@ const onclickLogin = () => {
     dispatch(__loginUser(userInfo))
     setTimeout(() => {
         setReload(!reload)
-        navigate('/')
+        window.location.href='/'
     }, 500);
 }
 
