@@ -3,7 +3,7 @@ import logo2 from '../../../Image/인스타 게시글 로고.png'
 import logo3 from '../../../Image/인스타 팔로워 로고.png'
 import logo4 from '../../../Image/인스타 팔로우 로고.png'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faComment, faGear, faHeart } from "@fortawesome/free-solid-svg-icons"
+import { faComment, faGear, faHeart, faL } from "@fortawesome/free-solid-svg-icons"
 import styled from "styled-components"
 import { Container, Row, Col } from 'react-bootstrap'
 import { useEffect, useState, } from 'react'
@@ -11,18 +11,21 @@ import { useDispatch, useSelector, } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { __getUserPage, __getUserInfo } from '../../../Redux/modules/userPage'
 import { getUserData } from '../../../shared/cookie'
-import { Edit } from '@mui/icons-material'
 import EditProfile from '../modals/EditProfile'
+import Follower from './Follower'
+import Follow from './Follow'
 
 function UserPage() {
-    const [isHovering, setIsHovering] = useState(0)
+    // 팔로워
+    const [openFollower, setOpenFollower] = useState(false);
+    // 팔로우
+    const [openFollow, setOpenFollow] = useState(false);
     // 프로필편집
     const [openEditProfile, setOpenEditProfile] = useState(false)
 
-
-const username = getUserData()
-const dispatch = useDispatch()
-const params = useParams().username
+    const username = getUserData()
+    const dispatch = useDispatch()
+    const params = useParams().username
 // console.log(params)
 console.log(username)
 
@@ -34,6 +37,14 @@ const userInfo = useSelector((state)=> state.userInfo)
 const UserInfo = userInfo.userInfo
 console.log(UserInfo)
 
+    // 팔로워
+    const checkFollower = () => {
+        setOpenFollower(!openFollower)
+    }
+    // 팔로우
+    const checkFollow = () => {
+        setOpenFollow(!openFollow)
+    }
 useEffect(()=>{
     dispatch(__getUserPage(params))
     dispatch(__getUserInfo(params))
@@ -61,7 +72,10 @@ if( isLoading ) {
                         }
                         
                     </div>
-                    <div style={{margin:'20px 0 0 0'}}><HeaderText2>게시물 {UserInfo.postsCount}개</HeaderText2><HeaderText2>팔로워 {UserInfo.followerCount}개</HeaderText2><HeaderText2>팔로우 {UserInfo.followCount}개</HeaderText2></div>
+                    <div style={{ margin: '20px 0 0 0' }}>
+                        <HeaderText2 >게시물 {UserInfo.postsCount}개</HeaderText2>
+                        <HeaderText2 style={{ cursor:'pointer' }} onClick={checkFollower}>팔로워 {UserInfo.followerCount}개</HeaderText2>
+                        <HeaderText2 style={{ cursor:'pointer' }} onClick={checkFollow}>팔로우 {UserInfo.followCount}개</HeaderText2></div>
                     <div style={{margin:'27px 0 0 0', fontWeight:'bold'}}>{UserInfo.nickname} <span style={{margin:'0 0 0 20px', fontWeight:'normal'}}>{UserInfo.description}</span> </div>
                 </HeaderText>
             </Header>
@@ -96,20 +110,14 @@ if( isLoading ) {
             {openEditProfile ?
                 <EditProfile openEditProfile={openEditProfile} setOpenEditProfile={setOpenEditProfile} UserInfo={UserInfo} />
                 : null}    
-
+            {/* 팔로워 모달창입니다 */}
+            {openFollower ? <Follower openFollower={openFollower} setOpenFollower={setOpenFollower} /> : null}
+            {/* 팔로우 모달창입니다 */}
+            {openFollow ? <Follow openFollow={openFollow} setOpenFollow={setOpenFollow} />: null}
         </div>
     );
 }
 
-const EditContainer = styled.div`
-    border: 2.5px solid #eaeaea;
-    width: 700px;
-    height: 50%;
-    position: absolute;
-    display: flex;
-    background-color: azure;
-    margin: 285px auto 0 110px;
-`
 
 const Button = styled.button`
     border: 2.5px solid #eaeaea;
@@ -119,15 +127,6 @@ const Button = styled.button`
     padding: 5px 9px;
     font-weight: bold;
 `
-
-const Input = styled.input`
-    border-radius: 5px;
-    background-color: #fafafa;
-    font-size: 17px;
-    padding: 5px 9px;
-    font-weight: bold;
-`
-
 
 const Header = styled.div`
     display: flex;

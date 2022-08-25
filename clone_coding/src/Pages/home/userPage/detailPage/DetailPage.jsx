@@ -11,7 +11,7 @@ import { __postPost } from '../../../../Redux/modules/postSlice';
 import { __getDetail } from '../../../../Redux/modules/detailSlice';
 
 
-const DetailPage = ({openDetail,setOpenDetail,data,likeButton,tagContent}) => {
+const DetailPage = ({openDetail,setOpenDetail,data,likeButton,tagContent,othersMenuOpen,setOthersMenuOpen}) => {
 
 
 const dispatch = useDispatch()
@@ -59,8 +59,8 @@ useEffect(()=>{
                 <div style={{ marginLeft: '5px', marginTop: '5px', fontWeight: '700' }}>{data.nickname}</div>
               </div>
               <div>
-                <MoreHorizIcon sx={{ m: 1, cursor: 'pointer' }} />
-                <ClearIcon sx={{ m: 1, cursor: 'pointer' }} onClick={()=>{setOpenDetail(!openDetail)}} />
+                <MoreHorizIcon sx={{ m: 1, cursor: 'pointer' }} onClick={()=>{setOthersMenuOpen(!othersMenuOpen)}}/>
+                <ClearIcon sx={{ m: 1, cursor: 'pointer' }}  onClick={()=>{setOpenDetail(!openDetail)}}/>
               </div>
             </ContentTitle>
             <ContentBody>

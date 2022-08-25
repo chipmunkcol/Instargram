@@ -13,7 +13,9 @@ const Header = ({ setOpenImg, dropmenu, setDropmenu }) => {
   const dropToggle = () => {
     return setDropmenu(!dropmenu);
   };
-
+  const notFunction = () => {
+    alert('준비중입니다')
+  }
   const usertoken = getCookieToken();
   // console.log(usertoken)
   const username = getUserData()
@@ -22,7 +24,7 @@ const Header = ({ setOpenImg, dropmenu, setDropmenu }) => {
   const logout = () => {
     removeCookieToken();
     removeUserData();
-    window.location.href = '/';
+    window.location.href = '/login';
     setTimeout(() => {
       setDropmenu(!dropmenu)
     }, 0);
@@ -42,11 +44,11 @@ const Header = ({ setOpenImg, dropmenu, setDropmenu }) => {
             Instargram
           </HeaderContentSize>
           <div>
-            <img style={{ width: '30px', height: '30px', marginTop: '5px', marginRight: '20px', cursor: 'pointer' }} onClick={()=>{navigate('/')}} alt="heart" src='images/home.png'></img>
-            <img style={{ width: '30px', height: '30px', marginTop: '5px', marginRight: '15px', cursor: 'pointer' }} alt="heart" src='images/send.png'></img>
-            <img style={{ width: '35px', height: '35px', marginTop: '5px', marginRight: '10px', cursor: 'pointer' }} onClick={()=>{ goLogin(); if (usertoken) {openAddImage()}}} alt="heart" src='images/add.png' ></img>
+            <img style={{ width: '30px', height: '30px', marginTop: '5px', marginRight: '20px', cursor: 'pointer' }} onClick={()=>{navigate('/')}} alt="home" src='images/home.png'></img>
+            <img style={{ width: '30px', height: '30px', marginTop: '5px', marginRight: '15px', cursor: 'pointer' }} onClick={notFunction} alt="send" src='images/send.png'></img>
+            <img style={{ width: '35px', height: '35px', marginTop: '5px', marginRight: '10px', cursor: 'pointer' }} onClick={()=>{ goLogin(); if (usertoken) {openAddImage()}}} alt="add" src='images/add.png' ></img>
             <img style={{ width: '50px', height: '50px', marginTop: '5px', marginRight: '10px', cursor: 'pointer' }} alt="heart" src='images/heart.png' onClick={goLogin}></img>
-            <img style={{ width: '40px', height: '40px', marginTop: '5px', cursor: 'pointer' }} onClick={()=>{ goLogin(); if (usertoken) {dropToggle()}}} alt="heart" src='images/who.png' ></img>
+            <img style={{ width: '40px', height: '40px', marginTop: '5px', cursor: 'pointer' }} onClick={()=>{ goLogin(); if (usertoken) {dropToggle()}}} alt="who" src='images/who.png' ></img>
             {
               dropmenu ? (
                 <DropContent>

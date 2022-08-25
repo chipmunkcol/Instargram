@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, useRef} from 'react'
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
@@ -12,6 +13,8 @@ import { useDispatch } from "react-redux";
 import { getPost } from '../../Redux/modules/postSlice';
 import LikeButtonDetail from './modals/LikeButtonDetail'
 import { useNavigate } from 'react-router-dom';
+import { getUserData } from '../../shared/cookie';
+import OthersModal from './modals/OthersModal'
 
 const PostList = ({ data }) => {
   const dispatch = useDispatch();
@@ -19,6 +22,9 @@ const PostList = ({ data }) => {
   // console.log(data)
 
   const [profileImg, setProfileImg] = useState('images/noImg.jpg')
+  
+  const tokenId = getUserData();
+  // console.log(tokenId)
 
   let tagContent = data.tag.tagName.split('#')[1];
   // Card modal창
@@ -54,8 +60,10 @@ const PostList = ({ data }) => {
         <div style={{ display: 'flex', justifyContent:'space-between',padding:'1rem' }}>
             <div style={{ display: 'flex' }}>
 
-              <IdPersonImg src={ data.profileImage !== null ? data.profileImage : profileImg } onClick={()=>{navigate(`/user/${data.username}`)}} type='button'/>
-              <h4 style={{ marginLeft: '10px', marginTop: '7px' }}>{data.nickname}</h4>
+              {/* <IdPersonImg src={ data.profileImage !== null ? data.profileImage : profileImg } onClick={()=>{navigate(`/user/${data.username}`)}} type='button'/>
+              <h4 style={{ marginLeft: '10px', marginTop: '7px' }}>{data.nickname}</h4> */}
+              <IdPersonImg src={ data.profileImage !== null ? data.profileImage : profileImg } onClick={()=>{navigate(`/user/${data.username}`)}} type='button'></IdPersonImg>
+              <span style={{ marginLeft: '10px', marginTop: '7px', fontSize:'18px', fontWeight:'800'}}>{data.nickname}</span>
 
             </div>
             <div>
@@ -95,13 +103,16 @@ const PostList = ({ data }) => {
         </CardInnerContent>
           {console.log()}
            <div style={{ marginBottom: '20px', marginLeft: '22px', fontSize: '16px',cursor: 'pointer' }}>{tagContent ? '#' + tagContent : null}</div>
-          <CommentsCount>댓글 {data.commentsCount}개 모두보기</CommentsCount>
+          <CommentsCount onClick={handleDetail}>댓글 {data.commentsCount}개 모두보기</CommentsCount>
           <Comment />
         </div>
       {/* 게시글 디테일 페이지입니다 */}
-      {openDetail ? <DetailPage openDetail={openDetail} setOpenDetail={setOpenDetail} data={data} likeButton={likeButton} tagContent={tagContent} /> : null}
-       {/*본인 MUI modal창 구현부분입니다  */}
-      { othersMenuOpen ? <MyModal othersMenuOpen={othersMenuOpen} setOthersMenuOpen={setOthersMenuOpen}  data={data}/>:null}  
+      {openDetail ? <DetailPage openDetail={openDetail} setOpenDetail={setOpenDetail} data={data}
+        likeButton={likeButton} setLikeButton={setLikeButton} tagContent={tagContent}
+        othersMenuOpen={othersMenuOpen} setOthersMenuOpen={setOthersMenuOpen} /> : null}
+      {/*본인 MUI modal창 구현부분입니다  */}
+      {data.username === tokenId ? <MyModal othersMenuOpen={othersMenuOpen} setOthersMenuOpen={setOthersMenuOpen}  data={data}/> : <OthersModal othersMenuOpen={othersMenuOpen} setOthersMenuOpen={setOthersMenuOpen}  data={data}/>}
+      
       {/* 좋아요한 사람들을 모달창으로 보여줍니다 */}
       {countModal ? <LikeButtonDetail countModal={countModal} setCountModal={setCountModal} data={data} />: null}
     </Card>
