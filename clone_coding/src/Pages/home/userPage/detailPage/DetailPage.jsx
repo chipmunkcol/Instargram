@@ -31,10 +31,6 @@ const postComment = () => {
   }, 500);
 }
 
-const postDetail = useSelector((state)=>state)
-console.log(postDetail)
-console.log(data)
-
 useEffect(()=>{
   dispatch(__getComment(data.id))
 

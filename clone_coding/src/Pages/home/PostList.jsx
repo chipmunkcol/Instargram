@@ -49,7 +49,7 @@ const PostList = ({ data }) => {
     setLikeButton(response.data.data)
     dispatch(getPost())
   }
-  console.log(data)
+  // console.log(data)
   // 좋아요 개수 클릭시 모달창
   const [countModal, setCountModal] = React.useState(false);
   const clickLikeCount = () => {

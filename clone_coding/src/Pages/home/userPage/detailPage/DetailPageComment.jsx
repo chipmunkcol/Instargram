@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTrashCan } from '@fortawesome/free-regular-svg-icons'
 import { width } from '@mui/system'
@@ -15,14 +16,10 @@ const dispatch = useDispatch()
 const {isLoading, error, comments} = useSelector((state)=>state.comments)
 
 console.log(isLoading , error, comments)
-// const payload = {
-//     postId: data.id,
-//     commentId: ??
-// }
+
 
 useEffect(()=>{
     dispatch(__getComment(data.id))
-    // dispatch(__geteCommentLike())
 
 },[reload])
 
@@ -59,17 +56,33 @@ if (comments.length === 0) {
                             }}><FontAwesomeIcon icon={faTrashCan} /></DeleteComment>
                         </div>
                     </div>
-                    <img src='images/colorHeart.png' style={{ width: '16px', height: '16px' ,marginRight:'15px'}} type="button"
+
+                    {   val.liked === false ? 
+                        <>
+                        <img src='images/heart.png' style={{ width: '21px', height: '21px' ,marginRight:'13px'}} type="button"
                         onClick={()=>{
                             const payload = { postId: data.id, commentId: val.id }
-                            dispatch(__postCommentLike(payload))}} ></img>
+                            dispatch(__postCommentLike(payload))
+                            setTimeout(() => {
+                                setReload(!reload)
+                            }, 500);
+                            }} ></img>
+                        </> : 
+                        <>
+                        <img src='images/colorHeart.png' style={{ width: '16px', height: '16px' ,marginRight:'15px'}} type="button"
+                        onClick={()=>{
+                            const payload = { postId: data.id, commentId: val.id }
+                            dispatch(__postCommentLike(payload))
+                            setTimeout(() => {
+                                setReload(!reload)
+                            }, 500);
+                            }} ></img>
+                        </>
+                    }
+
                 </div>
             )
         }
-            
-            
-            
-
             
         </div>
     )

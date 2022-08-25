@@ -7,10 +7,13 @@ import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components';
 import { UploadFile } from '@mui/icons-material';
 import basicImg from '../../../Image/기본배경사진.jpg'
-
+import { getUserData } from '../../../shared/cookie';
 
 const AddButton = () => {
   
+  const userInfo = getUserData()
+  console.log(userInfo)
+
   const [fileUrl, setFileUrl] = useState('')
   const [comment, setComment] = useState('')
   const [tag, setTag] = useState('')
@@ -82,8 +85,8 @@ const AddButton = () => {
           </AddButtonImage>
           <AddButtonContent>
             <div style={{ display: 'flex', margin: '10px' }}>
-              <img style={{ width: '50px', height: '50px', borderRadius: '50px', marginTop: '5px', marginRight: '20px' }} alt="heart" src='images/noImg.jpg'></img>
-              <div style={{ margin:"auto 0" }} > 아이디</div>
+              <img style={{ width: '50px', height: '50px', borderRadius: '50px', marginTop: '5px', marginRight: '20px' }} src='images/noImg.jpg'></img>
+              <div style={{ margin:"auto 0" }} > {userInfo} </div>
             </div>
 
             <ContentBody placeholder='문구 입력...' onChange={(e)=>{setComment(e.target.value)}}/>

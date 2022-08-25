@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import 사용자기본로고 from '../../../Image/사용자 기본로고.jpg'
 
 const GetWhoFollower = ({ followerData }) => {
   const followButton = () => {
@@ -20,7 +21,7 @@ const GetWhoFollower = ({ followerData }) => {
     <div>
     <div style={{ display: 'flex', justifyContent: 'space-between', padding: '1rem' }}>
            <div style={{ display: 'flex' }}>
-             <IdPersonImg src={followerData.profileImage == null ? 'images/noImg.jpg' : followerData.profileImage} />
+             <IdPersonImg src={followerData.profileImage == null ? 사용자기본로고 : followerData.profileImage} />
              <div style={{ marginLeft: '10px' }}>
                <div style={{ fontWeight: '900' }}>{followerData.username}</div>
                <div>{followerData.nickname}</div>

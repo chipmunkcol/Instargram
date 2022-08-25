@@ -6,8 +6,11 @@ import { initializeApp } from 'firebase/app';
 import { storage } from '../../../shared/firebase';
 import { __editPost } from '../../../Redux/modules/postSlice';
 import { useDispatch, useSelector } from 'react-redux'
+import { getUserData } from '../../../shared/cookie';
 
 const UpdateDetailPage = ({data,clickUpdate, setClickUpdate, setOthersMenuOpen}) => {
+  const userInfo = getUserData()
+
   const [fileUrl, setFileUrl] = useState(data.imageSource)
   const [comment, setComment] = useState('')  
   const [tag, setTag] = useState('')
@@ -47,8 +50,8 @@ const UpdateDetailPage = ({data,clickUpdate, setClickUpdate, setOthersMenuOpen})
     <DetailContainer>
     <DetailInner>
           <DetailHeader>
-            <div onClick={backButton} style={{cursor:'pointer'}}>취소</div>
-            <div style={{fontWeight:'800'}}>정보 수정</div>
+            <div onClick={backButton} style={{cursor:'pointer', }}>취소</div>
+            <div style={{fontSize:'20px', fontWeight:'bold', margin:'-2px 0 0 1px'}}>정보 수정</div>
             <div onClick={updateDone} style={{color:'#1877F2',fontWeight:'800', cursor:'pointer'}}>완료</div>
       </DetailHeader>
       <div style={{display:'flex', height:'100%'}}>
@@ -70,15 +73,15 @@ const UpdateDetailPage = ({data,clickUpdate, setClickUpdate, setOthersMenuOpen})
         <DetailContent>
           <ContentBody>
             <IdPersonImg src='images/noImg.jpg' ></IdPersonImg>
-            <h4 style={{ marginLeft: '5px' }}>{data.id}</h4>
+            <div style={{ margin:'10px 0 0 20px', fontSize:'17px' }}>{userInfo}</div>
           </ContentBody>
               <textarea type='text'
-                style={{ padding: '1.2rem', width: '100%', height: '78.2%' }}
+                style={{ padding: '1.2rem', width: '100%', height: '77.2%', border:'none' }}
                 placeholder={data.description}
                 onChange={(e)=>{setComment(e.target.value)}}></textarea>
             <input
               placeholder={data.tag.tagName} style={{
-              padding: '1rem', marginLeft: '5px', marginTop: '-5px', width: '97%', height: '10%', border: 'none'
+              padding: '1rem', marginLeft: '5px', marginTop: '-5px', width: '97%', height: '10%', border: 'none', borderTop: '1px solid #e2e2e2'
               }}
               onChange={(e)=>{setTag(e.target.value)}}></input>
 
@@ -146,15 +149,16 @@ const DetailContent = styled.div`
   width: 50%;
 `
 const IdPersonImg = styled.img`
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 50px;
-  margin-top:-5px ;
+  margin: 0 0 0 8px;
 `
 const ContentBody = styled.div`
   border-top: 0.5px solid lightgray;
   padding-top: 1rem;
   padding-left: 0.6rem;
+  height: 67px;
   display: flex;
 `
 
