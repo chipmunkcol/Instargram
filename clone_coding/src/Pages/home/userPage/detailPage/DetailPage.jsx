@@ -9,7 +9,7 @@ import { __postComment } from '../../../../Redux/modules/comment';
 import { __getComment } from '../../../../Redux/modules/comment';
 import { __postPost } from '../../../../Redux/modules/postSlice';
 import { __getDetail } from '../../../../Redux/modules/detailSlice';
-
+import 사용자기본로고 from '../../../../Image/사용자 기본로고.jpg'
 
 const DetailPage = ({openDetail,setOpenDetail,data,likeButton,tagContent,othersMenuOpen,setOthersMenuOpen}) => {
 
@@ -55,7 +55,7 @@ useEffect(()=>{
           <DetailContent>
             <ContentTitle>
               <div style={{ display: 'flex' }}>
-                <IdPersonImg src='images/noImg.jpg' ></IdPersonImg>
+                <IdPersonImg src={ data.profileImage !== null ? data.profileImage : 사용자기본로고 } ></IdPersonImg>
                 <div style={{ marginLeft: '5px', marginTop: '5px', fontWeight: '700' }}>{data.nickname}</div>
               </div>
               <div>
@@ -64,7 +64,7 @@ useEffect(()=>{
               </div>
             </ContentTitle>
             <ContentBody>
-              <IdPersonImg src='images/noImg.jpg' ></IdPersonImg>
+              <IdPersonImg src={ data.profileImage !== null ? data.profileImage : 사용자기본로고 } ></IdPersonImg>
             <div style={{ marginLeft: '5px', marginTop: '5px', fontWeight: '700' }}>{data.nickname}</div>
             <ContentText style={{ marginTop: '8px' }}>
                 <span style={{ padding: '1.2rem' }}>{data.description}</span>

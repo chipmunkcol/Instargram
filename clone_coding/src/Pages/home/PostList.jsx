@@ -57,7 +57,7 @@ const PostList = ({ data }) => {
   }
   return (
     <Card sx={{ maxWidth: 600, borderRadius: '20px', border: '1px solid lightgray', marginTop: '50px', marginBottom: '50px' }}>
-        <div style={{ display: 'flex', justifyContent:'space-between',padding:'1rem' }}>
+        <div style={{ display: 'flex', justifyContent:'space-between',padding:'1rem', borderBottom:'1px solid lightgray' }}>
             <div style={{ display: 'flex' }}>
 
               {/* <IdPersonImg src={ data.profileImage !== null ? data.profileImage : profileImg } onClick={()=>{navigate(`/user/${data.username}`)}} type='button'/>
@@ -96,7 +96,7 @@ const PostList = ({ data }) => {
         {/* 좋아요개수 클릭시 모달창 */}
         <CardLike onClick={clickLikeCount}>좋아요 {data.likesCount}개</CardLike>
           <CardInnerContent >
-            <p style={{ fontWeight: '900', fontSize: '18px' }}>{data.id}</p>
+            <p style={{ fontWeight: '900', fontSize: '18px' }}>{data.nickname}</p>
             <div style={{ marginTop: '2px', marginLeft: '10px', fontSize: '16px' }}>{data.description}</div >
             <div style={{ cursor: 'pointer' }} onClick={handleDetail}> ...더보기</div>
             
@@ -144,8 +144,8 @@ const IdPersonImg = styled_components.img`
 `
 const CardLike = styled_components.div`
   margin-left: 20px;
-  font-size:18px;
-  font-weight: 800;
+  font-size:16px;
+  font-weight: 600;
   cursor:pointer;
 `
 const DetailImageContainer = styled_components.div`
