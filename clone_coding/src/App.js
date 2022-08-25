@@ -1,38 +1,45 @@
 import './App.css';
-import { Container, Nav, Navbar} from 'react-bootstrap';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import * as React from 'react';
+import { Route, Routes, useNavigate,Link, Switch } from 'react-router-dom';
 import Login from './Pages/Login/Login'
 import Register from './Pages/Login/Register'
 import Home from './Pages/home/Home';
 import UserPage from './Pages/home/userPage/UserPage';
 import DetailPage from './Pages/home/userPage/detailPage/DetailPage';
-import UpLoad from './Pages/upload/UpLoad';
+import Header from './Pages/Header';
+import { getCookieToken } from './shared/cookie';
 
 function App() {
+  const [openImg, setOpenImg] = React.useState(false);
+  const [dropmenu, setDropmenu] = React.useState(false);
 
-const navigate = useNavigate()
+  const isToken = getCookieToken();
+  // console.log(isToken)
+  if (!isToken) {
+    return (
+      <div>
+        <Routes>
+          <Route path='/' element={<Login/>}></Route>
+          <Route path='/register' element={<Register/>}></Route>
+        </Routes>
+      </div>
+    )
+  }
 
   return (
     <div className="App">
-      <Navbar bg="light" variant="light">
-        <Container>
-          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link onClick={()=>{ navigate('/') }}>Home</Nav.Link>
-            <Nav.Link onClick={()=>{ navigate('/user') }}>MyPage</Nav.Link>
-            <Nav.Link onClick={()=>{ navigate('/upLoad') }}>UpLoad</Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
 
-    <Routes>
-      <Route path='/' element={<Home></Home>}></Route>
-      <Route path='/login' element={<Login></Login>}></Route>
-      <Route path='/register' element={<Register></Register>}></Route>
-      <Route path='/user' element={<UserPage></UserPage>}></Route>
-      <Route path='/user/detail' element={<DetailPage></DetailPage>}></Route>
-      <Route path='/upLoad' element={<UpLoad></UpLoad>}></Route>
-    </Routes>
+      <Header setOpenImg={setOpenImg} setDropmenu={setDropmenu} dropmenu={dropmenu} />
+      
+      <Routes>
+        <Route path='/' element={<Home openImg={openImg} setOpenImg={setOpenImg} setDropmenu={setDropmenu}/>}></Route>
+        <Route path='/user/detail' element={<DetailPage/>}></Route>
+        <Route path='/login' element={<Login/>}></Route>
+        <Route path='/register' element={<Register/>}></Route>
+        <Route path='/user/:username' element={<UserPage/>}></Route>
+        {/* <Route path='/upLoad' element={<UpLoad/>}></Route> */}
+      </Routes>
+      
 
     </div>
   );
