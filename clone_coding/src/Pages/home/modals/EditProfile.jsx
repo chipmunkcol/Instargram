@@ -29,12 +29,12 @@ const EditProfile = ({ openEditProfile,setOpenEditProfile,UserInfo }) => {
     const file_url = await getDownloadURL(upload_file.ref)
     setFileUrl(file_url)
   }
+  
   const EditDone = () => {
     const post = {
       file: fileUrl,
       description: description,
     }
-    console.log(post)
     dispatch(__patchEditProfile(post))
     alert('수정완료!')
     // window.location.reload(`/user/${UserInfo.username}`)

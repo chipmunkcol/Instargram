@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useRef} from 'react'
+import React, { useEffect, useState, useRef} from 'react'
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import styled_components from 'styled-components';
@@ -17,6 +17,9 @@ const PostList = ({ data }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // console.log(data)
+
+  const [profileImg, setProfileImg] = useState('images/noImg.jpg')
+
   let tagContent = data.tag.tagName.split('#')[1];
   // Card modal창
   const [othersMenuOpen, setOthersMenuOpen] = React.useState(false);
@@ -40,6 +43,7 @@ const PostList = ({ data }) => {
     setLikeButton(response.data.data)
     dispatch(getPost())
   }
+  console.log(data)
   // 좋아요 개수 클릭시 모달창
   const [countModal, setCountModal] = React.useState(false);
   const clickLikeCount = () => {
@@ -50,7 +54,7 @@ const PostList = ({ data }) => {
         <div style={{ display: 'flex', justifyContent:'space-between',padding:'1rem' }}>
             <div style={{ display: 'flex' }}>
 
-              <IdPersonImg src='images/noImg.jpg' onClick={()=>{navigate(`/user/${data.username}`)}} type='button'></IdPersonImg>
+              <IdPersonImg src={ data.profileImage !== null ? data.profileImage : profileImg } onClick={()=>{navigate(`/user/${data.username}`)}} type='button'/>
               <h4 style={{ marginLeft: '10px', marginTop: '7px' }}>{data.nickname}</h4>
 
             </div>

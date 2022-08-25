@@ -6,13 +6,15 @@ const myToken = getCookieToken();
 
 export const __patchEditProfile = createAsyncThunk(
     'editProfile/patchEditProfile',
-    async (paylaod, thunkAPI) => {
-        console.log(paylaod)
+    async (payload, thunkAPI) => {
+        console.log(payload)
         try {
-            const data = await axios.patch('https://jdh3340.shop/api/user/profile', paylaod,
+            const data = await axios.put('https://jdh3340.shop/api/user/profile', payload,
             { headers: {Authorization: myToken} })
+            console.log(data.data)
             return thunkAPI.fulfillWithValue(data.data)
         } catch (error) {
+            console.log(error)
             return thunkAPI.rejectWithValue(error)
         }
     }
