@@ -17,9 +17,10 @@ export const getPost = createAsyncThunk(
     try {
       const data = await axios.get("https://jdh3340.shop/api/recent/posts",
       { headers: {Authorization: myToken} })
-      // console.log(data)
+      // console.log(data.data)
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
+      console.log(error)
       return thunkAPI.rejectWithValue(error);
     }
   }

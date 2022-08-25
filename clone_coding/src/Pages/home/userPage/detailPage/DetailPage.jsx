@@ -96,11 +96,11 @@ useEffect(()=>{
 
 const DetailContainer = styled.div`
     position: absolute;
-    top: 50%;
+    top: 43%;
     left: 50%;
     transform: translateX(-50%);
     z-index:100;
-    min-width: 80%;
+    width:1200px
 `
 const DetailInner = styled.div`
     /* width: 80%; */

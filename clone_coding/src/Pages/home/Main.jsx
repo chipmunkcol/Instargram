@@ -18,7 +18,7 @@ function Main() {
 
     //redux
   const { posts } = useSelector((state) => state.post)
-
+  console.log(posts)
   
   if(posts.length ===  0){
     return (
@@ -38,12 +38,12 @@ function Main() {
     <div>
       <MainContainer >      
         {/* 카드 컴포넌트입니다 */}
-        {posts.data.content && posts.data.content.map((data, i) => { return <PostList data={data} key={i}  /> })
+        {posts.data && posts.data.map((data, i) => { return <PostList data={data} key={i}  /> })
         }
       </MainContainer>
 
       {/* 페이지네이션입니다 */}
-      <PaginationPosition>
+      {/* <PaginationPosition>
         <nav aria-label="Page navigation example">
           <ul className="pagination">
             <li className="page-item">
@@ -63,7 +63,7 @@ function Main() {
             </li>
           </ul>
         </nav>
-      </PaginationPosition>
+      </PaginationPosition> */}
     </div>
         );
 }
