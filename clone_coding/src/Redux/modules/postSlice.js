@@ -19,6 +19,7 @@ export const getPost = createAsyncThunk(
       { headers: {Authorization: myToken} })
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
+      console.log(error)
       return thunkAPI.rejectWithValue(error);
     }
   }

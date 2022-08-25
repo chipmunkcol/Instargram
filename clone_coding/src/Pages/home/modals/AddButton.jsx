@@ -12,7 +12,6 @@ import { getUserData } from '../../../shared/cookie';
 const AddButton = () => {
   
   const userInfo = getUserData()
-  console.log(userInfo)
 
   const [fileUrl, setFileUrl] = useState('')
   const [comment, setComment] = useState('')
@@ -46,7 +45,7 @@ const AddButton = () => {
       description: comment,
       tag: "#"+tag
     }
-    console.log(post)
+    // console.log(post)
     dispatch(__postPost(post))
     alert('포스팅완료!')
     // dispatch(getPost)
