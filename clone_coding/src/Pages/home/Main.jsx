@@ -25,6 +25,7 @@ function Main() {
     //redux
   const { posts } = useSelector((state) => state.post)
   console.log(posts&& posts)
+  
 
   
   if(posts.length ===  0){

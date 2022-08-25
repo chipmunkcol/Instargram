@@ -6,11 +6,13 @@ import DetailPageComment from './DetailPageComment';
 import Modal from '@mui/material/Modal';
 import { useDispatch, useSelector } from 'react-redux'
 import { __postComment } from '../../../../Redux/modules/comment';
+import { __getComment } from '../../../../Redux/modules/comment';
 import { __postPost } from '../../../../Redux/modules/postSlice';
 import { __getDetail } from '../../../../Redux/modules/detailSlice';
 
 
 const DetailPage = ({openDetail,setOpenDetail,data,likeButton,tagContent,othersMenuOpen,setOthersMenuOpen}) => {
+
 
 const dispatch = useDispatch()
 const [reload, setReload] = useState(false)
@@ -29,8 +31,12 @@ const postComment = () => {
   }, 500);
 }
 
+const postDetail = useSelector((state)=>state)
+console.log(postDetail)
+console.log(data)
+
 useEffect(()=>{
-  
+  dispatch(__getComment(data.id))
 
 },[reload])
 
