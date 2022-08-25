@@ -6,11 +6,13 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../../shared/firebase';
 import { __patchEditProfile } from '../../../Redux/modules/editProfile';
 import { useDispatch } from 'react-redux';
+import addImage from '../../../Image/addImg.png'
+import 기본로고 from '../../../Image/사용자 기본로고.jpg'
 
 const EditProfile = ({ openEditProfile,setOpenEditProfile,UserInfo }) => {
   console.log(UserInfo)
   const dispatch = useDispatch()
-  const [fileUrl, setFileUrl] = useState('images/addImg.png')
+  const [fileUrl, setFileUrl] = useState(addImage)
   const [description, setDescription] = useState('')
   
   const handleClose = () => {
@@ -37,7 +39,7 @@ const EditProfile = ({ openEditProfile,setOpenEditProfile,UserInfo }) => {
     }
     dispatch(__patchEditProfile(post))
     alert('수정완료!')
-    // window.location.reload(`/user/${UserInfo.username}`)
+    window.location.reload(`/user/${UserInfo.username}`)
   }
   return (
     <div>
@@ -77,7 +79,7 @@ const EditProfile = ({ openEditProfile,setOpenEditProfile,UserInfo }) => {
           </EditButton>
           <EditProfileContent>
             <div style={{ display: 'flex', margin: '10px' }}>
-              <img style={{ width: '50px', height: '50px', borderRadius: '50px', marginTop: '5px', marginRight: '20px' }} alt="noImg" src='images/noImg.jpg'></img>
+              <img style={{ width: '50px', height: '50px', borderRadius: '50px', marginTop: '5px', marginRight: '20px' }} src={UserInfo.profileImage !== null ? UserInfo.profileImage : 기본로고}></img>
               <div style={{ margin: "auto 0" }} > {UserInfo.username }</div>
             </div>
             <div style={{ margin: "auto 10px" }} >닉네임 : {UserInfo.nickname }</div>

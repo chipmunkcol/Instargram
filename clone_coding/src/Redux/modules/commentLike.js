@@ -8,7 +8,7 @@ export const __geteCommentLike = createAsyncThunk(
     'commentLike/getCommentLike',
     async (payload, thunkAPI) => {
         try {
-            // console.log(payload)
+            console.log(payload)
             const postId = payload.postId
             const commentId = payload.commentId
             const data = await axios.get(`https://jdh3340.shop/api/user/posts/${postId}/comments/${commentId}/likes`,
