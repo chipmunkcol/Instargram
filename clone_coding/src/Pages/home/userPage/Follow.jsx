@@ -8,19 +8,18 @@ import { getUserData } from '../../../shared/cookie';
 import { getCookieToken } from '../../../shared/cookie';
 import GetWhoFollow from './GetWhoFollow';
 
-const Follow =({ openFollow, setOpenFollow }) => {
+const Follow =({ userInfoName, openFollow, setOpenFollow }) => {
   const tokenId = getUserData();
   // console.log(tokenId)
   const [getFollowData, setGetFollowData] = useState(null)
   
   const getFollow = async () => {
-    const response =  await axios.get(`https://jdh3340.shop/api/user/${tokenId}/follow`,{
+    const response =  await axios.get(`https://jdh3340.shop/api/user/${userInfoName}/follow`,{
       headers: {
         "Authorization": getCookieToken()
       }
     })
     setGetFollowData(response.data.data)
-    console.log(response.data.data)
   }
   useEffect(() => {
     getFollow()
@@ -41,7 +40,7 @@ const Follow =({ openFollow, setOpenFollow }) => {
         <div style={{ fontWeight: '800' }}>팔로우</div>
         <ClearIcon sx={{ cursor: 'pointer' }} onClick={() => {setOpenFollow(false)}} />
       </div>
-      {getFollowData && getFollowData.map((followData, i) => {return <GetWhoFollow followData={followData} key={i} />
+      {getFollowData && getFollowData.map((followData, i) => {return <GetWhoFollow followData={followData} followed={followData.followed} key={i} />
       })}
   </Box>
   </Modal>  

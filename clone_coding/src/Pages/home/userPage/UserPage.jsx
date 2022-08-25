@@ -16,32 +16,30 @@ import Follower from './Follower'
 import Follow from './Follow'
 
 function UserPage() {
-    // 팔로워
-    const [openFollower, setOpenFollower] = useState(false);
-    // 팔로우
-    const [openFollow, setOpenFollow] = useState(false);
-    // 프로필편집
-    const [openEditProfile, setOpenEditProfile] = useState(false)
-
     const username = getUserData()
     const dispatch = useDispatch()
     const params = useParams().username
-// console.log(params)
-// console.log(username)
+    // console.log(params)
+    // console.log(username)
 
-const {isLoading, error, userPage} =  useSelector((state)=> state.userPage)
-const UserPage = userPage.data
-// console.log(isLoading, error, UserPage)
+    const {isLoading, error, userPage} =  useSelector((state)=> state.userPage)
+    const UserPage = userPage.data
+    // console.log(UserPage)
 
-const userInfo = useSelector((state)=> state.userInfo)
-const UserInfo = userInfo.userInfo
-// console.log(UserInfo)
+    const userInfo = useSelector((state)=> state.userInfo)
+    const UserInfo = userInfo.userInfo
+    // console.log(UserInfo.username)
+     
+     // 프로필편집
+     const [openEditProfile, setOpenEditProfile] = useState(false)
 
     // 팔로워
+    const [openFollower, setOpenFollower] = useState(false);
     const checkFollower = () => {
         setOpenFollower(!openFollower)
     }
     // 팔로우
+    const [openFollow, setOpenFollow] = useState(false);
     const checkFollow = () => {
         setOpenFollow(!openFollow)
     }
@@ -111,9 +109,9 @@ if( isLoading ) {
                 <EditProfile openEditProfile={openEditProfile} setOpenEditProfile={setOpenEditProfile} UserInfo={UserInfo} />
                 : null}    
             {/* 팔로워 모달창입니다 */}
-            {openFollower ? <Follower openFollower={openFollower} setOpenFollower={setOpenFollower} /> : null}
+            {openFollower ? <Follower userInfoName={UserInfo.username} openFollower={openFollower} setOpenFollower={setOpenFollower} /> : null}
             {/* 팔로우 모달창입니다 */}
-            {openFollow ? <Follow openFollow={openFollow} setOpenFollow={setOpenFollow} />: null}
+            {openFollow ? <Follow userInfoName={UserInfo.username} openFollow={openFollow} setOpenFollow={setOpenFollow} />: null}
         </div>
     );
 }

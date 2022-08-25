@@ -8,18 +8,19 @@ import { getUserData } from '../../../shared/cookie';
 import { getCookieToken } from '../../../shared/cookie';
 import GetWhoFollower from './GetWhoFollower';
 
-const Follower = ({ openFollower, setOpenFollower }) => {
+const Follower = ({ userInfoName,openFollower, setOpenFollower }) => {
   const tokenId = getUserData();
+
   const [getFollowerData, setGetFollowerData] = useState(null)
   
   const getFollow = async () => {
-    const response =  await axios.get(`https://jdh3340.shop/api/user/${tokenId}/follower`,{
+    const response =  await axios.get(`https://jdh3340.shop/api/user/${userInfoName}/follower`,{
       headers: {
         "Authorization": getCookieToken()
       }
     })
     setGetFollowerData(response.data.data)
-    // console.log(response.data.data)
+    console.log(response.data.data)
   }
   useEffect(() => {
     getFollow()

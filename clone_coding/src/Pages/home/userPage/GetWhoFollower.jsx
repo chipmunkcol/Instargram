@@ -8,18 +8,13 @@ import axios from 'axios'
 const GetWhoFollower = ({ followerData,followed }) => {
   const [getFollowData, setGetFollowData] = React.useState(followed)
 
-
-  // const navigate = useNavigate();
-  // 팔로우 버튼 다시 연결해야
   const followProcess = async () => {
-    console.log(followerData.username)
     const response = await axios.post(`https://jdh3340.shop/api/user/${followerData.username}/follow`,followerData.username,
       {headers: {
         "Authorization": getCookieToken()
       }}
     )
     setGetFollowData(response.data.data)
-    console.log(response.data.data)
   }
 
   return (
