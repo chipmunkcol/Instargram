@@ -84,7 +84,7 @@ Instargram 클론 프로젝트 입니다.
  ![clone_2](https://user-images.githubusercontent.com/85866328/187017053-f31d5e8b-716f-4815-992d-476a1663b77b.gif)
  
  #### 3. 게시글 수정 & 팔로우, 팔로우취소 & 다른 유저 프로필과 게시글 확인
- ![clone_3](https://user-images.githubusercontent.com/85866328/187016113-0b415da7-bda6-4073-af08-349ed013fb6f.gif)
+![clone_3](https://user-images.githubusercontent.com/85866328/187020289-af6ff8bf-7281-4184-b16c-b2668c04506c.gif)
 
 ## REPOSITORIES
 - BACK-END
