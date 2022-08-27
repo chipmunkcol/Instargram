@@ -92,4 +92,3 @@ Instargram 클론 프로젝트 입니다.
 
 - FRONT-END
 [GitHub - chipmunkcol/cloneCoding: 항해99 7주차 팀과제](https://github.com/chipmunkcol/cloneCoding)<br><br>
->>>>>>> 4b1a84afd69db066cb7b2dded0316bde38624c1d
