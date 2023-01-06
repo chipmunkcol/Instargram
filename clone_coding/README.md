@@ -7,7 +7,8 @@
 
 ## ****🍀 프로젝트 소개****
 Instargram 클론 프로젝트 입니다.
-[Instargram 클론코딩 사이트](https://instargram-clone.netlify.app/)
+([구경하기🙄](https://instargram-clone.netlify.app/) / 
+[시연영상](https://www.youtube.com/watch?v=PMmjCJMe56w))
 
 ## ****🗓 프로젝트 기간****
 
